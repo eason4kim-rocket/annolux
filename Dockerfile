@@ -44,7 +44,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
     CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/annolux-healthcheck ./cmd/annolux-healthcheck && \
     CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/annolux-admin ./cmd/annolux-admin
 
-FROM gcr.io/distroless/static-debian12:nonroot@sha256:1b7b9f0f0e0a1d2155f531db587cc48ec26aaf97ab64364225f5bf18a054e66a AS api
+FROM gcr.io/distroless/static-debian12:nonroot@sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab AS api
 WORKDIR /data
 COPY --from=go-builder /out/annolux-api /usr/local/bin/annolux-api
 COPY --from=go-builder /out/annolux-index /usr/local/bin/annolux-index
