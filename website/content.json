@@ -1,0 +1,2718 @@
+{
+  "site": {
+    "name": "Annolux",
+    "origin": "https://annolux.com",
+    "apiOrigin": "https://api.annolux.com",
+    "github": "https://github.com/eason4kim-rocket/annolux",
+    "supportEmail": "support@annolux.com",
+    "privacyEmail": "privacy@annolux.com",
+    "securityEmail": "security@annolux.com"
+  },
+  "homeCopy": {
+    "en": {
+      "nav.docs": "Docs",
+      "nav.pricing": "Pricing",
+      "nav.signIn": "Sign in",
+      "nav.trial": "Start free",
+      "nav.menu": "Menu",
+      "common.changelog": "Changelog",
+      "hero.eyebrow": "BILINGUAL SEARCH API · AGENTS &amp; RAG",
+      "hero.title": "Give your agent search it can <em class=\"accent\">cite.</em>",
+      "hero.lead": "A focused index of <span class=\"figure\">337,000+</span> English and Chinese pages, built and owned by us. Search it with one call — every result carries its source URL and the time that page was read.",
+      "hero.primary": "Get your API key, free",
+      "hero.secondary": "Read the docs",
+      "chip.one": "FETCH · FIND · IDENTITY",
+      "chip.two": "FROZEN BLIND EVALUATION",
+      "chip.three": "MCP READY",
+      "fig1.title": "Three moves, one key",
+      "fig1.note": "— how a page enters the index, how you find it, and what every result carries.",
+      "tab.fetch": "Fetch",
+      "tab.find": "Find",
+      "tab.identity": "Identity",
+      "fetch.meta": "· rendered · 18.4 KB · 240 ms · clean markdown",
+      "fetch.body": "The Rust team is happy to announce a new version of Rust. Rust is a programming language empowering everyone to build reliable and efficient software…",
+      "fetch.foot": "Chrome-true fetch · boilerplate stripped · robots respected · this is how pages enter the index",
+      "find.run": "Run",
+      "find.hitTitle": "Understanding Ownership · The Rust Programming Language",
+      "find.hitSnippet": "Ownership is a set of rules that govern how a Rust program manages memory. The stack and the heap…",
+      "find.hitMeta": "fetched_at 2026-08-15T12:07:06Z · rank 1 · 1 credit",
+      "id.intro": "No extra call. Every result already arrives with its own provenance.",
+      "id.rank": "1 · deduplicated",
+      "id.credits": "1 · charged on success only",
+      "spec.one": "SUCCESS = 1 CREDIT",
+      "spec.two": "ERRORS = 0 CREDITS",
+      "spec.three": "NO OVERAGE",
+      "spec.four": "5 RPS · BURST 10",
+      "fig2.title": "Measured, not claimed",
+      "fig2.note": "— scored on a frozen blind set the ranking is never tuned against.",
+      "stat.one": "The target page lands in the top ten.",
+      "stat.two": "And it lands near the top, not buried.",
+      "stat.threeLabel": "P95 LATENCY",
+      "stat.three": "Measured client-side, with zero request errors.",
+      "proof.note": "40 held-out queries, written before the run. The evaluator, the frozen cases, and the release gate are public.",
+      "footer.note": "Search that can show its work.",
+      "footer.contact": "Contact",
+      "footer.privacy": "Privacy",
+      "footer.legal": "Terms"
+    },
+    "zh": {
+      "nav.docs": "文档",
+      "nav.pricing": "定价",
+      "nav.signIn": "登录",
+      "nav.trial": "免费开始",
+      "nav.menu": "菜单",
+      "common.changelog": "更新日志",
+      "hero.eyebrow": "中英双语搜索 API · 面向 AGENT 与 RAG",
+      "hero.title": "让 Agent 的每条结果，都<em class=\"accent\">有据可查。</em>",
+      "hero.lead": "<span class=\"figure\">33.7 万+</span> 中英文精选页面，索引由我们自建并维护。一次调用即可检索——每条结果都带来源网址，以及该页面被读取的时间。",
+      "hero.primary": "免费领 API Key",
+      "hero.secondary": "阅读文档",
+      "chip.one": "抓取 · 检索 · 身份",
+      "chip.two": "冻结盲集评测",
+      "chip.three": "支持 MCP",
+      "fig1.title": "三个动作，一把密钥",
+      "fig1.note": "——页面如何进入索引，如何检索，以及每条结果都带着什么。",
+      "tab.fetch": "抓取",
+      "tab.find": "检索",
+      "tab.identity": "身份",
+      "fetch.meta": "· 已渲染 · 18.4 KB · 240 ms · 干净 markdown",
+      "fetch.body": "The Rust team is happy to announce a new version of Rust. Rust is a programming language empowering everyone to build reliable and efficient software…",
+      "fetch.foot": "真实 Chrome 抓取 · 剥离模板 · 遵守 robots · 页面就是这样进入索引的",
+      "find.run": "运行",
+      "find.hitTitle": "Understanding Ownership · The Rust Programming Language",
+      "find.hitSnippet": "Ownership is a set of rules that govern how a Rust program manages memory. The stack and the heap…",
+      "find.hitMeta": "fetched_at 2026-08-15T12:07:06Z · rank 1 · 1 credit",
+      "id.intro": "不需要额外调用。每条结果本身就带着自己的来源。",
+      "id.rank": "1 · 已去重",
+      "id.credits": "1 · 仅成功时扣点",
+      "spec.one": "成功 = 扣 1 点",
+      "spec.two": "错误 = 不扣点",
+      "spec.three": "无超额费",
+      "spec.four": "5 RPS · 突发 10",
+      "fig2.title": "用实测说话",
+      "fig2.note": "——在排序从不调参的冻结盲集上跑出来的。",
+      "stat.one": "目标页面出现在前十条。",
+      "stat.two": "而且靠前，不是垫底。",
+      "stat.threeLabel": "P95 延迟",
+      "stat.three": "客户端实测，零请求错误。",
+      "proof.note": "40 条留出查询，均在跑测之前写定。评测器、冻结用例与发布门槛全部公开。",
+      "footer.note": "每一次搜索，都有证据。",
+      "footer.contact": "联系",
+      "footer.privacy": "隐私",
+      "footer.legal": "条款"
+    }
+  },
+  "authCopy": {
+    "en": {
+      "form.kicker": "YOUR ACCOUNT",
+      "form.title": "Continue to Annolux.",
+      "form.subtitle": "Use Google or GitHub. Annolux does not support passwords or magic links.",
+      "action.google": "Continue with Google",
+      "action.github": "Continue with GitHub",
+      "story.note": "1,000 permanent credits, granted once per new account",
+      "form.terms": "By continuing, you accept the Terms, Privacy Policy, Refund Policy, and Acceptable Use Policy.",
+      "action.back": "Back to site",
+      "footer.note": "Search that can show its work."
+    },
+    "zh": {
+      "form.kicker": "你的账户",
+      "form.title": "继续使用 Annolux。",
+      "form.subtitle": "使用 Google 或 GitHub 登录；Annolux 不支持密码或 magic link。",
+      "action.google": "使用 Google 继续",
+      "action.github": "使用 GitHub 继续",
+      "story.note": "每个新账户一次性获得 1,000 永久点",
+      "form.terms": "继续即表示你接受服务条款、隐私政策、退款政策与可接受使用政策。",
+      "action.back": "返回网站",
+      "footer.note": "每一次搜索，都有证据。"
+    }
+  },
+  "pages": [
+    {
+      "slug": "docs",
+      "title": {
+        "en": "Search API documentation",
+        "zh": "Search API 文档"
+      },
+      "description": {
+        "en": "Authenticate, query Annolux Search, interpret responses, and handle credit and rate errors.",
+        "zh": "Annolux Search 的认证、查询、响应、点数和限流错误文档。"
+      },
+      "kicker": {
+        "en": "API v1 · STANDARD SEARCH",
+        "zh": "API v1 · 标准 SEARCH"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "One commercial endpoint",
+            "zh": "唯一商业端点"
+          },
+          "paragraphs": [
+            {
+              "en": "POST https://api.annolux.com/api/v1/search is the only self-serve paid capability. Verify and receipts are invitation-only Labs and are not included in Pro or Scale.",
+              "zh": "POST https://api.annolux.com/api/v1/search 是唯一自助付费能力。Verify 与 receipt 属于邀请制 Labs，不包含在 Pro 或 Scale 中。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Authentication",
+            "zh": "认证"
+          },
+          "paragraphs": [
+            {
+              "en": "Send the API key once in Authorization: Bearer ann_live_…. Keys are shown only at creation. Each account may keep at most three active keys.",
+              "zh": "在 Authorization: Bearer ann_live_… 中发送 API Key。密钥只在创建时展示一次；每个账户最多保留 3 个有效密钥。"
+            }
+          ],
+          "code": "ANNOLUX_API_KEY='<paste your key here>'\ncurl -X POST https://api.annolux.com/api/v1/search \\\n  -H \"Authorization: Bearer ${ANNOLUX_API_KEY}\" \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"query\":\"rust ownership\",\"domains\":[\"doc.rust-lang.org\"],\"deduplicate\":true,\"limit\":5,\"timeout\":10}'"
+        },
+        {
+          "heading": {
+            "en": "Request contract",
+            "zh": "请求契约"
+          },
+          "paragraphs": [
+            {
+              "en": "query is required. domains is optional. deduplicate defaults to true. limit is 1–10. timeout is 1–30 seconds. ranking may be default or provider. freshness, content enrichment, Verify, Extract, trust, Answer, and Watch are unsupported in the commercial endpoint.",
+              "zh": "query 必填；domains 可选；deduplicate 默认 true；limit 为 1–10；timeout 为 1–30 秒；ranking 仅可为 default 或 provider。商业端点不支持 freshness、内容增强、Verify、Extract、trust、Answer 与 Watch。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Response and credits",
+            "zh": "响应与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "Each result includes rank, title, URL, snippet, and fetched_at. A successful 2xx response consumes one credit. 400, 403, 429, 5xx, and timeouts consume zero. Insufficient balance returns 402; there are no overage charges.",
+              "zh": "每条结果包含 rank、title、URL、snippet 与 fetched_at。成功 2xx 扣 1 点；400、403、429、5xx 与超时不扣点；余额不足返回 402，不产生超额费用。"
+            }
+          ],
+          "code": "X-Annolux-Credits-Used: 1\nX-Annolux-Credits-Remaining: 999\nX-Request-ID: req_…"
+        },
+        {
+          "heading": {
+            "en": "Rate and freshness boundaries",
+            "zh": "限流与时效边界"
+          },
+          "paragraphs": [
+            {
+              "en": "All plans use 5 RPS with burst 10. The index is curated and periodically refreshed, not a realtime global search engine. Passing freshness returns UNSUPPORTED_OPTION instead of being silently ignored.",
+              "zh": "所有套餐统一 5 RPS、burst 10。索引是定期维护的精选索引，不是全球实时搜索；传入 freshness 会返回 UNSUPPORTED_OPTION，而不是被静默忽略。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Use it over MCP",
+            "zh": "通过 MCP 使用"
+          },
+          "paragraphs": [
+            {
+              "en": "annolux-mcp exposes this same Search contract as a single search_web tool for MCP clients — same request fields, same response shape, no extra operations. If your agent runs in Claude Code, Claude Desktop, or Cursor, the guides below give a copy-paste configuration for each client.",
+              "zh": "annolux-mcp 把本页同一套 Search 契约封装成 MCP 客户端可用的单一 search_web 工具——请求字段一致、响应结构一致，没有额外操作。如果你的 Agent 跑在 Claude Code、Claude Desktop 或 Cursor 里，下面的指南提供各客户端的可复制配置。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "MCP server overview",
+                "zh": "MCP 服务器总览"
+              },
+              "slug": "mcp"
+            },
+            {
+              "label": {
+                "en": "Claude Code setup",
+                "zh": "Claude Code 配置"
+              },
+              "slug": "mcp/claude-code"
+            },
+            {
+              "label": {
+                "en": "Claude Desktop setup",
+                "zh": "Claude Desktop 配置"
+              },
+              "slug": "mcp/claude-desktop"
+            },
+            {
+              "label": {
+                "en": "Cursor setup",
+                "zh": "Cursor 配置"
+              },
+              "slug": "mcp/cursor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "pricing",
+      "kind": "pricing",
+      "title": {
+        "en": "Pricing",
+        "zh": "定价"
+      },
+      "description": {
+        "en": "Annolux Search pricing: 1,000 permanent signup credits, Pro $29 for 20,000 monthly credits, Scale $99 for 100,000.",
+        "zh": "Annolux Search 定价：注册 1,000 永久点，Pro 每月 $29/20,000 点，Scale 每月 $99/100,000 点。"
+      },
+      "kicker": {
+        "en": "CLEAR CREDITS · NO OVERAGE",
+        "zh": "清晰点数 · 无超额费用"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Rules shared by every plan",
+            "zh": "所有套餐共同规则"
+          },
+          "bullets": [
+            {
+              "en": "One successful standard Search = one credit; errors and timeouts = zero.",
+              "zh": "一次成功标准 Search 扣 1 点；错误和超时不扣点。"
+            },
+            {
+              "en": "5 RPS, burst 10, up to three active API keys.",
+              "zh": "统一 5 RPS、burst 10，最多 3 个有效 API Key。"
+            },
+            {
+              "en": "No overage billing. Monthly credits expire at the end of the billing period.",
+              "zh": "不收超额费用；月度点数在账期结束时失效。"
+            },
+            {
+              "en": "Cancellation takes effect at period end. No mid-cycle plan changes in v1.",
+              "zh": "取消在账期结束生效；v1 不支持账期内升降级。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Payment availability",
+            "zh": "支付可用性"
+          },
+          "paragraphs": [
+            {
+              "en": "Free accounts launch without a card. Live checkout is enabled — paid plans are charged through Paddle, and credits are granted automatically after payment.",
+              "zh": "免费账户无需银行卡即可上线。Live 结账已开放——付费方案经 Paddle 收款，支付完成后点数自动到账。"
+            }
+          ]
+        }
+      ],
+      "plans": [
+        {
+          "name": "Free",
+          "price": "$0",
+          "credits": {
+            "en": "1,000 once",
+            "zh": "一次性 1,000 点"
+          },
+          "summary": {
+            "en": "Permanent signup grant; no card.",
+            "zh": "注册永久赠送；无需信用卡。"
+          }
+        },
+        {
+          "name": "Pro",
+          "price": "$29",
+          "credits": {
+            "en": "20,000 / month",
+            "zh": "20,000 点 / 月"
+          },
+          "summary": {
+            "en": "$1.45 per 1,000 credits.",
+            "zh": "每 1,000 点 $1.45。"
+          }
+        },
+        {
+          "name": "Scale",
+          "price": "$99",
+          "credits": {
+            "en": "100,000 / month",
+            "zh": "100,000 点 / 月"
+          },
+          "summary": {
+            "en": "$0.99 per 1,000 credits; same limits and support.",
+            "zh": "每 1,000 点 $0.99；限流与支持级别不变。"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "benchmarks",
+      "title": {
+        "en": "Benchmarks",
+        "zh": "基准评测"
+      },
+      "description": {
+        "en": "Frozen blind evaluation results and methodology for the Annolux bilingual index.",
+        "zh": "Annolux 双语索引的冻结盲测结果与方法。"
+      },
+      "kicker": {
+        "en": "V2 BLIND · FROZEN",
+        "zh": "V2 盲集 · 已冻结"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Current baseline",
+            "zh": "当前基线"
+          },
+          "paragraphs": [
+            {
+              "en": "The frozen v2 blind set contains 40 queries. Hit@1 is 77.5%, Hit@3 is 87.5%, Hit@10 is 92.5%, and MRR@10 is 0.834375, at client p95 213 ms with zero request errors. The immutable first gate recorded Hit@10 85.0% at p95 532 ms; the improvement came from index work — exact-duplicate removal and a tiered discovery layer — while the ranking files stayed byte-identical and the blind set was never used for tuning. These figures are a small product benchmark, not a claim of web-wide superiority.",
+              "zh": "冻结的 v2 盲集包含 40 条查询：Hit@1 77.5%、Hit@3 87.5%、Hit@10 92.5%、MRR@10 0.834375，客户端 p95 为 213 ms，请求错误为 0。不可变的首次发布门记录为 Hit@10 85.0%、p95 532 ms；提升来自索引侧的工作——同正文去重与分层发现层——排序文件逐字节未改，盲集也从未用于调参。这是小规模产品基准，不代表全网领先。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Evaluation discipline",
+            "zh": "评测纪律"
+          },
+          "bullets": [
+            {
+              "en": "The blind set is not used to tune ranking weights.",
+              "zh": "盲集不参与排序权重调参。"
+            },
+            {
+              "en": "A release must not regress the stored baseline and must keep p95 at or below one second.",
+              "zh": "发布不得低于已存基线，p95 必须不高于 1 秒。"
+            },
+            {
+              "en": "Failures are reviewed as alias, better answer, content gap, or ranking error before collection or tuning.",
+              "zh": "失败先审为别名、更优答案、内容缺口或排序错误，再决定采集或调参。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Reproduce",
+            "zh": "复现"
+          },
+          "paragraphs": [
+            {
+              "en": "The repository includes the evaluator, frozen cases, output schema, and release gate. Raw production API keys and index data are never committed.",
+              "zh": "仓库包含评测器、冻结用例、输出格式与发布门；生产 API Key 和索引数据绝不提交。"
+            }
+          ],
+          "code": "go run ./scripts/searcheval -cases eval/v2-blind.jsonl -out eval/results.jsonl"
+        }
+      ]
+    },
+    {
+      "slug": "changelog",
+      "title": {
+        "en": "Changelog",
+        "zh": "更新日志"
+      },
+      "description": {
+        "en": "Public changes to Annolux Search, its API contract, index, and website.",
+        "zh": "Annolux Search、API 契约、索引与官网的公开变更记录。"
+      },
+      "kicker": {
+        "en": "PUBLIC RELEASE LOG",
+        "zh": "公开发布记录"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "2026-08 · Independent launch candidate",
+            "zh": "2026-08 · 独立产品候选版"
+          },
+          "bullets": [
+            {
+              "en": "Independent repository, module, binaries, images, and deployment boundary.",
+              "zh": "独立仓库、module、二进制、镜像与部署边界。"
+            },
+            {
+              "en": "Standard Search contract with persistent credits and self-serve OAuth accounts.",
+              "zh": "标准 Search 契约、持久点数和 OAuth 自助账户。"
+            },
+            {
+              "en": "Static English and Chinese website with honest index-freshness disclosure.",
+              "zh": "英中静态官网，并明确披露索引时效边界。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "title": {
+        "en": "About Annolux",
+        "zh": "关于 Annolux"
+      },
+      "description": {
+        "en": "Why Annolux is building a focused bilingual Search API for agents.",
+        "zh": "Annolux 为什么为 Agent 构建聚焦的双语 Search API。"
+      },
+      "kicker": {
+        "en": "INDEPENDENT · FOCUSED · MEASURABLE",
+        "zh": "独立 · 聚焦 · 可测"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "What we build",
+            "zh": "我们构建什么"
+          },
+          "paragraphs": [
+            {
+              "en": "Annolux is an independent Search API for agent and RAG workflows. It operates a focused English and Chinese index and exposes the minimum commercial contract needed to search it.",
+              "zh": "Annolux 是面向 Agent 与 RAG 工作流的独立 Search API，运行一个精选中英索引，并只开放检索所需的最小商业契约。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "What we do not claim",
+            "zh": "我们不宣称什么"
+          },
+          "paragraphs": [
+            {
+              "en": "We do not claim complete web coverage, realtime news, an SLA, or verified truth. Search finds source-attributed pages observed at a stated time.",
+              "zh": "我们不宣称覆盖全网、实时新闻、SLA 或已验证真相。Search 只返回在明确时间采集、带来源归属的页面。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "title": {
+        "en": "Contact and support",
+        "zh": "联系与支持"
+      },
+      "description": {
+        "en": "Private support, privacy, and security contact routes for Annolux.",
+        "zh": "Annolux 的私密支持、隐私与安全联系渠道。"
+      },
+      "kicker": {
+        "en": "PRIVATE SUPPORT CHANNELS",
+        "zh": "私密支持渠道"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Product and billing",
+            "zh": "产品与账单"
+          },
+          "paragraphs": [
+            {
+              "en": "Email support@annolux.com. Include your account ID and request ID, but never send a raw API key, OAuth token, password, or payment card data.",
+              "zh": "请发邮件至 support@annolux.com。可附账户 ID 与请求 ID，但不要发送原始 API Key、OAuth token、密码或银行卡信息。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Privacy",
+            "zh": "隐私"
+          },
+          "paragraphs": [
+            {
+              "en": "Email privacy@annolux.com for access, correction, deletion, or other privacy requests.",
+              "zh": "访问、更正、删除或其他隐私请求请发送至 privacy@annolux.com。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Security",
+            "zh": "安全"
+          },
+          "paragraphs": [
+            {
+              "en": "Email security@annolux.com for responsible disclosure. Do not post vulnerabilities or private account details in a public issue.",
+              "zh": "负责任披露请发送至 security@annolux.com。不要在公开 Issue 中发布漏洞或私人账户信息。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "crawler",
+      "title": {
+        "en": "Annolux crawler",
+        "zh": "Annolux 爬虫"
+      },
+      "description": {
+        "en": "Crawler identity, robots behavior, refresh policy, and removal requests.",
+        "zh": "Annolux 爬虫身份、robots 行为、刷新策略与移除请求。"
+      },
+      "kicker": {
+        "en": "ANNOLUXBOT",
+        "zh": "ANNOLUXBOT"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Identity",
+            "zh": "身份"
+          },
+          "paragraphs": [
+            {
+              "en": "The crawler identifies as AnnoluxBot/1.0 (+https://annolux.com/crawler). It fetches public HTTP(S) pages for the focused search index.",
+              "zh": "爬虫标识为 AnnoluxBot/1.0 (+https://annolux.com/crawler)，用于采集公开 HTTP(S) 页面并维护精选搜索索引。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Rules and load",
+            "zh": "规则与负载"
+          },
+          "bullets": [
+            {
+              "en": "robots.txt Allow, Disallow, and Crawl-delay are respected.",
+              "zh": "遵守 robots.txt 的 Allow、Disallow 与 Crawl-delay。"
+            },
+            {
+              "en": "Work is fair across registrable domains and bounded per host.",
+              "zh": "按可注册域公平调度，并限制单站规模。"
+            },
+            {
+              "en": "Maintenance refreshes known URLs only and do not discover new links.",
+              "zh": "维护刷新只访问已知 URL，不发现新链接。"
+            },
+            {
+              "en": "Private networks, unsafe redirects, large bodies, and non-document media are rejected.",
+              "zh": "拒绝私网、危险重定向、过大正文与非文档媒体。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Removal or correction",
+            "zh": "移除或更正"
+          },
+          "paragraphs": [
+            {
+              "en": "Site owners may email support@annolux.com with the URL, proof of control, and requested action. robots.txt changes are honored on later fetches.",
+              "zh": "站点所有者可将 URL、控制权证明和请求操作发送至 support@annolux.com；后续抓取会遵守 robots.txt 的变更。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "security",
+      "title": {
+        "en": "Security",
+        "zh": "安全"
+      },
+      "description": {
+        "en": "Annolux security boundaries and responsible disclosure.",
+        "zh": "Annolux 的安全边界与负责任披露方式。"
+      },
+      "kicker": {
+        "en": "SECURITY PRACTICES",
+        "zh": "安全实践"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Account and key protection",
+            "zh": "账户与密钥保护"
+          },
+          "bullets": [
+            {
+              "en": "OAuth uses state, nonce, and PKCE; sessions use Secure, HttpOnly, SameSite=Lax cookies.",
+              "zh": "OAuth 使用 state、nonce 与 PKCE；Session 使用 Secure、HttpOnly、SameSite=Lax Cookie。"
+            },
+            {
+              "en": "API keys are displayed once and stored only as keyed HMAC digests.",
+              "zh": "API Key 只展示一次，数据库仅保存带密钥的 HMAC 摘要。"
+            },
+            {
+              "en": "Sensitive writes require an exact Origin and CSRF token.",
+              "zh": "敏感写操作要求精确 Origin 与 CSRF token。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Disclosure",
+            "zh": "漏洞披露"
+          },
+          "paragraphs": [
+            {
+              "en": "Report vulnerabilities privately to security@annolux.com. Give enough detail to reproduce safely. Do not access other users' data, degrade availability, or publish before a reasonable remediation window.",
+              "zh": "请将漏洞私下报告至 security@annolux.com，并提供足以安全复现的信息。不要访问他人数据、影响可用性或在合理修复窗口前公开。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "status",
+      "kind": "status",
+      "title": {
+        "en": "Service status",
+        "zh": "服务状态"
+      },
+      "description": {
+        "en": "Annolux service health and incident communication.",
+        "zh": "Annolux 服务健康与事故沟通。"
+      },
+      "kicker": {
+        "en": "LIVE HEALTH",
+        "zh": "实时健康"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "API readiness",
+            "zh": "API 就绪状态"
+          },
+          "paragraphs": [
+            {
+              "en": "The status indicator checks the public readiness endpoint. A green response means the API can reach both its account store and search index; it is not an SLA.",
+              "zh": "状态指示器检查公网 readiness 端点。绿色表示 API 可访问账户库与搜索索引，但不构成 SLA。"
+            }
+          ],
+          "code": "GET https://api.annolux.com/api/v1/ready"
+        },
+        {
+          "heading": {
+            "en": "Incidents",
+            "zh": "事故"
+          },
+          "paragraphs": [
+            {
+              "en": "During the initial free launch, confirmed incidents and maintenance windows are posted here and in the public changelog. A separate monitored status domain is activated after external monitor authorization.",
+              "zh": "免费首发阶段，已确认的事故与维护窗口会发布在本页和公开更新日志；外部监控授权后启用独立状态域名。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "privacy",
+      "title": {
+        "en": "Privacy Policy",
+        "zh": "隐私政策"
+      },
+      "description": {
+        "en": "How Annolux handles account, OAuth, usage, payment, support, and operational data.",
+        "zh": "Annolux 如何处理账户、OAuth、用量、支付、支持与运维数据。"
+      },
+      "kicker": {
+        "en": "EFFECTIVE 2026-08 · FREE BETA",
+        "zh": "生效日 2026-08 · 免费测试"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Controller",
+            "zh": "控制者"
+          },
+          "paragraphs": [
+            {
+              "en": "Annolux is operated by {{LEGAL_NAME}}. Contact privacy@annolux.com for privacy requests.",
+              "zh": "作为运营单位，{{LEGAL_NAME}} 运营 Annolux。有关这些隐私请求，请联系 privacy@annolux.com。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Data we process",
+            "zh": "我们处理的数据"
+          },
+          "bullets": [
+            {
+              "en": "Google or GitHub identity ID, verified email, display name, and avatar needed for sign-in.",
+              "zh": "登录所需的 Google 或 GitHub 身份 ID、已验证邮箱、显示名与头像。"
+            },
+            {
+              "en": "Session identifiers, API-key prefixes and hashes, request IDs, query and domain parameters, credit and rate records, IP address, user agent, timestamps, and security logs.",
+              "zh": "Session 标识、API Key 前缀与哈希、请求 ID、查询与域名参数、点数和限流记录、IP、User-Agent、时间戳与安全日志。"
+            },
+            {
+              "en": "If billing is enabled: Paddle customer, subscription, transaction, adjustment, tax, and webhook data. Annolux does not receive full card numbers.",
+              "zh": "启用计费后：Paddle 客户、订阅、交易、调整、税务与 webhook 数据。Annolux 不接收完整卡号。"
+            },
+            {
+              "en": "Private support correspondence and operational backup records.",
+              "zh": "私密支持通信与运维备份记录。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Why and where",
+            "zh": "目的与处理方"
+          },
+          "paragraphs": [
+            {
+              "en": "Data is used to provide accounts and Search, prevent abuse, measure credits, secure the service, support users, comply with law, and—only after live billing—administer payments. Google and GitHub provide OAuth; Cloudflare provides DNS, routing, security, and email forwarding; the VPS host runs the service; Paddle acts as Merchant of Record for live payments; encrypted backups may be stored in Cloudflare R2.",
+              "zh": "数据用于提供账户与 Search、防滥用、计量点数、保障安全、支持用户、履行法律义务，并仅在 Live 计费后管理支付。Google 与 GitHub 提供 OAuth；Cloudflare 提供 DNS、路由、安全与邮件转发；VPS 服务商运行服务；Paddle 在 Live 支付中作为 Merchant of Record；加密备份可存于 Cloudflare R2。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Retention and rights",
+            "zh": "保留与权利"
+          },
+          "paragraphs": [
+            {
+              "en": "OAuth challenges expire after 10 minutes and sessions after at most 30 days. The application does not store query text in accounts.db; operational request and security logs, when enabled, are kept for no more than 30 days by default. Encrypted account snapshots follow 14-daily, 8-weekly, and 12-monthly retention. Usage, ledger, transaction, refund, tax, and dispute records may be retained longer where fraud, accounting, or law requires.",
+              "zh": "OAuth challenge 在 10 分钟后失效，Session 最长 30 天。应用不会把查询文本存入 accounts.db；启用运维请求与安全日志时，默认保留不超过 30 天。加密账户快照按 14 个日备份、8 个周备份和 12 个月备份保留。用量、账本、交易、退款、税务与争议记录可因反欺诈、会计或法律要求保留更久。"
+            },
+            {
+              "en": "You may request access, correction, closure, deletion, restriction, portability, or objection where applicable by emailing privacy@annolux.com. Account closure revokes sessions and keys, removes live OAuth profile fields, and keeps only HMAC tombstones and records that must remain for grant-abuse prevention or legal obligations. Removed profile data can remain in encrypted backups until those backups age out. Identity and fraud checks may be required before action.",
+              "zh": "适用时，你可通过 privacy@annolux.com 请求访问、更正、关闭、删除、限制、可携带或反对处理。关闭账户会撤销 Session 与密钥、删除在线 OAuth 资料字段，仅保留防止重复领取奖励所需的 HMAC tombstone 及依法必须保留的记录。已删除资料可能在加密备份自然到期前仍存在；执行前可能需要身份与反欺诈核验。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "International processing and changes",
+            "zh": "跨境处理与变更"
+          },
+          "paragraphs": [
+            {
+              "en": "Providers may process data in other countries under their terms and lawful transfer mechanisms. Material policy changes are dated here; if consent is legally required, it will be requested before the changed processing begins.",
+              "zh": "服务商可能依据其条款与合法跨境机制在其他国家处理数据。重大政策变更会在本页标注日期；法律要求同意时，会在变更处理开始前征得同意。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "terms",
+      "title": {
+        "en": "Terms of Service",
+        "zh": "服务条款"
+      },
+      "description": {
+        "en": "Account, API-key, credit, subscription, suspension, and third-party-content terms for Annolux.",
+        "zh": "Annolux 的账户、API Key、点数、订阅、暂停与第三方内容条款。"
+      },
+      "kicker": {
+        "en": "EFFECTIVE 2026-08 · FREE BETA",
+        "zh": "生效日 2026-08 · 免费测试"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Agreement and eligibility",
+            "zh": "协议与资格"
+          },
+          "paragraphs": [
+            {
+              "en": "These terms are between you and {{LEGAL_NAME}}, the operator of Annolux. You must be legally able to contract and provide accurate account information. One person or organization may not create accounts to evade limits or repeat signup grants.",
+              "zh": "本条款由你与 Annolux 的运营者 {{LEGAL_NAME}} 订立。你必须具备缔约能力并提供准确账户信息；不得通过多账户规避限制或重复获取注册奖励。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Accounts and keys",
+            "zh": "账户与密钥"
+          },
+          "paragraphs": [
+            {
+              "en": "You are responsible for OAuth access, sessions, API keys, and activity under your account. Do not share raw keys publicly. We may revoke keys, suspend accounts, or require reauthentication when compromise, abuse, chargeback, legal risk, or operational danger is reasonably suspected.",
+              "zh": "你对 OAuth 访问、Session、API Key 及账户活动负责。不得公开原始密钥。当合理怀疑泄露、滥用、拒付、法律风险或运维危险时，我们可撤销密钥、暂停账户或要求重新认证。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Credits and paid plans",
+            "zh": "点数与付费套餐"
+          },
+          "paragraphs": [
+            {
+              "en": "New accounts receive one permanent 1,000-credit grant. Pro is $29 per billing period for 20,000 expiring credits; Scale is $99 for 100,000. Credits are a limited service entitlement, not money, and are not transferable or redeemable. Expiring batches are used before permanent credits and do not roll over. There is no overage billing. v1 allows one subscription and no mid-cycle upgrade, downgrade, or proration.",
+              "zh": "新账户一次性获得 1,000 永久点。Pro 每账期 $29 含 20,000 到期点；Scale 每账期 $99 含 100,000 到期点。点数是有限服务权益，不是货币，不可转让或兑现；优先使用将到期批次，月度点数不结转；无超额计费。v1 每账户仅一个订阅，不支持账期中升降级或按比例结算。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Billing, renewal, cancellation, and refund",
+            "zh": "计费、续费、取消与退款"
+          },
+          "paragraphs": [
+            {
+              "en": "If live checkout becomes available, our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders and handles payment support and returns. Paddle may calculate tax and present its buyer terms at checkout. Annolux remains responsible for product and account support. Subscriptions renew automatically until canceled. Cancellation takes effect at period end. Refund requests are governed by the Refund Policy and mandatory consumer law. An approved refund removes remaining credits from the related transaction; a chargeback may suspend the account and all keys.",
+              "zh": "若开放 Live 结账，订单流程由在线经销商 Paddle.com 执行；Paddle.com 是所有订单的 Merchant of Record，并处理支付客服与退货，Annolux 仍负责产品和账户支持。Paddle 可能计算税费并在结账时展示买家条款。订阅自动续费直至取消，取消在账期结束生效。退款受退款政策与强制消费者法律约束；批准退款后撤销对应交易剩余点数，拒付可能暂停账户及全部密钥。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Service and third-party content",
+            "zh": "服务与第三方内容"
+          },
+          "paragraphs": [
+            {
+              "en": "Annolux provides a focused, periodically refreshed index, not complete or realtime web coverage. Results may be stale, incomplete, unavailable, or wrong and remain third-party content. You must verify material facts independently. No SLA, uninterrupted availability, ranking position, or fitness for a particular purpose is promised unless a later written agreement says otherwise.",
+              "zh": "Annolux 提供定期刷新的精选索引，不保证完整或实时覆盖全网。结果可能过期、不完整、不可用或错误，且仍属于第三方内容；重要事实须自行核验。除非后续书面协议另有约定，不承诺 SLA、持续可用、特定排名或特定用途适用性。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Law and contact",
+            "zh": "法律与联系"
+          },
+          "paragraphs": [
+            {
+              "en": "Mandatory applicable law and consumer protections remain in effect. Contact support@annolux.com privately for legal or account questions.",
+              "zh": "强制适用的法律与消费者保护继续有效。法律或账户问题请私下联系 support@annolux.com。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "refund",
+      "title": {
+        "en": "Refund Policy",
+        "zh": "退款政策"
+      },
+      "description": {
+        "en": "How to request an Annolux subscription refund and what happens to credits.",
+        "zh": "如何申请 Annolux 订阅退款及退款后点数如何处理。"
+      },
+      "kicker": {
+        "en": "14-DAY REQUEST WINDOW",
+        "zh": "14 天申请窗口"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Requesting a refund",
+            "zh": "申请退款"
+          },
+          "paragraphs": [
+            {
+              "en": "Annolux is operated by {{LEGAL_NAME}}. You may request a refund within 14 days of the relevant initial or renewal charge by emailing support@annolux.com with the account ID and Paddle transaction reference. Do not send card details. Mandatory consumer rights take priority and may provide different rights.",
+              "zh": "Annolux 由 {{LEGAL_NAME}} 运营。你可在相关首次或续费扣款后 14 天内，将账户 ID 与 Paddle 交易编号发送至 support@annolux.com 申请退款。不要发送银行卡信息。强制消费者权利优先，并可能提供不同权利。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Review and effect",
+            "zh": "审核与结果"
+          },
+          "paragraphs": [
+            {
+              "en": "Requests are reviewed for eligibility, abuse, consumption, applicable law, and Paddle requirements; a request is not an automatic approval. When approved, remaining credits granted by that transaction are revoked and the associated paid entitlement ends as required by the approved adjustment. Chargebacks may suspend the account while investigated.",
+              "zh": "申请会依据资格、滥用、消耗情况、适用法律和 Paddle 要求审核，并非自动批准。批准后撤销该交易发放的剩余点数，并按批准的调整终止相应付费权益；拒付调查期间可暂停账户。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "acceptable-use",
+      "title": {
+        "en": "Acceptable Use Policy",
+        "zh": "可接受使用政策"
+      },
+      "description": {
+        "en": "Rules that protect Annolux, publishers, and other users from abusive use.",
+        "zh": "保护 Annolux、站点发布者与其他用户免受滥用的规则。"
+      },
+      "kicker": {
+        "en": "SAFE AND LAWFUL USE",
+        "zh": "安全合法使用"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Your queries, your responsibility",
+            "zh": "查询责任归属"
+          },
+          "paragraphs": [
+            {
+              "en": "You are solely responsible for what you search and how you use the results, and you must comply with the laws that apply to you.",
+              "zh": "你搜索什么、如何使用结果，由你全权负责，并须遵守适用于你的法律。"
+            },
+            {
+              "en": "Results are retrieved from the public web. They are not our statements, and returning a page is not an endorsement of its content.",
+              "zh": "结果检索自公开网页，不构成 Annolux 的观点或陈述；返回某个页面不代表对其内容的背书。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Prohibited uses",
+            "zh": "禁止用途"
+          },
+          "bullets": [
+            {
+              "en": "Illegal activity, rights infringement, malware, phishing, credential theft, harassment, or material exploitation of minors.",
+              "zh": "违法活动、侵权、恶意软件、钓鱼、凭据窃取、骚扰或对未成年人的实质剥削。"
+            },
+            {
+              "en": "Bypassing authentication, paywalls, access controls, robots restrictions, or publisher technical safeguards.",
+              "zh": "绕过身份认证、付费墙、访问控制、robots 限制或发布者技术措施。"
+            },
+            {
+              "en": "Automated abuse, denial of service, key sharing markets, multi-account grant farming, or attempts to evade rate and credit limits.",
+              "zh": "自动化滥用、拒绝服务、密钥交易、多账户刷奖励或规避限流与点数限制。"
+            },
+            {
+              "en": "Using results as a substitute for professional medical, legal, financial, or safety review where errors could materially harm people.",
+              "zh": "在错误可能造成重大伤害时，将结果替代医疗、法律、财务或安全专业审查。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Enforcement",
+            "zh": "执行"
+          },
+          "paragraphs": [
+            {
+              "en": "We may rate-limit, block requests, revoke keys, preserve evidence, or suspend accounts proportionately. Contact support@annolux.com if you believe enforcement was mistaken.",
+              "zh": "我们可按比例限流、阻止请求、撤销密钥、保留证据或暂停账户。若认为处置有误，请联系 support@annolux.com。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "playground",
+      "kind": "playground",
+      "noindex": true,
+      "title": {
+        "en": "Search Playground",
+        "zh": "Search Playground"
+      },
+      "description": {
+        "en": "Run the standard Annolux Search contract with your signed-in account.",
+        "zh": "使用已登录账户运行标准 Annolux Search 契约。"
+      },
+      "kicker": {
+        "en": "ONE SUCCESSFUL RUN = ONE CREDIT",
+        "zh": "一次成功运行 = 1 点"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "The same contract as the API",
+            "zh": "与 API 相同的契约"
+          },
+          "paragraphs": [
+            {
+              "en": "The Playground uses /api/v1/playground/search with the secure account session. It supports the same bounded fields as standard Search and consumes one credit only after a successful response.",
+              "zh": "Playground 通过安全账户 Session 调用 /api/v1/playground/search，支持与标准 Search 相同的有界字段，并只在成功响应后扣 1 点。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "account",
+      "kind": "account",
+      "noindex": true,
+      "title": {
+        "en": "Your account",
+        "zh": "你的账户"
+      },
+      "description": {
+        "en": "Manage Annolux API keys, identities, usage, and billing.",
+        "zh": "管理 Annolux API Key、身份、用量与账单。"
+      },
+      "kicker": {
+        "en": "PRIVATE ACCOUNT",
+        "zh": "私密账户"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Account data loads after sign-in",
+            "zh": "登录后加载账户数据"
+          },
+          "paragraphs": [
+            {
+              "en": "This page calls /api/v1/account/me and /usage using the secure session cookie. API keys are shown only once at creation. Billing controls remain hidden until Paddle live checkout is enabled.",
+              "zh": "本页通过安全 Session Cookie 调用 /api/v1/account/me 与 /usage。API Key 创建后只展示一次；Paddle Live 未启用前隐藏计费控制。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "checkout/success",
+      "kind": "checkout",
+      "noindex": true,
+      "title": {
+        "en": "Checkout processing",
+        "zh": "结账处理中"
+      },
+      "description": {
+        "en": "Annolux waits for a verified server-side payment event before adding credits.",
+        "zh": "Annolux 等待服务端验证支付事件后才发放点数。"
+      },
+      "kicker": {
+        "en": "VERIFYING PAYMENT",
+        "zh": "正在核验支付"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Do not close this page yet",
+            "zh": "暂时不要关闭本页"
+          },
+          "paragraphs": [
+            {
+              "en": "The browser cannot grant credits. This page polls the account API until a signed Paddle transaction.completed webhook is processed, then shows the updated balance. If it takes too long, keep the transaction reference and contact support@annolux.com.",
+              "zh": "浏览器不能发放点数。本页会轮询账户 API，直到服务端处理已签名的 Paddle transaction.completed webhook，再展示新余额。若等待过久，请保留交易编号并联系 support@annolux.com。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "billing/checkout",
+      "kind": "billing",
+      "noindex": true,
+      "title": {
+        "en": "Secure checkout",
+        "zh": "安全结账"
+      },
+      "description": {
+        "en": "Start a Paddle checkout from a signed-in Annolux account after accepting the current policies.",
+        "zh": "登录 Annolux 账户并接受当前政策后，发起 Paddle 结账。"
+      },
+      "kicker": {
+        "en": "SERVER-CREATED INTENT · SIGNED WEBHOOK FULFILLMENT",
+        "zh": "服务端意图 · 签名 WEBHOOK 履约"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Fulfillment is server-side",
+            "zh": "服务端履约"
+          },
+          "paragraphs": [
+            {
+              "en": "The browser receives only a client-side token, selected Price ID, and random checkout intent. Checkout completion in the browser never grants credits. Annolux waits for a verified Paddle transaction.completed event and can reconcile a missed event from the Paddle API.",
+              "zh": "浏览器只获得客户端 token、所选 Price ID 与随机结账意图。浏览器中的结账完成事件不会发放点数；Annolux 等待已验证的 Paddle transaction.completed 事件，并可通过 Paddle API 对账补偿漏事件。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Live billing is enabled",
+            "zh": "Live 计费已开放"
+          },
+          "paragraphs": [
+            {
+              "en": "This page completes live Paddle checkout. Charges are real; credits are granted automatically once Paddle confirms the payment by webhook.",
+              "zh": "本页执行 Paddle Live 结账，产生真实扣款；Paddle 通过回调确认支付后，点数自动发放。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mcp",
+      "title": {
+        "en": "Web search MCP server for AI agents",
+        "zh": "面向 AI Agent 的 MCP 联网搜索"
+      },
+      "description": {
+        "en": "Add one bounded web search tool to any MCP client: search_web queries a curated English and Chinese index and returns source-attributed results with fetched_at. Not realtime, not the whole web.",
+        "zh": "在任何 MCP 客户端加入一个有界的联网搜索工具:search_web 查询精选中英索引,返回带来源归属和 fetched_at 的结果。非实时,非全网。"
+      },
+      "kicker": {
+        "en": "MCP",
+        "zh": "MCP"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "One tool, the standard Search contract",
+            "zh": "一个工具,同一套 Search 契约"
+          },
+          "paragraphs": [
+            {
+              "en": "annolux-mcp registers exactly one tool: search_web. Its inputs match the commercial REST endpoint, and every result carries a title, URL, snippet when available, and an explicit fetched_at timestamp. The server does not expose scraping, extraction, verification, or any hidden enrichment, so an agent cannot buy a different operation through MCP than the one documented here.",
+              "zh": "annolux-mcp 只注册一个工具:search_web。它的输入与商业 REST 端点一致,每条结果都带标题、URL、可用时的摘要,以及明确的 fetched_at 抓取时间。服务器不暴露抓取、正文提取、验证或任何隐藏增强,Agent 通过 MCP 得到的操作与本页文档完全一致。"
+            },
+            {
+              "en": "The index behind it is curated and bilingual (English and Chinese), refreshed on a schedule. It is not a realtime feed and it does not claim whole-web coverage; an empty result set is a normal outcome, not an error.",
+              "zh": "背后是精选的中英双语索引,按计划刷新。它不是实时数据流,也不声称全网覆盖;空结果是正常返回,不是错误。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Install the server binary",
+            "zh": "安装服务器二进制"
+          },
+          "paragraphs": [
+            {
+              "en": "The server is a single static Go binary. With a Go toolchain installed, one command builds and installs it into $(go env GOPATH)/bin — make sure that directory is on your PATH, or reference the binary by absolute path in client configs.",
+              "zh": "服务器是一个静态 Go 二进制。装有 Go 工具链时,一条命令即可构建并安装到 $(go env GOPATH)/bin —— 请确认该目录在 PATH 里,或在客户端配置中使用绝对路径。"
+            }
+          ],
+          "code": "go install github.com/eason4kim-rocket/annolux/cmd/annolux-mcp@latest"
+        },
+        {
+          "heading": {
+            "en": "Configure any MCP client",
+            "zh": "配置任意 MCP 客户端"
+          },
+          "paragraphs": [
+            {
+              "en": "Every MCP client accepts the same shape: a command plus two environment variables. The key lives only in the server process environment; annolux-mcp sends it in the Authorization header and never places it in tool results or model-visible arguments.",
+              "zh": "所有 MCP 客户端接受同一形状的配置:一个命令加两个环境变量。密钥只存在于服务器进程环境;annolux-mcp 仅将其放入 Authorization 请求头,不会写进工具结果或模型可见参数。"
+            }
+          ],
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"annolux-mcp\",\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_REPLACE_ME\"\n      }\n    }\n  }\n}"
+        },
+        {
+          "heading": {
+            "en": "search_web fields",
+            "zh": "search_web 字段"
+          },
+          "bullets": [
+            {
+              "en": "query — required, up to 500 characters.",
+              "zh": "query —— 必填,最长 500 字符。"
+            },
+            {
+              "en": "domains — optional hostname allow-list, up to 20 entries.",
+              "zh": "domains —— 可选主机名白名单,最多 20 项。"
+            },
+            {
+              "en": "deduplicate — defaults to true.",
+              "zh": "deduplicate —— 默认 true。"
+            },
+            {
+              "en": "limit — 1 to 10 results, default 10.",
+              "zh": "limit —— 返回 1–10 条,默认 10。"
+            },
+            {
+              "en": "timeout — 1 to 30 seconds, default 30.",
+              "zh": "timeout —— 1–30 秒,默认 30。"
+            },
+            {
+              "en": "ranking — default or provider.",
+              "zh": "ranking —— default 或 provider。"
+            },
+            {
+              "en": "freshness is not supported and is rejected explicitly.",
+              "zh": "不支持 freshness,发送会被明确拒绝。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "What a response looks like",
+            "zh": "响应长什么样"
+          },
+          "paragraphs": [
+            {
+              "en": "An illustrative response. Keep fetched_at beside any citation your agent produces, so downstream readers know when the page was retrieved.",
+              "zh": "示例响应。请把 fetched_at 与 Agent 产出的引用放在一起,让下游读者知道页面是何时抓取的。"
+            }
+          ],
+          "code": "{\n  \"success\": true,\n  \"query\": \"rust ownership\",\n  \"results\": [\n    {\n      \"rank\": 1,\n      \"title\": \"What is Ownership? - The Rust Programming Language\",\n      \"url\": \"https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html\",\n      \"snippet\": \"Ownership is a set of rules that govern how a Rust program manages memory…\",\n      \"fetched_at\": \"2026-08-15T09:12:44Z\"\n    }\n  ],\n  \"deduplicated\": 0,\n  \"partial\": false,\n  \"timing\": { \"total_ms\": 212, \"provider_ms\": 180, \"enrichment_ms\": 32 }\n}"
+        },
+        {
+          "heading": {
+            "en": "Credits",
+            "zh": "点数"
+          },
+          "paragraphs": [
+            {
+              "en": "Only a successful 2xx Search commits one credit. Validation errors, authentication failures, insufficient balance, rate limits, server errors, and timeouts commit zero. Read X-Annolux-Credits-Used and X-Annolux-Credits-Remaining from the response instead of estimating locally. New accounts start with 1,000 free credits.",
+              "zh": "只有成功的 2xx Search 提交 1 点。参数错误、认证失败、余额不足、限流、服务端错误和超时都不扣点。请读取响应头 X-Annolux-Credits-Used 与 X-Annolux-Credits-Remaining,而不是本地估算。新账户有 1,000 免费点数。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Client setup guides",
+            "zh": "各客户端配置指南"
+          },
+          "paragraphs": [
+            {
+              "en": "Each guide below is a copy-paste configuration for that client, including its file locations and the client-specific pitfalls.",
+              "zh": "以下每篇指南都是该客户端的可复制配置,包括配置文件位置和该客户端特有的坑。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "Claude Code setup",
+                "zh": "Claude Code 配置"
+              },
+              "slug": "mcp/claude-code"
+            },
+            {
+              "label": {
+                "en": "Claude Desktop setup",
+                "zh": "Claude Desktop 配置"
+              },
+              "slug": "mcp/claude-desktop"
+            },
+            {
+              "label": {
+                "en": "Cursor setup",
+                "zh": "Cursor 配置"
+              },
+              "slug": "mcp/cursor"
+            },
+            {
+              "label": {
+                "en": "Windsurf setup",
+                "zh": "Windsurf 配置"
+              },
+              "slug": "mcp/windsurf"
+            },
+            {
+              "label": {
+                "en": "Cline setup",
+                "zh": "Cline 配置"
+              },
+              "slug": "mcp/cline"
+            },
+            {
+              "label": {
+                "en": "Zed setup",
+                "zh": "Zed 配置"
+              },
+              "slug": "mcp/zed"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            },
+            {
+              "label": {
+                "en": "Pricing",
+                "zh": "价格"
+              },
+              "slug": "pricing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mcp/claude-code",
+      "title": {
+        "en": "Claude Code web search MCP setup",
+        "zh": "Claude Code 联网搜索 MCP 配置"
+      },
+      "description": {
+        "en": "One command adds the search_web tool to Claude Code: bounded search over a curated English and Chinese index, with fetched_at on every result.",
+        "zh": "一条命令给 Claude Code 加上 search_web 工具:基于精选中英索引的有界搜索,每条结果带 fetched_at。"
+      },
+      "kicker": {
+        "en": "MCP · Claude Code",
+        "zh": "MCP · Claude Code"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Add with one command",
+            "zh": "一条命令添加"
+          },
+          "paragraphs": [
+            {
+              "en": "Install the annolux-mcp binary first (see the MCP overview below), then register it from your terminal. Replace the key placeholder with a real key from your account.",
+              "zh": "先安装 annolux-mcp 二进制(见下方 MCP 总览),然后在终端注册。把占位密钥换成你账户里的真实密钥。"
+            }
+          ],
+          "code": "claude mcp add annolux --env ANNOLUX_API_URL=https://api.annolux.com --env ANNOLUX_API_KEY=ann_live_REPLACE_ME -- annolux-mcp",
+          "links": [
+            {
+              "label": {
+                "en": "MCP overview and server install",
+                "zh": "MCP 总览与服务器安装"
+              },
+              "slug": "mcp"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Pick the right scope",
+            "zh": "选对作用域"
+          },
+          "bullets": [
+            {
+              "en": "local (default) — this project on this machine only.",
+              "zh": "local(默认)—— 仅本机本项目。"
+            },
+            {
+              "en": "--scope project — writes .mcp.json in the repo so teammates share the server definition.",
+              "zh": "--scope project —— 在仓库写入 .mcp.json,团队共享服务器定义。"
+            },
+            {
+              "en": "--scope user — available in all your projects on this machine.",
+              "zh": "--scope user —— 本机所有项目可用。"
+            }
+          ],
+          "paragraphs": [
+            {
+              "en": "Never commit a raw key. In a shared .mcp.json, reference an environment variable instead — Claude Code expands ${ANNOLUX_API_KEY} from each developer's own environment.",
+              "zh": "不要提交明文密钥。共享的 .mcp.json 里应引用环境变量 —— Claude Code 会从每位开发者自己的环境展开 ${ANNOLUX_API_KEY}。"
+            }
+          ],
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"annolux-mcp\",\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"${ANNOLUX_API_KEY}\"\n      }\n    }\n  }\n}"
+        },
+        {
+          "heading": {
+            "en": "Verify it works",
+            "zh": "验证生效"
+          },
+          "paragraphs": [
+            {
+              "en": "Run claude mcp list to confirm the server is registered, or type /mcp inside a session to see its status and the search_web tool. Then ask Claude to search something specific — for example, restrict results with a domains allow-list — and to cite fetched_at next to any link it uses.",
+              "zh": "运行 claude mcp list 确认服务器已注册,或在会话内输入 /mcp 查看状态和 search_web 工具。然后让 Claude 搜一个具体问题 —— 例如用 domains 白名单限定站点 —— 并要求它在引用链接旁标注 fetched_at。"
+            },
+            {
+              "en": "The same registration also applies to non-interactive runs with claude -p, so scripted agents call the identical bounded tool with no extra setup.",
+              "zh": "同一注册对 claude -p 的非交互运行同样生效,脚本化 Agent 无需额外配置即可调用同一个有界工具。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Behavior your agent can rely on",
+            "zh": "Agent 可以依赖的行为"
+          },
+          "bullets": [
+            {
+              "en": "Only a successful 2xx search costs a credit; errors and timeouts cost zero.",
+              "zh": "只有成功的 2xx 搜索扣 1 点;错误和超时不扣点。"
+            },
+            {
+              "en": "An empty result set is a normal outcome — handle it, don't retry blindly.",
+              "zh": "空结果是正常返回 —— 应当处理,而不是盲目重试。"
+            },
+            {
+              "en": "freshness is rejected as unsupported; the index is curated and refreshed on a schedule, not realtime.",
+              "zh": "freshness 会被明确拒绝;索引为精选、按计划刷新,非实时。"
+            },
+            {
+              "en": "limit is capped at 10 and timeout at 30 seconds.",
+              "zh": "limit 上限 10,timeout 上限 30 秒。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Update or remove",
+            "zh": "更新与移除"
+          },
+          "paragraphs": [
+            {
+              "en": "To update the server, rerun go install with @latest — the registration itself does not change. To unregister, remove it from the same scope you added it to; run claude mcp list first if you are not sure which scope holds it.",
+              "zh": "更新服务器只需重跑 go install @latest —— 注册信息本身不变。取消注册要在添加时的同一作用域移除;不确定在哪个作用域时,先运行 claude mcp list 查看。"
+            }
+          ],
+          "code": "claude mcp remove annolux"
+        },
+        {
+          "heading": {
+            "en": "Other clients",
+            "zh": "其他客户端"
+          },
+          "links": [
+            {
+              "label": {
+                "en": "Claude Desktop setup",
+                "zh": "Claude Desktop 配置"
+              },
+              "slug": "mcp/claude-desktop"
+            },
+            {
+              "label": {
+                "en": "Cursor setup",
+                "zh": "Cursor 配置"
+              },
+              "slug": "mcp/cursor"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mcp/claude-desktop",
+      "title": {
+        "en": "Claude Desktop web search MCP setup",
+        "zh": "Claude Desktop 联网搜索 MCP 配置"
+      },
+      "description": {
+        "en": "Give Claude Desktop a bounded web search tool: edit claude_desktop_config.json, restart fully, and search_web appears with fetched_at on every result.",
+        "zh": "给 Claude Desktop 加上有界联网搜索:编辑 claude_desktop_config.json,完全重启后即可使用 search_web,每条结果带 fetched_at。"
+      },
+      "kicker": {
+        "en": "MCP · Claude Desktop",
+        "zh": "MCP · Claude Desktop"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Where the config file lives",
+            "zh": "配置文件在哪"
+          },
+          "bullets": [
+            {
+              "en": "macOS: ~/Library/Application Support/Claude/claude_desktop_config.json",
+              "zh": "macOS:~/Library/Application Support/Claude/claude_desktop_config.json"
+            },
+            {
+              "en": "Windows: %APPDATA%\\Claude\\claude_desktop_config.json",
+              "zh": "Windows:%APPDATA%\\Claude\\claude_desktop_config.json"
+            },
+            {
+              "en": "Or open it from the app: Settings → Developer → Edit Config.",
+              "zh": "也可从应用内打开:Settings → Developer → Edit Config。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "The JSON",
+            "zh": "配置 JSON"
+          },
+          "paragraphs": [
+            {
+              "en": "Install the annolux-mcp binary first (see the MCP overview below), then add this block. Replace the key placeholder with a real key.",
+              "zh": "先安装 annolux-mcp 二进制(见下方 MCP 总览),再加入这段配置。把占位密钥换成真实密钥。"
+            }
+          ],
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"annolux-mcp\",\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_REPLACE_ME\"\n      }\n    }\n  }\n}",
+          "links": [
+            {
+              "label": {
+                "en": "MCP overview and server install",
+                "zh": "MCP 总览与服务器安装"
+              },
+              "slug": "mcp"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Use an absolute command path",
+            "zh": "使用绝对命令路径"
+          },
+          "paragraphs": [
+            {
+              "en": "GUI apps on macOS do not inherit your shell PATH. If the tool never appears, replace \"annolux-mcp\" in the command field with the absolute path — run `which annolux-mcp` in your terminal to find it, typically $HOME/go/bin/annolux-mcp.",
+              "zh": "macOS 的图形应用不继承你 shell 的 PATH。如果工具一直不出现,把 command 字段的 \"annolux-mcp\" 换成绝对路径 —— 在终端运行 which annolux-mcp 查看,通常是 $HOME/go/bin/annolux-mcp。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Restart completely",
+            "zh": "完全重启"
+          },
+          "paragraphs": [
+            {
+              "en": "Claude Desktop reads the config at startup. Quit the app fully — Quit from the menu bar on macOS or the tray icon on Windows, not just closing the window — then reopen it. search_web should appear in the tools menu of a new conversation.",
+              "zh": "Claude Desktop 只在启动时读取配置。请完全退出应用 —— macOS 从菜单栏 Quit,Windows 从托盘退出,而不是只关窗口 —— 再重新打开。新对话的工具菜单里应出现 search_web。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "If it does not show up",
+            "zh": "还是不出现时"
+          },
+          "bullets": [
+            {
+              "en": "macOS logs: ~/Library/Logs/Claude/ — look at the mcp*.log files.",
+              "zh": "macOS 日志:~/Library/Logs/Claude/ —— 查看 mcp*.log。"
+            },
+            {
+              "en": "Windows logs: %APPDATA%\\Claude\\logs.",
+              "zh": "Windows 日志:%APPDATA%\\Claude\\logs。"
+            },
+            {
+              "en": "Test the server standalone: set the two env vars in a terminal and run annolux-mcp — it should start and wait on stdio.",
+              "zh": "单独测试服务器:在终端设置两个环境变量后运行 annolux-mcp —— 应正常启动并在 stdio 等待。"
+            },
+            {
+              "en": "JSON syntax errors make the whole file silently ignored — validate after editing.",
+              "zh": "JSON 语法错误会导致整份配置被静默忽略 —— 编辑后请校验。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Update or remove",
+            "zh": "更新与移除"
+          },
+          "paragraphs": [
+            {
+              "en": "To update, rerun go install with @latest — the config file needs no change. To remove, delete the annolux entry from mcpServers and restart fully. Other MCP servers in the same file are unaffected; the file stays valid as long as the JSON does.",
+              "zh": "更新只需重跑 go install @latest —— 配置文件无需改动。移除则从 mcpServers 删除 annolux 条目并完全重启。同一文件里的其他 MCP 服务器不受影响;只要 JSON 合法,配置就有效。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Boundaries and credits",
+            "zh": "边界与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "search_web queries a curated English and Chinese index — not realtime, not the whole web; an empty result is a normal outcome. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
+              "zh": "search_web 查询精选中英索引 —— 非实时、非全网;空结果是正常返回。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "Claude Code setup",
+                "zh": "Claude Code 配置"
+              },
+              "slug": "mcp/claude-code"
+            },
+            {
+              "label": {
+                "en": "Cursor setup",
+                "zh": "Cursor 配置"
+              },
+              "slug": "mcp/cursor"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mcp/cursor",
+      "title": {
+        "en": "Cursor web search MCP setup",
+        "zh": "Cursor 联网搜索 MCP 配置"
+      },
+      "description": {
+        "en": "Add the search_web tool to Cursor's agent: one JSON file, a curated English and Chinese index, and fetched_at on every result.",
+        "zh": "给 Cursor 的 Agent 加上 search_web 工具:一个 JSON 文件,精选中英索引,每条结果带 fetched_at。"
+      },
+      "kicker": {
+        "en": "MCP · Cursor",
+        "zh": "MCP · Cursor"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Project or global",
+            "zh": "项目级或全局"
+          },
+          "bullets": [
+            {
+              "en": ".cursor/mcp.json — this repository only; commit it to share the server definition (not the key).",
+              "zh": ".cursor/mcp.json —— 仅当前仓库;可提交以共享服务器定义(不含密钥)。"
+            },
+            {
+              "en": "~/.cursor/mcp.json — every project on this machine.",
+              "zh": "~/.cursor/mcp.json —— 本机所有项目。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "The JSON",
+            "zh": "配置 JSON"
+          },
+          "paragraphs": [
+            {
+              "en": "Install the annolux-mcp binary first (see the MCP overview below), then add this block. Replace the key placeholder with a real key.",
+              "zh": "先安装 annolux-mcp 二进制(见下方 MCP 总览),再加入这段配置。把占位密钥换成真实密钥。"
+            }
+          ],
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"annolux-mcp\",\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_REPLACE_ME\"\n      }\n    }\n  }\n}",
+          "links": [
+            {
+              "label": {
+                "en": "MCP overview and server install",
+                "zh": "MCP 总览与服务器安装"
+              },
+              "slug": "mcp"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Enable and approve",
+            "zh": "启用与批准"
+          },
+          "paragraphs": [
+            {
+              "en": "Open Cursor Settings → MCP: the annolux server should be listed with search_web as its tool; toggle it on if needed. In Agent mode the model calls the tool on its own; by default each call asks for your approval before it runs, so you always see the query being sent.",
+              "zh": "打开 Cursor Settings → MCP:列表中应出现 annolux 服务器及其 search_web 工具,未启用则打开开关。Agent 模式下模型会自行调用工具;默认每次调用前都请求你批准,因此你始终能看到即将发出的查询。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "A concrete ask that works well",
+            "zh": "一个好用的具体问法"
+          },
+          "paragraphs": [
+            {
+              "en": "Try: \"What is the current way to define props with TypeScript in Vue? Search with domains limited to vuejs.org.\" The agent sends one search_web call, gets ranked results from the official docs with fetched_at on each, opens the right page, and answers with a citation you can check. One successful call, one credit.",
+              "zh": "试试:「Vue 里用 TypeScript 定义 props 现在的正确写法是什么?用 domains 限定 vuejs.org 搜索。」Agent 会发起一次 search_web 调用,得到来自官方文档、各带 fetched_at 的排序结果,打开正确页面,并给出可核查的引用。一次成功调用,一点。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Point it at documentation you trust",
+            "zh": "限定在你信任的文档站"
+          },
+          "paragraphs": [
+            {
+              "en": "The domains allow-list is the most useful field in an editor workflow: ask the agent to search with domains restricted to the library's own documentation site, and results stay inside the family you trust. Keep fetched_at next to any citation the agent writes into your code or notes.",
+              "zh": "在编辑器工作流里,domains 白名单是最有用的字段:让 Agent 把搜索限定在类库官方文档站,结果就不会跑出你信任的范围。Agent 写进代码或笔记的引用旁,请保留 fetched_at。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Troubleshooting",
+            "zh": "排障"
+          },
+          "bullets": [
+            {
+              "en": "Binary not found: use the absolute path from `which annolux-mcp` in the command field.",
+              "zh": "找不到二进制:把 command 换成 which annolux-mcp 得到的绝对路径。"
+            },
+            {
+              "en": "Edited the JSON but nothing changed: refresh the server list in Settings → MCP or restart Cursor.",
+              "zh": "改了 JSON 没生效:在 Settings → MCP 刷新服务器列表,或重启 Cursor。"
+            },
+            {
+              "en": "Empty results are a normal outcome of a curated index — not an error to retry.",
+              "zh": "空结果是精选索引的正常返回 —— 不是需要重试的错误。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Boundaries and credits",
+            "zh": "边界与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "search_web queries a curated English and Chinese index — not realtime, not the whole web. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
+              "zh": "search_web 查询精选中英索引 —— 非实时、非全网。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "Claude Code setup",
+                "zh": "Claude Code 配置"
+              },
+              "slug": "mcp/claude-code"
+            },
+            {
+              "label": {
+                "en": "Claude Desktop setup",
+                "zh": "Claude Desktop 配置"
+              },
+              "slug": "mcp/claude-desktop"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mcp/windsurf",
+      "title": {
+        "en": "Windsurf web search MCP setup",
+        "zh": "Windsurf 联网搜索 MCP 配置"
+      },
+      "description": {
+        "en": "Add the search_web tool to Windsurf Cascade: one JSON file, a curated English and Chinese index, and explicit fetched_at timestamps.",
+        "zh": "给 Windsurf Cascade 加上 search_web 工具:一个 JSON 文件,精选中英索引,每条结果带明确抓取时间。"
+      },
+      "kicker": {
+        "en": "MCP · Windsurf",
+        "zh": "MCP · Windsurf"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Config file location",
+            "zh": "配置路径"
+          },
+          "bullets": [
+            {
+              "en": "~/.codeium/windsurf/mcp_config.json — global MCP configuration for Windsurf on this machine.",
+              "zh": "~/.codeium/windsurf/mcp_config.json —— 本机 Windsurf 的全局 MCP 配置文件。"
+            },
+            {
+              "en": "You can also open Windsurf Settings → Cascade → MCP Servers to edit the configuration directly.",
+              "zh": "也可以通过 Windsurf 设置 → Cascade → MCP Servers 直接打开编辑。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "The JSON",
+            "zh": "配置 JSON"
+          },
+          "paragraphs": [
+            {
+              "en": "Install the annolux-mcp binary first (see the MCP overview below), then add this server block. Replace the key placeholder with your real API key.",
+              "zh": "先安装 annolux-mcp 二进制(见下方 MCP 总览),再加入这段配置。把占位密钥换成真实密钥。"
+            }
+          ],
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"annolux-mcp\",\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_REPLACE_ME\"\n      }\n    }\n  }\n}",
+          "links": [
+            {
+              "label": {
+                "en": "MCP overview and server install",
+                "zh": "MCP 总览与服务器安装"
+              },
+              "slug": "mcp"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "How Cascade uses search_web",
+            "zh": "在 Agent 中使用搜索"
+          },
+          "paragraphs": [
+            {
+              "en": "In Windsurf Cascade, the agent calls search_web automatically when you ask questions about recent libraries, API specs, or debugging errors. Cascade sends the query and receives source-attributed results with explicit timestamps.",
+              "zh": "在 Windsurf Cascade 中,当你询问最新类库、API 规范或调试错误时,Cascade 会自动调用 search_web 发起检索,并接收带明确抓取时间的结果。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Point it at documentation you trust",
+            "zh": "限定在你信任的文档站"
+          },
+          "paragraphs": [
+            {
+              "en": "Ask Cascade to restrict search to trusted official documentation: \"Search for React Server Components best practices with domains limited to react.dev\". Results remain clean and bounded.",
+              "zh": "让 Cascade 将搜索限定在官方文档:「搜索 React Server Components 正确写法,限定 domains 为 react.dev」。结果保持干净精准。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Troubleshooting",
+            "zh": "排障"
+          },
+          "bullets": [
+            {
+              "en": "Command not found: specify the absolute path from `which annolux-mcp` in the command field.",
+              "zh": "找不到命令:在 command 中填入 which annolux-mcp 得到的绝对路径。"
+            },
+            {
+              "en": "After updating the JSON config, click Refresh in Cascade MCP settings or restart Windsurf.",
+              "zh": "更新 JSON 后,在 Cascade MCP 设置中选择刷新,或重启 Windsurf。"
+            },
+            {
+              "en": "Empty results indicate the query is outside the curated index — not a server failure.",
+              "zh": "空结果表示该查询不在精选索引内 —— 不是服务端故障。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Boundaries and credits",
+            "zh": "边界与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "search_web queries a curated English and Chinese index. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "Cursor setup",
+                "zh": "Cursor 配置"
+              },
+              "slug": "mcp/cursor"
+            },
+            {
+              "label": {
+                "en": "Cline setup",
+                "zh": "Cline 配置"
+              },
+              "slug": "mcp/cline"
+            },
+            {
+              "label": {
+                "en": "Zed setup",
+                "zh": "Zed 配置"
+              },
+              "slug": "mcp/zed"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mcp/cline",
+      "title": {
+        "en": "Cline web search MCP setup",
+        "zh": "Cline 联网搜索 MCP 配置"
+      },
+      "description": {
+        "en": "Configure Annolux search_web in Cline and Roo Code for VS Code: clean Markdown snippets and explicit timestamps.",
+        "zh": "在 VS Code 的 Cline 与 Roo Code 中配置 Annolux search_web:干净 Markdown 摘要与明确时间戳。"
+      },
+      "kicker": {
+        "en": "MCP · Cline",
+        "zh": "MCP · Cline"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Config file location",
+            "zh": "配置路径"
+          },
+          "bullets": [
+            {
+              "en": "In VS Code, open the Cline tab, click the MCP Servers icon (the plug icon), then click Edit MCP Settings.",
+              "zh": "在 VS Code 中打开 Cline 侧边栏,选择 MCP Servers 图标(插头图标),再选择 Edit MCP Settings。"
+            },
+            {
+              "en": "File location on macOS/Linux: `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json` (or `roo-cline` for Roo Code).",
+              "zh": "文件位于全局配置目录下的 cline_mcp_settings.json。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "The JSON",
+            "zh": "配置 JSON"
+          },
+          "paragraphs": [
+            {
+              "en": "Add this block into mcpServers in your cline_mcp_settings.json. Replace the key placeholder with your real API key.",
+              "zh": "在 cline_mcp_settings.json 的 mcpServers 中加入这段配置。把占位密钥换成真实密钥。"
+            }
+          ],
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"annolux-mcp\",\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_REPLACE_ME\"\n      }\n    }\n  }\n}",
+          "links": [
+            {
+              "label": {
+                "en": "MCP overview and server install",
+                "zh": "MCP 总览与服务器安装"
+              },
+              "slug": "mcp"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Using search in autonomous tasks",
+            "zh": "在 Agent 中使用搜索"
+          },
+          "paragraphs": [
+            {
+              "en": "When Cline breaks down complex tasks, it invokes search_web to look up library docs, package APIs, and recent error messages. Cline displays the tool call query and result preview directly in the chat panel.",
+              "zh": "当 Cline 执行多阶段任务时,它会调用 search_web 查阅类库文档与错误信息,并在面板中直观展示调用的查询与返回结果。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Troubleshooting",
+            "zh": "排障"
+          },
+          "bullets": [
+            {
+              "en": "Binary path: if command is not recognized, use the absolute path from `which annolux-mcp`.",
+              "zh": "二进制路径:若命令未被识别,请使用 which annolux-mcp 的绝对路径。"
+            },
+            {
+              "en": "Restart MCP server: click the retry or reload button next to annolux in the Cline MCP server list.",
+              "zh": "重启服务:在 Cline 的 MCP 服务器列表中选择 annolux 旁边的重载选项。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Boundaries and credits",
+            "zh": "边界与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "search_web queries a curated English and Chinese index. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "Windsurf setup",
+                "zh": "Windsurf 配置"
+              },
+              "slug": "mcp/windsurf"
+            },
+            {
+              "label": {
+                "en": "Cursor setup",
+                "zh": "Cursor 配置"
+              },
+              "slug": "mcp/cursor"
+            },
+            {
+              "label": {
+                "en": "Zed setup",
+                "zh": "Zed 配置"
+              },
+              "slug": "mcp/zed"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mcp/zed",
+      "title": {
+        "en": "Zed editor web search MCP setup",
+        "zh": "Zed 联网搜索 MCP 配置"
+      },
+      "description": {
+        "en": "Connect Annolux bilingual search MCP server to Zed AI assistant with one context server block.",
+        "zh": "在 Zed 编辑器中配置 Annolux 中英双语搜索 MCP 服务,为 Zed AI 助手提供带时间戳的检索。"
+      },
+      "kicker": {
+        "en": "MCP · Zed",
+        "zh": "MCP · Zed"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Config file location",
+            "zh": "配置路径"
+          },
+          "bullets": [
+            {
+              "en": "~/.config/zed/settings.json — user settings for Zed on macOS and Linux.",
+              "zh": "~/.config/zed/settings.json —— Zed 的用户设置文件。"
+            },
+            {
+              "en": "In Zed, press `cmd-,` or open `Zed → Settings → Open Settings` to edit settings.json.",
+              "zh": "在 Zed 中按 cmd-, 或选择菜单中的 Open Settings 打开编辑。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "The JSON",
+            "zh": "配置 JSON"
+          },
+          "paragraphs": [
+            {
+              "en": "Add the context_servers configuration block in settings.json. Replace the key placeholder with your real API key.",
+              "zh": "在 settings.json 中加入 context_servers 配置段。把占位密钥换成真实密钥。"
+            }
+          ],
+          "code": "{\n  \"context_servers\": {\n    \"annolux\": {\n      \"command\": {\n        \"path\": \"annolux-mcp\",\n        \"args\": [\"-key\", \"ann_live_REPLACE_ME\"],\n        \"env\": {\n          \"ANNOLUX_API_URL\": \"https://api.annolux.com\"\n        }\n      }\n    }\n  }\n}",
+          "links": [
+            {
+              "label": {
+                "en": "MCP overview and server install",
+                "zh": "MCP 总览与服务器安装"
+              },
+              "slug": "mcp"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Using search in Zed Assistant",
+            "zh": "在 Agent 中使用搜索"
+          },
+          "paragraphs": [
+            {
+              "en": "In Zed Assistant Panel, the assistant automatically queries search_web when answering questions requiring external documentation. Results include title, URL, and fetched_at timestamp.",
+              "zh": "在 Zed 助手面板中,当回答需要外部文档的问题时会自动调用 search_web,返回包含标题、URL 与 fetched_at 抓取时间的结果。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Troubleshooting",
+            "zh": "排障"
+          },
+          "bullets": [
+            {
+              "en": "Path configuration: specify the full path from `which annolux-mcp` in the command path field if not in standard PATH.",
+              "zh": "路径配置:若不在默认 PATH 中,请在 path 字段填入 which annolux-mcp 的完整路径。"
+            },
+            {
+              "en": "Restart Zed or reopen the Assistant panel after updating settings.json.",
+              "zh": "修改 settings.json 后重启 Zed 或重新打开助手面板。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Boundaries and credits",
+            "zh": "边界与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "search_web queries a curated English and Chinese index. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "Windsurf setup",
+                "zh": "Windsurf 配置"
+              },
+              "slug": "mcp/windsurf"
+            },
+            {
+              "label": {
+                "en": "Cursor setup",
+                "zh": "Cursor 配置"
+              },
+              "slug": "mcp/cursor"
+            },
+            {
+              "label": {
+                "en": "Claude Code setup",
+                "zh": "Claude Code 配置"
+              },
+              "slug": "mcp/claude-code"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "integrations/langchain",
+      "title": {
+        "en": "LangChain search tool integration",
+        "zh": "LangChain 搜索工具接入指南"
+      },
+      "description": {
+        "en": "Integrate Annolux bilingual search API into LangChain Python and TypeScript agents: source-attributed citations and fetched_at timestamps.",
+        "zh": "在 LangChain Python 与 TypeScript 中接入 Annolux 中英双语搜索 API:自带来源归属与明确抓取时间。"
+      },
+      "kicker": {
+        "en": "INTEGRATIONS · LANGCHAIN",
+        "zh": "组件接入 · LANGCHAIN"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Python integration",
+            "zh": "Python 接入方式"
+          },
+          "paragraphs": [
+            {
+              "en": "Wrap the standard Annolux REST endpoint with LangChain @tool decorator. Every result arrives with URL, rank, clean snippet, and fetched_at timestamp.",
+              "zh": "使用 LangChain 标准 tool 方法封装 Annolux 搜索接口。每条结果都带有 URL、排序、干净摘要与明确抓取时间。"
+            }
+          ],
+          "code": "import os\nimport requests\nfrom langchain_core.tools import tool\n\n@tool\ndef annolux_search(query: str, limit: int = 10) -> str:\n    \"\"\"Search Annolux curated English and Chinese index with explicit fetched_at timestamps.\"\"\"\n    api_key = os.environ.get(\"ANNOLUX_API_KEY\", \"\")\n    res = requests.post(\n        \"https://api.annolux.com/api/v1/search\",\n        headers={\"Authorization\": f\"Bearer {api_key}\"},\n        json={\"query\": query, \"limit\": limit, \"deduplicate\": True},\n        timeout=30,\n    )\n    if not res.ok:\n        return f\"Search error: {res.status_code}\"\n    return res.text"
+        },
+        {
+          "heading": {
+            "en": "TypeScript integration",
+            "zh": "TypeScript 接入方式"
+          },
+          "paragraphs": [
+            {
+              "en": "For Node.js and TypeScript LangChain workflows, define a tool with @langchain/core and Zod schema validation.",
+              "zh": "在 TypeScript 与 Node.js 工作流中,使用 @langchain/core 与 Zod 定义结构化工具。"
+            }
+          ],
+          "code": "import { tool } from \"@langchain/core/tools\";\nimport { z } from \"zod\";\n\nexport const annoluxSearchTool = tool(\n  async ({ query, limit = 10 }) => {\n    const res = await fetch(\"https://api.annolux.com/api/v1/search\", {\n      method: \"POST\",\n      headers: {\n        \"Content-Type\": \"application/json\",\n        \"Authorization\": `Bearer ${process.env.ANNOLUX_API_KEY}`\n      },\n      body: JSON.stringify({ query, limit, deduplicate: true })\n    });\n    return await res.text();\n  },\n  {\n    name: \"annolux_search\",\n    description: \"Search Annolux curated English and Chinese index.\",\n    schema: z.object({\n      query: z.string().describe(\"Search query\"),\n      limit: z.number().optional().default(10)\n    })\n  }\n);"
+        },
+        {
+          "heading": {
+            "en": "Using search in agent workflows",
+            "zh": "在 Agent 中使用搜索"
+          },
+          "paragraphs": [
+            {
+              "en": "Bind the tool to your LangGraph agent or create_react_agent. When the model invokes the tool, it receives structured provenance so downstream citations avoid hallucinated dates.",
+              "zh": "将工具绑定到 LangGraph 或 React Agent。模型发起检索时会得到带来源归属的结果,避免引用的时间产生错误。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Boundaries and credits",
+            "zh": "边界与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "Search queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. New accounts receive 1,000 free permanent credits.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "LlamaIndex integration",
+                "zh": "LlamaIndex 接入"
+              },
+              "slug": "integrations/llamaindex"
+            },
+            {
+              "label": {
+                "en": "Dify integration",
+                "zh": "Dify 接入"
+              },
+              "slug": "integrations/dify"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "integrations/llamaindex",
+      "title": {
+        "en": "LlamaIndex search tool integration",
+        "zh": "LlamaIndex 搜索工具接入指南"
+      },
+      "description": {
+        "en": "Use Annolux as a search tool or external retrieval reader in LlamaIndex Python & TS for temporal RAG pipelines.",
+        "zh": "在 LlamaIndex 中将 Annolux 作为搜索工具或检索器,为 RAG 知识库提供带时间戳的中英检索。"
+      },
+      "kicker": {
+        "en": "INTEGRATIONS · LLAMAINDEX",
+        "zh": "组件接入 · LLAMAINDEX"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Python FunctionTool setup",
+            "zh": "Python 接入方式"
+          },
+          "paragraphs": [
+            {
+              "en": "Wrap the Annolux Search API as a LlamaIndex FunctionTool for use in AgentRunner, FunctionCallingAgent, and RAG QueryEngine.",
+              "zh": "将 Annolux 搜索接口封装为 LlamaIndex FunctionTool,供 Agent 与 QueryEngine 检索调用。"
+            }
+          ],
+          "code": "import os\nimport requests\nfrom llama_index.core.tools import FunctionTool\n\ndef search_web(query: str, limit: int = 10) -> str:\n    \"\"\"Search curated English and Chinese technical web pages with timestamps.\"\"\"\n    api_key = os.environ.get(\"ANNOLUX_API_KEY\", \"\")\n    res = requests.post(\n        \"https://api.annolux.com/api/v1/search\",\n        headers={\"Authorization\": f\"Bearer {api_key}\"},\n        json={\"query\": query, \"limit\": limit, \"deduplicate\": True},\n        timeout=30,\n    )\n    return res.text if res.ok else f\"Error: {res.status_code}\"\n\nannolux_tool = FunctionTool.from_defaults(\n    fn=search_web,\n    name=\"annolux_search\",\n    description=\"Search curated English and Chinese technical web pages with verified fetched_at timestamps.\"\n)"
+        },
+        {
+          "heading": {
+            "en": "Using search in RAG pipelines",
+            "zh": "在 Agent 中使用搜索"
+          },
+          "paragraphs": [
+            {
+              "en": "In dynamic RAG pipelines, the agent invokes search_web when internal vector embeddings return low similarity. Results carry fetched_at timestamps so answers reflect verified doc dates.",
+              "zh": "在 RAG 流程中,当本地向量库相似度不足时,Agent 会调用 search_web 发起检索,每条结果带明确抓取时间。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Boundaries and credits",
+            "zh": "边界与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "search_web queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. New accounts receive 1,000 free permanent credits.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "LangChain integration",
+                "zh": "LangChain 接入"
+              },
+              "slug": "integrations/langchain"
+            },
+            {
+              "label": {
+                "en": "Dify integration",
+                "zh": "Dify 接入"
+              },
+              "slug": "integrations/dify"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "integrations/dify",
+      "title": {
+        "en": "Dify custom search tool integration",
+        "zh": "Dify 搜索工具配置"
+      },
+      "description": {
+        "en": "Add Annolux bilingual search to Dify workflows and agents with one OpenAPI schema import.",
+        "zh": "通过 OpenAPI 规范将 Annolux 中英双语搜索导入 Dify 工作流与 Agent 扩展工具。"
+      },
+      "kicker": {
+        "en": "INTEGRATIONS · DIFY",
+        "zh": "组件接入 · DIFY"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Import OpenAPI schema",
+            "zh": "通过 OpenAPI 接入"
+          },
+          "paragraphs": [
+            {
+              "en": "In Dify Studio, navigate to Tools → Custom Tools → Create Custom Tool. Enter the official OpenAPI schema URL: https://annolux.com/openapi.json",
+              "zh": "在 Dify 控制台中进入 工具 → 扩展工具 → 创建扩展工具,填入官方 OpenAPI 规范地址:https://annolux.com/openapi.json"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Authentication setup",
+            "zh": "认证配置"
+          },
+          "paragraphs": [
+            {
+              "en": "Set Authorization Method to API Key, Auth Type to Bearer, and enter your Annolux API key (starts with ann_live_). Dify securely stores the key and sends it on tool invocation.",
+              "zh": "认证方式选择 API Key,认证类型选择 Bearer,填入以 ann_live_ 开头的 API Key。Dify 会在每次调用时自动携带。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Using search in Dify workflows",
+            "zh": "在 Agent 中使用搜索"
+          },
+          "paragraphs": [
+            {
+              "en": "In your Dify Chatbot or Workflow, add the search_web tool node. Map the query input to user input or LLM generation. Responses arrive with clean snippets and fetched_at timestamps.",
+              "zh": "在 Dify 的工作流或 Agent 中添加 search_web 节点,将用户问题绑定到 query 参数即可发起检索。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Boundaries and credits",
+            "zh": "边界与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "Search queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. New accounts receive 1,000 free permanent credits.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "LangChain integration",
+                "zh": "LangChain 接入"
+              },
+              "slug": "integrations/langchain"
+            },
+            {
+              "label": {
+                "en": "LlamaIndex integration",
+                "zh": "LlamaIndex 接入"
+              },
+              "slug": "integrations/llamaindex"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "slug": "frozen-bilingual-search-evaluation",
+      "title": {
+        "en": "Freezing a bilingual Search evaluation",
+        "zh": "如何冻结一套双语 Search 评测"
+      },
+      "description": {
+        "en": "Why targets, dev review, and a blind set must stay separate when tuning search.",
+        "zh": "为什么搜索调优必须分离目标、dev 审标与盲集。"
+      },
+      "published": "2026-08-16",
+      "sections": [
+        {
+          "heading": {
+            "en": "The problem with a perfect tuning score",
+            "zh": "调参集满分的问题"
+          },
+          "paragraphs": [
+            {
+              "en": "A short evaluation becomes misleading as soon as ranking rules are edited against every miss. Annolux separates reviewed development cases from a frozen blind set so a release number can still falsify our assumptions. A miss is first adjudicated as a target alias, a better answer, a true content gap, or a real ranking error; only the development pool may influence implementation.",
+              "zh": "一旦针对每个 miss 修改排序规则，小评测集就会失真。Annolux 将人工审标的 dev 用例与冻结盲集分开，让发布数字仍能证伪我们的假设。每个 miss 先被审为目标别名、更优答案、真实内容缺口或真正排序错误；只有 dev 池能影响实现。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Freeze the corpus before reading the score",
+            "zh": "先冻结语料，再看分数"
+          },
+          "paragraphs": [
+            {
+              "en": "The v2 corpus contains 100 target-retrieval queries: 60 development and 40 held-out. It covers 79 English, 17 Chinese, and 4 mixed-language cases; 78 technical, 15 reference, 4 news-intent, and 3 release-intent cases. The manifest pins the exact JSONL digest, split sizes, tags, request limit, and interpretation of relevance grades.",
+              "zh": "v2 语料含 100 条目标检索查询：60 条 dev、40 条 held-out；其中英文 79 条、中文 17 条、中英混合 4 条，并覆盖 78 条技术、15 条参考、4 条新闻意图与 3 条发布意图。manifest 固定 JSONL 摘要、分组规模、标签、请求 limit 与相关性等级解释。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Make every run identifiable",
+            "zh": "让每轮运行可识别"
+          },
+          "paragraphs": [
+            {
+              "en": "A release run records the corpus and manifest hashes, code commit, evaluator commit, immutable image digest, index page and language counts, database and WAL size, timestamps, and one result row per query. Artifacts are created with an exclusive write and mode 0600, so a later run cannot silently replace the baseline. A separate ranking lock hashes the source files that implement local ordering.",
+              "zh": "发布运行会记录 corpus 与 manifest 哈希、代码和评测器提交、不可变镜像摘要、索引页数与语言数、数据库及 WAL 大小、时间戳和每条查询结果。产物以独占写入和 0600 权限创建，后续运行不能静默覆盖基线；独立 ranking lock 还会哈希本地排序实现源码。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "The recorded baseline",
+            "zh": "已记录基线"
+          },
+          "paragraphs": [
+            {
+              "en": "On the frozen 40-query held-out split, the recorded baseline had zero request errors, Hit@1 72.5%, Hit@3 82.5%, Hit@10 85.0%, MRR@10 0.78125, and client p95 latency 532 ms. A later no-tuning prelaunch rerun reproduced the retrieval metrics with client p95 356 ms and zero request errors. These are finite target-retrieval measurements for one 251k-page index. Unlisted results are unjudged—not automatically irrelevant—and the numbers are not a claim of whole-web recall.",
+              "zh": "在冻结的 40 条 held-out 集上，记录基线为请求错误 0、Hit@1 72.5%、Hit@3 82.5%、Hit@10 85.0%、MRR@10 0.78125、客户端 p95 延迟 532ms。后来一次未调参的上线前重跑复现了相同检索指标，客户端 p95 为 356ms，请求错误为 0。这只是一个 25.1 万页索引上的有限目标检索测量；未列出的结果是“未审标”，不自动等于不相关，也不代表全网召回。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "How the release gate is used",
+            "zh": "发布门如何使用"
+          },
+          "paragraphs": [
+            {
+              "en": "Before traffic moves, Annolux reruns v2 only as a regression check: no result may be used to tune the frozen weights. The release gate requires zero errors, Hit@3 at least 65%, Hit@10 at least 80%, MRR@10 at least 0.55, and p95 no more than one second. If it fails, the held-out set becomes diagnostic evidence; a new blind set must be authored before ranking can be accepted again.",
+              "zh": "切流前，Annolux 只把 v2 重跑作为回归检查，任何结果都不得用于调整冻结权重。发布门要求错误为 0、Hit@3≥65%、Hit@10≥80%、MRR@10≥0.55、p95≤1 秒。若失败，held-out 集转为诊断证据；再次接受新排序前必须另建盲集。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "search-results-are-not-evidence",
+      "title": {
+        "en": "A search result is not evidence",
+        "zh": "搜索结果不等于证据"
+      },
+      "description": {
+        "en": "The boundary between finding a page and proving what it said at a point in time.",
+        "zh": "找到页面与证明它在某时说过什么之间的边界。"
+      },
+      "published": "2026-08-16",
+      "sections": [
+        {
+          "heading": {
+            "en": "Retrieval answers a narrower question",
+            "zh": "检索回答的是更窄的问题"
+          },
+          "paragraphs": [
+            {
+              "en": "Search ranks pages that may answer a query. It does not prove that a claim is true, that the page is unchanged, or that every relevant source was found. A high score describes the relationship between query terms, document text, and local ranking features; it is not a statement about publisher authority or factual correctness.",
+              "zh": "Search 排出可能回答查询的页面，但不证明观点为真、页面未变或已找到全部相关来源。高分只描述查询词、文档文本和本地排序特征之间的关系，不代表发布者权威或事实正确。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Four ways a useful result can still fail as evidence",
+            "zh": "有用结果仍可能无法成为证据的四种方式"
+          },
+          "bullets": [
+            {
+              "en": "The publisher can edit or remove the page after it was indexed.",
+              "zh": "发布者可在索引后修改或删除页面。"
+            },
+            {
+              "en": "A snippet can omit qualifiers, dates, jurisdiction, or surrounding context.",
+              "zh": "摘要可能省略限定条件、日期、司法辖区或上下文。"
+            },
+            {
+              "en": "A page can accurately report that someone made a claim without proving the claim.",
+              "zh": "页面可能准确记录某人提出了主张，却并未证明主张。"
+            },
+            {
+              "en": "A focused index can miss a primary source even when the returned pages look plausible.",
+              "zh": "精选索引即使返回看似合理的页面，也可能漏掉一手来源。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Use fetched_at as a boundary, not a guarantee",
+            "zh": "把 fetched_at 当作边界，而不是保证"
+          },
+          "paragraphs": [
+            {
+              "en": "Every standard Search result exposes fetched_at. It tells an agent when Annolux last fetched the indexed page and makes staleness observable. It does not say that the live URL still has the same bytes, that all page assets were captured, or that the statement was true at fetch time. Freshness filters are rejected as unsupported rather than silently ignored because this index is periodically refreshed, not realtime.",
+              "zh": "每个标准 Search 结果都公开 fetched_at，说明 Annolux 上次抓取该索引页的时间，使陈旧程度可见。它不表示在线 URL 仍是相同字节、不表示抓全所有资源，也不表示抓取当时的陈述为真。由于索引是周期刷新而非实时系统，freshness 过滤会被明确拒绝，不会静默忽略。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Labs stays explicit",
+            "zh": "Labs 保持明确"
+          },
+          "paragraphs": [
+            {
+              "en": "Invite-only Labs may retain a bounded observation, content digest, timestamps, source metadata, and a signed receipt for a specific workflow. That can help prove what the system observed and how it processed the observation; it still does not convert third-party content into truth. Labs is an experiment, not a hidden Pro or Scale entitlement, and standard results never receive a verified label merely because they ranked well.",
+              "zh": "邀请制 Labs 可为特定工作流保留有界观察、内容摘要、时间戳、来源元数据和签名回执。它能帮助证明系统观察到什么、如何处理该观察，却仍不能把第三方内容变成事实。Labs 是实验，不是 Pro 或 Scale 的隐藏权益；标准结果不会因排名靠前就获得“已验证”标签。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "A safer agent pattern",
+            "zh": "更安全的 Agent 模式"
+          },
+          "paragraphs": [
+            {
+              "en": "Use Search to discover candidate sources, prefer primary documents, compare fetched_at with the decision horizon, fetch the live source when permitted, preserve the exact passage and URL used, and require independent review for medical, legal, financial, or safety-critical claims. Retrieval is the beginning of an evidence workflow, not its final verdict.",
+              "zh": "先用 Search 发现候选来源，优先一手文档；将 fetched_at 与决策时效比较；在允许时读取在线来源；保留实际使用的原文与 URL；医疗、法律、财务或安全关键主张必须独立复核。检索是证据工作流的起点，不是最终裁决。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "one-vps-bilingual-index",
+      "title": {
+        "en": "Operating a bilingual index on one VPS",
+        "zh": "在一台 VPS 上运行双语索引"
+      },
+      "description": {
+        "en": "The practical boundaries behind a 251k-page English and Chinese search index.",
+        "zh": "25.1 万页中英搜索索引背后的工程边界。"
+      },
+      "published": "2026-08-16",
+      "sections": [
+        {
+          "heading": {
+            "en": "Bounded by design",
+            "zh": "从设计上有界"
+          },
+          "paragraphs": [
+            {
+              "en": "The index uses SQLite WAL, separate English and Chinese FTS streams, compressed bodies, per-domain fairness, robots controls, and content admission. The current snapshot contains about 251,368 pages: 215,485 English and 35,883 Chinese. Annolux describes that scope directly instead of implying realtime, global-web coverage.",
+              "zh": "索引使用 SQLite WAL、分离的英文与中文 FTS、压缩正文、按域公平、robots 控制与内容准入。当前快照约 251,368 页，其中英文 215,485、中文 35,883。Annolux 直接说明这一范围，不暗示实时或全球全网覆盖。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "One database, two text systems",
+            "zh": "一个数据库，两套文本系统"
+          },
+          "paragraphs": [
+            {
+              "en": "English and Chinese documents share durable page metadata while indexing into language-specific FTS tables. English token normalization and Chinese segmentation are tested independently, then a frozen, bounded ranking pass combines lexical coverage, URL shape, and BM25 rather than sending an unbounded candidate set to a remote model. There is no GPU reranker in the launch path.",
+              "zh": "中英文文档共享持久页面元数据，但进入各自语言的 FTS 表。英文 token 归一与中文分词独立测试，再由冻结且有界的排序阶段组合词汇覆盖、URL 形态与 BM25；不会把无限候选送到远程模型，首发路径也没有 GPU 重排器。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Fair crawling is a resource-control problem",
+            "zh": "公平抓取也是资源控制问题"
+          },
+          "paragraphs": [
+            {
+              "en": "The internal indexer respects robots decisions, leases work fairly across domains, filters locale and path traps before admission, bounds response bodies, and checkpoints SQLite rather than letting WAL grow without limit. Before opening the database and before each lease, it stops when disk usage reaches 82% or free space falls below 25 GiB. A stop is clean and leaves no leased frontier rows behind.",
+              "zh": "内部索引器遵守 robots 决策，按域公平租约，在准入前过滤 locale 与路径陷阱，限制响应正文，并让 SQLite checkpoint 而不是让 WAL 无限增长。打开数据库前及每次租约前，只要磁盘使用达到 82% 或空余低于 25GiB 就会停止；停止过程干净，不留下被占用的 frontier 行。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Refresh, do not sprawl",
+            "zh": "刷新而非扩张"
+          },
+          "paragraphs": [
+            {
+              "en": "Routine maintenance conditionally fetches only known URLs. The refresh mode cannot lease pending discovery work, insert a new frontier URL, or follow links into breadth-first expansion. The remaining pending frontier is not migrated into an automatic job. New URLs enter only after a fresh blind set or real-user adjudication demonstrates a content gap.",
+              "zh": "日常维护只条件请求已知 URL。刷新模式不能租用待发现任务、不能插入新 frontier URL，也不会沿链接进行广度扩张；现有 pending frontier 不会迁入自动任务。只有新盲集或真实用户审标证明内容缺口后，新 URL 才会进入。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Copies make rollback boring",
+            "zh": "用复制让回滚变得无聊"
+          },
+          "paragraphs": [
+            {
+              "en": "A deployment copies the checkpointed index into a separate directory; it never moves or overwrites the previous data. Before and after copying, an operator checks file size, SHA-256, SQLite integrity, English and Chinese FTS document counts, page totals, and WAL state. The new API starts on a spare loopback port and the old containers keep their data until public Search and tunnel rollback drills pass.",
+              "zh": "部署会把已 checkpoint 的索引复制到独立目录，绝不移动或覆盖旧数据。复制前后检查文件大小、SHA-256、SQLite integrity、中英文 FTS 文档数、总页数和 WAL 状态。新 API 先在备用 loopback 端口启动，旧容器保留数据，直到公网 Search 与隧道回滚演练通过。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "agent-search-mcp-quickstart",
+      "title": {
+        "en": "Agent quickstart with Search and MCP",
+        "zh": "使用 Search 与 MCP 接入 Agent"
+      },
+      "description": {
+        "en": "Use the same bounded standard Search contract over REST or the search_web MCP tool.",
+        "zh": "通过 REST 或 search_web MCP 工具使用同一套有界标准 Search 契约。"
+      },
+      "published": "2026-08-16",
+      "sections": [
+        {
+          "heading": {
+            "en": "One contract in two transports",
+            "zh": "两种传输，一套契约"
+          },
+          "paragraphs": [
+            {
+              "en": "annolux-mcp registers one tool: search_web. Its inputs match the commercial REST endpoint—query, domains, deduplicate, limit up to 10, timeout up to 30, and default/provider ranking. It does not expose Verify, Extract, trust, a crawler, or hidden enrichment, so an agent cannot accidentally buy a different operation through MCP.",
+              "zh": "annolux-mcp 只注册 search_web。输入与商业 REST 端点一致：query、domains、deduplicate、limit≤10、timeout≤30，以及 default/provider 排序；不暴露 Verify、Extract、trust、爬虫或隐藏增强，因此 Agent 不会通过 MCP 意外购买另一种操作。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Call the REST endpoint",
+            "zh": "调用 REST 端点"
+          },
+          "paragraphs": [
+            {
+              "en": "Send a bearer key to POST /api/v1/search. domains is an optional hostname allow-list, deduplicate defaults to true, and the response returns ranked title, URL, snippet, score when available, and fetched_at. The server owns X-Request-ID; clients cannot reuse it to replay a previously committed credit reservation.",
+              "zh": "把 Bearer Key 发送到 POST /api/v1/search。domains 是可选主机名白名单，deduplicate 默认 true；响应返回排序后的标题、URL、摘要、可用时的 score 与 fetched_at。X-Request-ID 由服务端生成，客户端不能复用它重放已提交的点数预占。"
+            }
+          ],
+          "code": "curl https://api.annolux.com/api/v1/search -H 'Authorization: Bearer ann_live_…' -H 'Content-Type: application/json' --data '{\"query\":\"rust ownership\",\"domains\":[\"doc.rust-lang.org\"],\"limit\":5}'"
+        },
+        {
+          "heading": {
+            "en": "Make credit behavior part of the agent loop",
+            "zh": "把点数语义纳入 Agent 循环"
+          },
+          "paragraphs": [
+            {
+              "en": "Only a successful 2xx standard Search commits one credit. Validation errors, authentication failures, insufficient balance, rate limits, server errors, and timeouts commit zero. Read X-Annolux-Credits-Used and X-Annolux-Credits-Remaining instead of estimating locally. A 402 means stop or ask the user to obtain a new grant; there is no surprise overage charge.",
+              "zh": "只有成功的 2xx 标准 Search 提交 1 点。参数错误、认证失败、余额不足、限流、服务端错误和超时都不提交点数。应读取 X-Annolux-Credits-Used 与 X-Annolux-Credits-Remaining，而不是本地估算。402 表示停止或请用户获取新点数，不会产生意外超额费用。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Keep the key out of prompts",
+            "zh": "不要把密钥放进提示词"
+          },
+          "paragraphs": [
+            {
+              "en": "Configure ANNOLUX_API_KEY in the MCP process environment. The MCP client sends it only in the Authorization header and never places it in tool results or model-visible arguments. Use a separately named key per runtime, copy the raw value once, revoke it when a machine is lost, and never paste it into an issue or support message.",
+              "zh": "在 MCP 进程环境中配置 ANNOLUX_API_KEY。MCP 客户端只将其放进 Authorization 请求头，不写入工具结果或模型可见参数。每个运行环境使用独立命名密钥；原始值只复制一次；设备丢失时立即撤销；不要粘贴到 Issue 或支持邮件。"
+            }
+          ],
+          "code": "ANNOLUX_API_URL=https://api.annolux.com ANNOLUX_API_KEY=ann_live_… annolux-mcp"
+        },
+        {
+          "heading": {
+            "en": "Design for a focused index",
+            "zh": "围绕精选索引设计"
+          },
+          "paragraphs": [
+            {
+              "en": "Use domains when the agent knows the documentation family it needs, retain fetched_at beside citations, and handle an empty result as a normal outcome. Do not send freshness because the hosted index rejects it as unsupported. For realtime news or exhaustive discovery, choose a source designed for that job rather than hiding the mismatch behind retries.",
+              "zh": "当 Agent 知道所需文档域时使用 domains，把 fetched_at 与引用一起保留，并把空结果当作正常结果处理。不要发送 freshness，因为托管索引会明确拒绝该选项。若需要实时新闻或穷尽发现，应选择为该任务设计的数据源，而不是用重试掩盖能力不匹配。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

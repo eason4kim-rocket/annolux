@@ -1,0 +1,13 @@
+[Unit]
+Description=Annolux Paddle reconciliation
+After=docker.service network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/annolux
+EnvironmentFile=/opt/annolux/.env
+ExecStart=/opt/annolux/ops/reconcile-paddle.sh
+ExecStartPost=/opt/annolux/ops/heartbeat.sh RECONCILE
+User=root
+PrivateTmp=true
+NoNewPrivileges=true

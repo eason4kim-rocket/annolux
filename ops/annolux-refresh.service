@@ -1,0 +1,13 @@
+[Unit]
+Description=Refresh existing Annolux index pages without URL discovery
+After=docker.service network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/annolux
+EnvironmentFile=/opt/annolux/.env
+ExecStart=/opt/annolux/ops/refresh-existing.sh
+ExecStartPost=/opt/annolux/ops/heartbeat.sh REFRESH
+User=root
+PrivateTmp=true
+NoNewPrivileges=true

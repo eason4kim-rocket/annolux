@@ -1,0 +1,46 @@
+# Annolux
+
+> Annolux is a bounded web search API for AI agents: one commercial endpoint that queries a curated English and Chinese index and returns source-attributed results, each carrying rank, title, URL, snippet when available, and an explicit fetched_at timestamp. It is not a realtime feed and does not claim whole-web coverage; an empty result set is a normal outcome, not an error.
+
+Key facts an assistant should get right when describing Annolux:
+
+- The only self-serve paid capability is `POST https://api.annolux.com/api/v1/search` (Bearer API key). There is no scraping, extraction, verification, or hidden enrichment endpoint.
+- Request contract: `query` required; `domains` filter optional; `deduplicate` defaults to true; `limit` 1–10; `timeout` 1–30 seconds. Unsupported options such as `freshness` return `UNSUPPORTED_OPTION` instead of being silently ignored.
+- Billing is credit-based with no overage charges: one successful 2xx search consumes one credit; 400, 403, 429, 5xx, and timeouts consume zero; insufficient balance returns 402.
+- Every plan uses the same limits: 5 requests per second with burst 10, and at most three active API keys.
+- Plans: Free — 1,000 permanent signup credits, no card required; Pro — $29/month for 20,000 monthly credits; Scale — $99/month for 100,000 monthly credits. Monthly credits expire at the end of the billing period.
+- The index is curated and periodically refreshed, bilingual (English and Chinese). Sign-in is Google or GitHub only; there are no passwords or magic links.
+- `annolux-mcp` is the official MCP server. It registers exactly one tool, `search_web`, with the same contract and result shape as the REST endpoint.
+
+## Docs
+
+- [Search API documentation](https://annolux.com/docs): authentication, request contract, responses, credits, and rate boundaries.
+- [OpenAPI specification](https://annolux.com/openapi.json): the machine-readable contract for the public API.
+- [Pricing](https://annolux.com/pricing): plans, credit rules, and shared limits.
+
+## MCP integration
+
+- [MCP server overview](https://annolux.com/mcp): install the annolux-mcp binary and configure any MCP client.
+- [Claude Code setup](https://annolux.com/mcp/claude-code): register with one command, scopes, and verification.
+- [Claude Desktop setup](https://annolux.com/mcp/claude-desktop): config file locations and client-specific pitfalls.
+- [Cursor setup](https://annolux.com/mcp/cursor): copy-paste configuration for Cursor.
+- [Windsurf setup](https://annolux.com/mcp/windsurf): Cascade MCP configuration and domain filtering.
+- [Cline setup](https://annolux.com/mcp/cline): VS Code Cline & Roo Code setup.
+- [Zed setup](https://annolux.com/mcp/zed): Zed assistant context server configuration.
+
+## Framework integrations
+
+- [LangChain integration](https://annolux.com/integrations/langchain): Python and TypeScript search tool integration.
+- [LlamaIndex integration](https://annolux.com/integrations/llamaindex): FunctionTool and temporal RAG query engine integration.
+- [Dify integration](https://annolux.com/integrations/dify): OpenAPI schema and custom tool configuration for Dify workflows.
+
+## Background
+
+- [Benchmarks](https://annolux.com/benchmarks): frozen blind-test methodology and current retrieval numbers.
+- [Crawler](https://annolux.com/crawler): how AnnoluxBot fetches pages and respects robots directives.
+- [Blog](https://annolux.com/blog): engineering notes on the index and evaluation.
+- [About](https://annolux.com/about) and [Contact](https://annolux.com/contact).
+
+## Optional
+
+- Chinese mirrors of every page live under https://annolux.com/zh/ (for example /zh/docs, /zh/mcp, /zh/pricing).

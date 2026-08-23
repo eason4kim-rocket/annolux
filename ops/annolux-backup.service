@@ -1,0 +1,13 @@
+[Unit]
+Description=Annolux encrypted accounts backup
+After=docker.service network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/annolux
+EnvironmentFile=/opt/annolux/.env
+ExecStart=/opt/annolux/ops/backup-accounts.sh
+ExecStartPost=/opt/annolux/ops/heartbeat.sh BACKUP
+User=root
+PrivateTmp=true
+NoNewPrivileges=true

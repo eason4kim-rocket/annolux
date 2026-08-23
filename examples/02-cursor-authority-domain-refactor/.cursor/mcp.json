@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "annolux": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "annolux-mcp",
+        "-key",
+        "ann_live_REPLACE_WITH_YOUR_KEY"
+      ]
+    }
+  }
+}

@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en" data-title-en="Bilingual Search API for AI Agents &amp; RAG — Annolux" data-title-zh="Annolux Search — 面向 AI Agent 的中英双语搜索 API 与 MCP">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A focused English and Chinese Search API for AI agents and RAG systems. Clean source-attributed snippets, explicit fetched_at timestamps, and deterministic credit billing."
+      data-content-en="A focused English and Chinese Search API for AI agents and RAG systems. Clean source-attributed snippets, explicit fetched_at timestamps, and deterministic credit billing."
+      data-content-zh="面向 Agent 的中英双语精选 Search API，返回带来源归属和明确抓取时间的结果。智能理解世界的方式。"
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ededec" data-light="#ededec" data-dark="#202020" />
+    <script src="/theme-init.js"></script>
+    <title>Bilingual Search API for AI Agents &amp; RAG — Annolux</title>
+    <link rel="icon" href="./favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="canonical" href="https://annolux.com/" />
+    <link rel="alternate" hreflang="en" href="https://annolux.com/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://annolux.com/?lang=zh" />
+    <link rel="alternate" hreflang="x-default" href="https://annolux.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Annolux" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+    <meta property="og:title" content="Bilingual Search API for AI Agents &amp; RAG — Annolux" data-content-en="Bilingual Search API for AI Agents &amp; RAG — Annolux" data-content-zh="Annolux Search — 面向 AI Agent 的中英双语搜索 API 与 MCP" />
+    <meta property="og:description" content="A focused English and Chinese Search API for AI agents and RAG systems. Clean source-attributed snippets, explicit fetched_at timestamps, and deterministic credit billing." data-content-en="A focused English and Chinese Search API for AI agents and RAG systems. Clean source-attributed snippets, explicit fetched_at timestamps, and deterministic credit billing." data-content-zh="面向 Agent 的中英双语精选 Search API，返回带来源归属和明确抓取时间的结果。智能理解世界的方式。" />
+    <meta property="og:url" content="https://annolux.com/" />
+    <meta property="og:image" content="https://annolux.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Bilingual Search API for AI Agents &amp; RAG — Annolux" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bilingual Search API for AI Agents &amp; RAG — Annolux" data-content-en="Bilingual Search API for AI Agents &amp; RAG — Annolux" data-content-zh="Annolux Search — 面向 AI Agent 的中英双语搜索 API 与 MCP" />
+    <meta name="twitter:description" content="A focused English and Chinese Search API for AI agents and RAG systems. Clean source-attributed snippets, explicit fetched_at timestamps, and deterministic credit billing." data-content-en="A focused English and Chinese Search API for AI agents and RAG systems. Clean source-attributed snippets, explicit fetched_at timestamps, and deterministic credit billing." data-content-zh="面向 Agent 的中英双语精选 Search API，返回带来源归属和明确抓取时间的结果。智能理解世界的方式。" />
+    <meta name="twitter:image" content="https://annolux.com/og.png" />
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"Annolux","url":"https://annolux.com/","logo":"https://annolux.com/favicon.svg"}
+    </script>
+    <link rel="preload" href="/assets/fonts/HankenGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/home.css?v=home-818" />
+    <script src="./app.js?v=home-818" defer></script>
+  </head>
+  <body class="page-home">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="nav" data-header>
+      <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="Annolux home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span>Annolux</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="./docs.html"><span data-copy="nav.docs">Docs</span></a>
+          <a href="./mcp.html">MCP</a>
+          <a href="./pricing.html" data-copy="nav.pricing">Pricing</a>
+          <a href="./benchmarks.html">Benchmarks</a>
+          <a href="./blog.html">Blog</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">
+            <svg class="theme-moon" width="15" height="15" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="0" width="3" height="1"/><rect x="1" y="1" width="3" height="1"/><rect x="1" y="2" width="2" height="3"/><rect x="1" y="5" width="3" height="1"/><rect x="2" y="6" width="3" height="1"/></svg>
+            <svg class="theme-sun" width="15" height="15" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="2" width="4" height="4"/><rect x="3" y="0" width="2" height="1"/><rect x="3" y="7" width="2" height="1"/><rect x="0" y="3" width="1" height="2"/><rect x="7" y="3" width="1" height="2"/><rect x="0" y="0" width="1" height="1"/><rect x="7" y="0" width="1" height="1"/><rect x="0" y="7" width="1" height="1"/><rect x="7" y="7" width="1" height="1"/></svg>
+            <span class="sr-only" data-theme-label>Switch color theme</span>
+          </button>
+          <button class="lang-toggle" type="button" data-language-toggle aria-label="切换到中文">
+            <span class="lang-current">EN</span>
+            <span class="lang-divider" aria-hidden="true">/</span>
+            <span class="lang-next">中文</span>
+          </button>
+          <a class="nav-signin" href="./login.html" data-copy="nav.signIn">Sign in</a>
+          <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
+            <span class="sr-only" data-copy="nav.menu">Menu</span>
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav container" id="mobile-menu" data-mobile-menu aria-label="Mobile navigation" hidden>
+        <a href="./docs.html"><span data-copy="nav.docs">Docs</span></a>
+        <a href="./mcp.html">MCP</a>
+        <a href="./pricing.html" data-copy="nav.pricing">Pricing</a>
+        <a href="./benchmarks.html">Benchmarks</a>
+        <a href="./blog.html">Blog</a>
+        <a href="./changelog.html" data-copy="common.changelog">Changelog</a>
+        <a href="./login.html" data-copy="nav.trial">Start free</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="container hero-inner">
+          <div class="kicker-row">
+            <span class="kicker-rule" aria-hidden="true"></span>
+            <p class="kicker" data-copy="hero.eyebrow">A FOCUSED INDEX FOR AGENTS &amp; RAG</p>
+            <span class="kicker-rule" aria-hidden="true"></span>
+          </div>
+          <h1 id="hero-title" class="hero-title" data-copy="hero.title">Give your agent search it can <em class="accent">cite.</em></h1>
+          <p class="lead" data-copy="hero.lead">A focused index of <span class="figure">337,000+</span> English and Chinese pages, built and owned by us. Search it with one call — every result carries its source URL and the time that page was read.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="./login.html" data-copy="hero.primary">Get started, free</a>
+            <a class="btn btn-ghost" href="./docs.html">
+              <span data-copy="hero.secondary">Read the docs</span>
+              <svg width="13" height="13" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="0" y="3" width="6" height="2"/><rect x="4" y="1" width="1" height="1"/><rect x="5" y="2" width="1" height="1"/><rect x="6" y="3" width="1" height="2"/><rect x="5" y="5" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/></svg>
+            </a>
+          </div>
+          <div class="chips">
+            <span class="chip" data-copy="chip.one">FETCH · FIND · IDENTITY</span>
+            <span class="chip" data-copy="chip.two">FROZEN BLIND EVALUATION</span>
+            <span class="chip" data-copy="chip.three">MCP READY</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo container" aria-labelledby="fig1-title">
+        <div class="fig-head">
+          <div class="fig-head-text">
+            <span class="fig-tag">FIG. 01</span>
+            <span class="fig-title" id="fig1-title" data-copy="fig1.title">Three moves, one key</span>
+            <span class="fig-note" data-copy="fig1.note">— how a page enters the index, how you find it, and what every result carries.</span>
+          </div>
+          <button class="pixel-bot-btn" type="button" aria-label="Annolux Scout Bot" title="Click me!">
+            <span class="bot-bubble" aria-hidden="true">200 OK ✨</span>
+            <svg class="pixel-bot" width="30" height="36" viewBox="0 0 20 24" fill="none" shape-rendering="crispEdges" aria-hidden="true">
+              <!-- Antenna in orange (stem + offset top block) -->
+              <rect class="bot-antenna-stem" x="9" y="3" width="2" height="4" fill="var(--accent)" />
+              <rect class="bot-antenna-tip" x="11" y="1" width="2" height="2" fill="var(--accent)" />
+              <!-- Body Frame -->
+              <rect class="bot-frame" x="2" y="7" width="16" height="14" fill="var(--ink)" />
+              <rect class="bot-screen" x="4" y="9" width="12" height="10" fill="var(--surface)" />
+              <!-- Eyes (Always Dot Eyes, looking left) -->
+              <rect class="bot-eye" x="5" y="13" width="2" height="2" fill="var(--ink)" />
+              <rect class="bot-eye" x="10" y="13" width="2" height="2" fill="var(--ink)" />
+              <!-- Left Leg (toe extends to left) -->
+              <rect class="bot-leg-left" x="6" y="21" width="1.5" height="3" fill="var(--ink)" />
+              <rect class="bot-foot-left" x="4" y="23" width="3.5" height="1" fill="var(--ink)" />
+              <!-- Right Leg (T-foot) -->
+              <rect class="bot-leg-right" x="14" y="21" width="1.5" height="3" fill="var(--ink)" />
+              <rect class="bot-foot-right" x="12" y="23" width="5" height="1" fill="var(--ink)" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="panel-frame">
+          <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+          <div class="panel">
+            <div class="panel-head">
+              <span class="mono">ANNOLUX · <span data-endpoint>POST /api/v1/search</span></span>
+              <span class="mono panel-status">200 OK</span>
+            </div>
+
+            <div class="tabs" role="tablist" aria-label="Annolux capabilities">
+              <button class="tab" type="button" role="tab" id="tab-fetch" aria-controls="panel-fetch" aria-selected="false" data-tab="fetch" data-endpoint-label="INDEX PIPELINE · AnnoluxBot">
+                <svg width="13" height="13" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="2" height="3"/><rect x="1" y="3" width="6" height="1"/><rect x="2" y="4" width="4" height="1"/><rect x="3" y="5" width="2" height="1"/><rect x="0" y="7" width="8" height="1"/></svg>
+                <span data-copy="tab.fetch">Fetch</span>
+              </button>
+              <button class="tab" type="button" role="tab" id="tab-find" aria-controls="panel-find" aria-selected="true" data-tab="find" data-endpoint-label="POST /api/v1/search">
+                <svg width="13" height="13" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="0" width="3" height="1"/><rect x="1" y="1" width="1" height="2"/><rect x="5" y="1" width="1" height="2"/><rect x="2" y="3" width="3" height="1"/><rect x="4" y="4" width="2" height="1"/><rect x="5" y="5" width="2" height="1"/><rect x="6" y="6" width="2" height="1"/></svg>
+                <span data-copy="tab.find">Find</span>
+              </button>
+              <button class="tab" type="button" role="tab" id="tab-identity" aria-controls="panel-identity" aria-selected="false" data-tab="identity" data-endpoint-label="IN EVERY SEARCH RESPONSE">
+                <svg width="13" height="13" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="0" width="6" height="1"/><rect x="1" y="1" width="1" height="4"/><rect x="6" y="1" width="1" height="4"/><rect x="2" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="2" height="1"/></svg>
+                <span data-copy="tab.identity">Identity</span>
+              </button>
+            </div>
+
+            <div class="tab-body" id="panel-fetch" role="tabpanel" aria-labelledby="tab-fetch" data-panel="fetch" hidden>
+              <div class="query-row">
+                <div class="query-box">
+                  <svg width="14" height="14" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="0" width="4" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="0" y="2" width="1" height="4"/><rect x="7" y="2" width="1" height="4"/><rect x="1" y="6" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="2" y="7" width="4" height="1"/><rect x="1" y="3" width="6" height="1"/></svg>
+                  <span class="query-text">https://blog.rust-lang.org/2026/07/rust-1.90.html</span>
+                  <span class="caret" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="result-card">
+                <p class="result-meta"><span class="t-ok">200</span> <span data-copy="fetch.meta">· rendered · 18.4 KB · 240 ms · clean markdown</span></p>
+                <p class="result-md">&#35; Announcing Rust 1.90</p>
+                <p class="result-body" data-copy="fetch.body">The Rust team is happy to announce a new version of Rust. Rust is a programming language empowering everyone to build reliable and efficient software…</p>
+                <p class="result-meta result-foot" data-copy="fetch.foot">Chrome-true fetch · boilerplate stripped · robots respected · this is how pages enter the index</p>
+              </div>
+            </div>
+
+            <div class="tab-body" id="panel-find" role="tabpanel" aria-labelledby="tab-find" data-panel="find">
+              <div class="query-row">
+                <div class="query-box">
+                  <svg width="14" height="14" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="0" width="3" height="1"/><rect x="1" y="1" width="1" height="2"/><rect x="5" y="1" width="1" height="2"/><rect x="2" y="3" width="3" height="1"/><rect x="4" y="4" width="2" height="1"/><rect x="5" y="5" width="2" height="1"/><rect x="6" y="6" width="2" height="1"/></svg>
+                  <span class="query-text" contenteditable="true" spellcheck="false" enterkeyhint="search" data-find-input>rust ownership</span>
+                  <span class="caret" aria-hidden="true"></span>
+                </div>
+                <a class="query-run" href="./playground.html" data-find-run>
+                  <svg width="12" height="12" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="0" width="1" height="8"/><rect x="2" y="1" width="1" height="6"/><rect x="3" y="2" width="1" height="4"/><rect x="4" y="3" width="1" height="2"/></svg>
+                  <span data-copy="find.run">Run</span>
+                </a>
+              </div>
+              <div class="result-card hit" data-find-result>
+                <span class="hit-rank" aria-hidden="true" data-find-rank>1</span>
+                <span class="hit-copy">
+                  <span class="hit-title" data-copy="find.hitTitle">Understanding Ownership · The Rust Programming Language</span>
+                  <span class="hit-url">doc.rust-lang.org/book/ch04-01-what-is-ownership.html</span>
+                  <span class="result-body" data-copy="find.hitSnippet">Ownership is a set of rules that govern how a Rust program manages memory. The stack and the heap…</span>
+                  <span class="result-meta" data-copy="find.hitMeta">fetched_at 2026-08-15T12:07:06Z · rank 1 · 1 credit</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="tab-body" id="panel-identity" role="tabpanel" aria-labelledby="tab-identity" data-panel="identity" hidden>
+              <p class="id-intro">
+                <svg width="13" height="13" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="0" width="6" height="1"/><rect x="1" y="1" width="1" height="4"/><rect x="6" y="1" width="1" height="4"/><rect x="2" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="2" height="1"/></svg>
+                <span data-copy="id.intro">No extra call. Every result already arrives with its own provenance.</span>
+              </p>
+              <pre class="id-json"><code>HTTP/2 200
+X-Annolux-Credits-Used: 1
+X-Annolux-Credits-Remaining: 999
+
+{
+  "success": true,
+  "query": "rust ownership",
+  "deduplicated": true,
+  "results": [
+    {
+      "rank": 1,
+      "title": "Understanding Ownership · The Rust Programming Language",
+      "url": "https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html",
+      "snippet": "Ownership is a set of rules that govern how a Rust program manages memory…",
+      "fetched_at": "2026-08-15T12:07:06Z"
+    }
+  ]
+}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="spec">
+          <span data-copy="spec.one">SUCCESS = 1 CREDIT</span>
+          <span class="spec-dot" aria-hidden="true">·</span>
+          <span data-copy="spec.two">ERRORS = 0 CREDITS</span>
+          <span class="spec-dot" aria-hidden="true">·</span>
+          <span data-copy="spec.three">NO OVERAGE</span>
+          <span class="spec-dot" aria-hidden="true">·</span>
+          <span data-copy="spec.four">5 RPS · BURST 10</span>
+        </div>
+        <div class="spec-curl"><code>curl -X POST https://api.annolux.com/api/v1/search -H 'Authorization: Bearer ann_live_…' -H 'Content-Type: application/json' -d '{"query":"rust ownership","limit":5}'</code></div>
+      </section>
+
+      <section class="proof container" aria-labelledby="fig2-title">
+        <div class="fig-head">
+          <span class="fig-tag">FIG. 02</span>
+          <span class="fig-title" id="fig2-title" data-copy="fig2.title">Measured, not claimed</span>
+          <span class="fig-note" data-copy="fig2.note">— scored on a frozen blind set the ranking is never tuned against.</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <p class="stat-num">92.5<span class="stat-unit">%</span></p>
+            <p class="stat-label">HIT@10</p>
+            <p class="stat-note" data-copy="stat.one">The target page lands in the top ten.</p>
+          </div>
+          <div class="stat">
+            <p class="stat-num">0.83</p>
+            <p class="stat-label">MRR@10</p>
+            <p class="stat-note" data-copy="stat.two">And it lands near the top, not buried.</p>
+          </div>
+          <div class="stat">
+            <p class="stat-num">213<span class="stat-unit">ms</span></p>
+            <p class="stat-label" data-copy="stat.threeLabel">P95 LATENCY</p>
+            <p class="stat-note" data-copy="stat.three">Measured client-side, with zero request errors.</p>
+          </div>
+        </div>
+
+        <p class="proof-note" data-copy="proof.note">40 held-out queries, written before the run. The evaluator, the frozen cases, and the release gate are public.</p>
+      </section>
+    </main>
+
+    <div class="tear" aria-hidden="true">
+      <span class="tear-mark"><i></i><i></i><i></i><i></i></span>
+    </div>
+
+    <footer class="foot">
+      <div class="container foot-inner">
+        <p class="foot-tag" data-copy="footer.note">Search that can show its work.</p>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="./docs.html" data-copy="nav.docs">Docs</a>
+          <a href="./mcp.html">MCP</a>
+          <a href="./pricing.html" data-copy="nav.pricing">Pricing</a>
+          <a href="./benchmarks.html">Benchmarks</a>
+          <a href="./blog.html">Blog</a>
+          <a href="./changelog.html" data-copy="common.changelog">Changelog</a>
+          <a href="./status.html">Status</a>
+          <a href="./security.html">Security</a>
+          <a href="./contact.html" data-copy="footer.contact">Contact</a>
+          <a href="./privacy.html" data-copy="footer.privacy">Privacy</a>
+          <a href="./terms.html" data-copy="footer.legal">Terms</a>
+        </nav>
+        <p class="foot-copy">© 2026 Annolux</p>
+      </div>
+    </footer>
+
+  </body>
+</html>

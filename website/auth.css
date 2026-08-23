@@ -1,0 +1,96 @@
+/* ============================================================
+   Sign-in page. Layers on home.css — same tokens, same type,
+   same pixel language. One centred card on paper, no split
+   panel and no second brand colour.
+   ============================================================ */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* ---- Top bar ---- */
+.auth-bar { border-bottom: 1px solid var(--line-soft); }
+.auth-bar-inner {
+  width: 100%; max-width: 1104px; margin: 0 auto; padding: 0 24px;
+  height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+
+/* ---- Card ---- */
+.auth-main {
+  flex-grow: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 26px; padding: 56px 24px;
+}
+.auth-card-frame { position: relative; width: 100%; max-width: 460px; }
+.auth-card-frame > i {
+  position: absolute; width: 14px; height: 14px; display: block;
+  border-color: var(--line); border-style: solid; border-width: 0;
+}
+.auth-card-frame > i:nth-child(1) { top: -11px; left: -11px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.auth-card-frame > i:nth-child(2) { top: -11px; right: -11px; border-top-width: 1.5px; border-right-width: 1.5px; }
+.auth-card-frame > i:nth-child(3) { bottom: -11px; left: -11px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+.auth-card-frame > i:nth-child(4) { bottom: -11px; right: -11px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+.auth-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 40px 36px 32px;
+  box-shadow: 0 24px 60px -34px rgba(23, 21, 15, 0.32);
+}
+.auth-kicker { margin-bottom: 14px; }
+.auth-title {
+  font-family: var(--display); font-weight: 700;
+  font-size: 32px; line-height: 1.12; letter-spacing: -0.02em; color: var(--ink);
+}
+html[lang="zh-CN"] .auth-title { font-family: var(--sans-zh); font-weight: 700; letter-spacing: -0.01em; }
+.auth-sub { margin-top: 14px; font-size: 15px; line-height: 1.6; color: var(--muted); }
+
+/* ---- Providers ---- */
+.auth-providers { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
+.auth-provider {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  height: 50px; border: 1px solid var(--line); border-radius: 12px;
+  font-size: 15px; font-weight: 500; color: var(--ink); background: var(--bg);
+  transition: border-color 0.16s ease, transform 0.16s ease;
+}
+.auth-provider:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-1px); }
+.auth-provider svg { flex-shrink: 0; }
+
+.auth-grant {
+  margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line-soft);
+  font-size: 11.5px; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase;
+}
+html[lang="zh-CN"] .auth-grant { text-transform: none; letter-spacing: 0.04em; }
+.auth-terms { margin-top: 14px; font-size: 12.5px; line-height: 1.6; color: var(--faint); }
+.auth-legal { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 14px; }
+.auth-legal a { font-size: 12.5px; color: var(--muted); }
+.auth-legal a:hover { color: var(--accent); }
+
+/* ---- Back link ---- */
+.auth-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 13px; color: var(--muted);
+}
+.auth-back:hover { color: var(--accent); }
+
+/* ---- Footer ---- */
+.auth-foot {
+  border-top: 1px solid var(--line-soft);
+  padding: 22px 24px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;
+  max-width: 1104px; width: 100%; margin: 0 auto;
+  font-size: 13px; color: var(--faint);
+}
+.auth-foot-tag { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--accent); }
+html[lang="zh-CN"] .auth-foot-tag { font-family: var(--sans-zh); font-style: normal; font-size: 13px; }
+
+@media (max-width: 560px) {
+  .auth-card { padding: 30px 22px 26px; border-radius: 14px; }
+  .auth-title { font-size: 25px; }
+  .auth-main { padding: 36px 20px; }
+  .auth-foot { justify-content: center; text-align: center; }
+}

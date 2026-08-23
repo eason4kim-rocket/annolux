@@ -1,4 +1,36 @@
 # syntax=docker/dockerfile:1.7
+FROM golang:1.26.6-bookworm@sha256:116d58cbd88c1297624acc6e967a060012422bacf9930927e23fb719189c6f36 AS site-release
+WORKDIR /src
+COPY go.mod go.sum ./
+COPY tools/sitegen/ tools/sitegen/
+COPY openapi/ openapi/
+COPY website/ website/
+RUN go run ./tools/sitegen --check --release
+
+FROM golang:1.26.6-bookworm@sha256:116d58cbd88c1297624acc6e967a060012422bacf9930927e23fb719189c6f36 AS site-development
+WORKDIR /src
+COPY go.mod go.sum ./
+COPY tools/sitegen/ tools/sitegen/
+COPY openapi/ openapi/
+COPY website/ website/
+RUN go run ./tools/sitegen
+
+# Production publication is fail-closed: only a fresh, release-mode dist can
+# reach this target. The legal values stay out of Docker build args/history.
+FROM nginxinc/nginx-unprivileged:1.30.4-alpine@sha256:44e36330f74d4f3a1d4e222acca9e23b401fb87811a7597024502bb759c4dd49 AS web
+COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=site-release /src/website/dist/ /usr/share/nginx/html/
+EXPOSE 8080
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD ["wget", "--spider", "-q", "http://127.0.0.1:8080/healthz"]
+
+# CI audits intentionally use placeholder legal text and therefore build this
+# non-publishable target after generating a fresh development dist.
+FROM nginxinc/nginx-unprivileged:1.30.4-alpine@sha256:44e36330f74d4f3a1d4e222acca9e23b401fb87811a7597024502bb759c4dd49 AS web-test
+COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=site-development /src/website/dist/ /usr/share/nginx/html/
+EXPOSE 8080
+
 FROM golang:1.26.6-bookworm@sha256:116d58cbd88c1297624acc6e967a060012422bacf9930927e23fb719189c6f36 AS go-builder
 WORKDIR /src
 COPY go.mod go.sum ./

@@ -39,4 +39,6 @@ Thumbs.db
 
 # local ops facts (never commit)
 OPS.local.md
-.npmrc
+
+# compiled sitegen binary (build artifact; CI uses `go run ./tools/sitegen`)
+/sitegen

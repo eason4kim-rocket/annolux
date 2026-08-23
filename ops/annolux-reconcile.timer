@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Annolux Paddle reconciliation daily
+
+[Timer]
+OnCalendar=*-*-* 03:10:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

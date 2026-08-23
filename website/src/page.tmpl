@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="{{.HTMLLang}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{{.Description}}" />
+  <meta name="robots" content="{{if .NoIndex}}noindex,nofollow,noarchive{{else}}index,follow,max-image-preview:large{{end}}" />
+  {{if .NoIndex}}<meta http-equiv="Cache-Control" content="no-store" />{{end}}
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#ededec" data-light="#ededec" data-dark="#202020" />
+  <script src="/theme-init.js"></script>
+  <title>{{.Title}} — Annolux</title>
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="canonical" href="{{.Canonical}}" />
+  <link rel="alternate" hreflang="en" href="{{.EnglishURL}}" />
+  <link rel="alternate" hreflang="zh-CN" href="{{.ChineseURL}}" />
+  <link rel="alternate" hreflang="x-default" href="{{.EnglishURL}}" />
+  <meta property="og:type" content="{{if .IsPost}}article{{else}}website{{end}}" />
+  <meta property="og:site_name" content="Annolux" />
+  <meta property="og:locale" content="{{if eq .Lang "zh"}}zh_CN{{else}}en_US{{end}}" />
+  <meta property="og:title" content="{{.Title}}" />
+  <meta property="og:description" content="{{.Description}}" />
+  <meta property="og:url" content="{{.Canonical}}" />
+  <meta property="og:image" content="https://annolux.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{.Title}}" />
+  <meta name="twitter:description" content="{{.Description}}" />
+  <meta name="twitter:image" content="https://annolux.com/og.png" />
+  {{if .JSONLD}}<script type="application/ld+json">{{.JSONLD}}</script>{{end}}
+  <link rel="preload" href="/assets/fonts/HankenGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/home.css?v=home-818" />
+  <link rel="stylesheet" href="/pages.css?v=home-818" />
+  <script src="/page.js" defer></script>
+</head>
+<body class="content-page">
+  <a class="skip-link" href="#main">{{if eq .Lang "zh"}}跳至正文{{else}}Skip to content{{end}}</a>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="{{.HomeURL}}" aria-label="Annolux home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Annolux</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="{{.DocsURL}}">{{if eq .Lang "zh"}}文档{{else}}Docs{{end}}</a>
+        <a href="{{.PricingURL}}">{{if eq .Lang "zh"}}定价{{else}}Pricing{{end}}</a>
+        <a href="{{.BenchmarksURL}}">Benchmarks</a>
+        <a href="{{.BlogURL}}">Blog</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Switch color theme">
+          <svg class="theme-moon" width="15" height="15" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="0" width="3" height="1"/><rect x="1" y="1" width="3" height="1"/><rect x="1" y="2" width="2" height="3"/><rect x="1" y="5" width="3" height="1"/><rect x="2" y="6" width="3" height="1"/></svg>
+          <svg class="theme-sun" width="15" height="15" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="2" width="4" height="4"/><rect x="3" y="0" width="2" height="1"/><rect x="3" y="7" width="2" height="1"/><rect x="0" y="3" width="1" height="2"/><rect x="7" y="3" width="1" height="2"/><rect x="0" y="0" width="1" height="1"/><rect x="7" y="0" width="1" height="1"/><rect x="0" y="7" width="1" height="1"/><rect x="7" y="7" width="1" height="1"/></svg>
+        </button>
+        <a class="lang-toggle" href="{{.AlternateURL}}" hreflang="{{if eq .Lang "zh"}}en{{else}}zh-CN{{end}}">
+          <span class="lang-current">{{if eq .Lang "zh"}}中文{{else}}EN{{end}}</span>
+          <span class="lang-divider" aria-hidden="true">/</span>
+          <span class="lang-next">{{if eq .Lang "zh"}}EN{{else}}中文{{end}}</span>
+        </a>
+        <a class="nav-signin" href="{{.LoginURL}}">{{if eq .Lang "zh"}}登录{{else}}Sign in{{end}}</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="content-shell">
+    <header class="content-hero">
+      <p class="mono content-kicker">{{.Kicker}}</p>
+      <h1>{{.Title}}</h1>
+      <p>{{.Description}}</p>
+      {{if .Published}}<time datetime="{{.Published}}">{{.Published}}</time>{{end}}
+    </header>
+
+    {{if .IsAccount}}
+    <section class="account-console" data-account-console>
+      <p class="account-status" data-account-status>{{if eq .Lang "zh"}}正在加载账户…{{else}}Loading your account…{{end}}</p>
+      <div class="account-summary" hidden data-account-content>
+        <article><span class="mono">ACCOUNT</span><strong data-account-id>—</strong><small data-account-state>—</small></article>
+        <article><span class="mono">AVAILABLE CREDITS</span><strong data-credit-balance>—</strong><small data-credit-detail>—</small></article>
+      </div>
+      <div class="account-grid" hidden data-account-content>
+        <section><h2>API keys</h2><p>{{if eq .Lang "zh"}}每账户最多 3 个有效密钥；原始密钥只展示一次。{{else}}Up to three active keys. A raw key is shown once.{{end}}</p>
+          <form data-key-form><label>{{if eq .Lang "zh"}}密钥名称{{else}}Key name{{end}}<input name="name" maxlength="80" required placeholder="local-agent" /></label><button class="button" type="submit">{{if eq .Lang "zh"}}创建密钥{{else}}Create key{{end}}</button></form>
+          <div class="secret-once" hidden data-secret-once><strong>{{if eq .Lang "zh"}}立即复制；关闭后无法再次查看。{{else}}Copy now. It cannot be shown again.{{end}}</strong><pre tabindex="0"><code data-secret-value></code></pre><button type="button" data-copy-secret>{{if eq .Lang "zh"}}复制{{else}}Copy{{end}}</button></div>
+          <div data-key-list></div>
+        </section>
+        <section><h2>{{if eq .Lang "zh"}}登录身份{{else}}Sign-in identities{{end}}</h2><div data-identity-list></div><div class="identity-actions"><button type="button" data-link-google>+ Google</button><button type="button" data-link-github>+ GitHub</button></div></section>
+      </div>
+      <div class="account-actions" hidden data-account-content><a class="button" href="{{if eq .Lang "zh"}}/zh/playground{{else}}/playground{{end}}">Playground</a><button type="button" data-billing-portal>{{if eq .Lang "zh"}}管理订阅{{else}}Manage subscription{{end}}</button><button type="button" data-logout>{{if eq .Lang "zh"}}退出登录{{else}}Sign out{{end}}</button></div>
+    </section>
+    <script src="/account.js" defer></script>
+    {{end}}
+
+    {{if .IsPlayground}}
+    <section class="playground" data-playground>
+      <form data-playground-form>
+        <label>{{if eq .Lang "zh"}}查询{{else}}Query{{end}}<textarea name="query" maxlength="500" required placeholder="rust ownership"></textarea></label>
+        <div class="playground-fields"><label>Domains <input name="domains" placeholder="doc.rust-lang.org, example.com" /></label><label>Limit <input name="limit" type="number" min="1" max="10" value="5" /></label><label>Timeout <input name="timeout" type="number" min="1" max="30" value="10" /></label></div>
+        <label class="check"><input type="checkbox" name="deduplicate" checked /> Deduplicate</label>
+        <button class="button" type="submit">{{if eq .Lang "zh"}}运行 Search{{else}}Run Search{{end}}</button>
+      </form>
+      <p data-playground-status></p><pre class="playground-output" tabindex="0" hidden><code data-playground-output></code></pre>
+    </section>
+    <script src="/playground.js" defer></script>
+    {{end}}
+
+    {{if .IsCheckout}}
+    <section class="checkout-state" data-checkout-state><div class="status-pulse" aria-hidden="true"></div><p data-checkout-message>{{if eq .Lang "zh"}}正在等待服务端确认交易…{{else}}Waiting for the server to confirm the transaction…{{end}}</p><strong data-checkout-balance>—</strong><a href="{{if eq .Lang "zh"}}/zh/account{{else}}/account{{end}}">{{if eq .Lang "zh"}}返回账户{{else}}Return to account{{end}}</a></section>
+    <script src="/checkout.js" defer></script>
+    {{end}}
+
+    {{if .IsBilling}}
+    <section class="billing-console" data-billing-console>
+      <p data-billing-status>{{if eq .Lang "zh"}}正在验证登录状态…{{else}}Checking your signed-in account…{{end}}</p>
+      <form data-billing-form hidden>
+        <fieldset><legend>{{if eq .Lang "zh"}}选择套餐{{else}}Choose a plan{{end}}</legend>
+          <label class="billing-plan"><input type="radio" name="plan" value="pro" checked /><strong>Pro · $29</strong><span>20,000 credits / billing period</span></label>
+          <label class="billing-plan"><input type="radio" name="plan" value="scale" /><strong>Scale · $99</strong><span>100,000 credits / billing period</span></label>
+        </fieldset>
+        <label class="check"><input type="checkbox" name="accept_terms" required /> {{if eq .Lang "zh"}}我接受<a href="/zh/terms">服务条款</a>。{{else}}I accept the <a href="/terms">Terms of Service</a>.{{end}}</label>
+        <label class="check"><input type="checkbox" name="accept_refund" required /> {{if eq .Lang "zh"}}我已阅读<a href="/zh/refund">退款政策</a>。{{else}}I have read the <a href="/refund">Refund Policy</a>.{{end}}</label>
+        <button class="button" type="submit">{{if eq .Lang "zh"}}打开 Paddle 结账{{else}}Open Paddle Checkout{{end}}</button>
+      </form>
+    </section>
+    <script src="/billing.js" defer></script>
+    {{end}}
+
+    {{if .IsStatus}}
+    <section class="live-status" data-live-status aria-live="polite"><span class="status-pulse" aria-hidden="true"></span><strong>{{if eq .Lang "zh"}}正在检查 API readiness…{{else}}Checking API readiness…{{end}}</strong></section>
+    {{end}}
+
+    {{if .Plans}}
+    <section class="plan-grid" aria-label="Plans">
+      {{range .Plans}}<article class="plan-card" id="{{.ID}}">
+        <p class="mono">{{.Name}}</p><p class="plan-price">{{.Price}}</p>
+        <h2>{{.Credits}}</h2><p>{{.Summary}}</p>
+        <a class="button" href="{{.Href}}">{{.CTA}}</a>
+      </article>{{end}}
+    </section>
+    {{end}}
+
+    {{if .Posts}}
+    <section class="post-list" aria-label="Annolux Lab Notes">
+      {{range .Posts}}<article><p class="mono">{{.Published}}</p><h2><a href="{{.URL}}">{{.Title}}</a></h2><p>{{.Description}}</p></article>{{end}}
+    </section>
+    {{end}}
+
+    <div class="prose">
+      {{range .Sections}}<section>
+        <h2>{{.Heading}}</h2>
+        {{range .Paragraphs}}<p>{{.}}</p>{{end}}
+        {{if .Bullets}}<ul>{{range .Bullets}}<li>{{.}}</li>{{end}}</ul>{{end}}
+        {{if .Code}}<pre tabindex="0"><code>{{.Code}}</code></pre>{{end}}
+        {{if .Links}}<ul class="section-links">{{range .Links}}<li><a href="{{.Href}}">{{.Label}}</a></li>{{end}}</ul>{{end}}
+      </section>{{end}}
+    </div>
+  </main>
+
+  <div class="tear" aria-hidden="true">
+    <span class="tear-mark"><i></i><i></i><i></i><i></i></span>
+  </div>
+
+  <footer class="content-footer">
+    <div><strong>Annolux</strong><p class="content-foot-tag">{{if eq .Lang "zh"}}每一次搜索，都有证据。{{else}}Search that can show its work.{{end}}</p></div>
+    <nav aria-label="Product">
+      <a href="{{.DocsURL}}">{{if eq .Lang "zh"}}文档{{else}}Docs{{end}}</a>
+      <a href="{{.PricingURL}}">{{if eq .Lang "zh"}}定价{{else}}Pricing{{end}}</a>
+      <a href="{{.StatusURL}}">{{if eq .Lang "zh"}}状态{{else}}Status{{end}}</a>
+      <a href="{{.ContactURL}}">{{if eq .Lang "zh"}}联系{{else}}Contact{{end}}</a>
+    </nav>
+    <nav aria-label="Legal">
+      <a href="{{.PrivacyURL}}">{{if eq .Lang "zh"}}隐私{{else}}Privacy{{end}}</a>
+      <a href="{{.TermsURL}}">{{if eq .Lang "zh"}}条款{{else}}Terms{{end}}</a>
+      <a href="{{.RefundURL}}">{{if eq .Lang "zh"}}退款{{else}}Refund{{end}}</a>
+      <a href="{{.AUPURL}}">{{if eq .Lang "zh"}}使用政策{{else}}Acceptable Use{{end}}</a>
+    </nav>
+    <p>© 2026 Annolux</p>
+  </footer>
+</body>
+</html>

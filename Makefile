@@ -1,4 +1,4 @@
-.PHONY: build test vet clean
+.PHONY: build site site-release test vet verify clean
 
 VERSION ?= dev
 LDFLAGS := -s -w -X main.version=$(VERSION)
@@ -10,7 +10,11 @@ build:
 		go build -trimpath -ldflags "$(LDFLAGS)" -o "bin/$$name" "./cmd/$$name"; \
 	done
 
+site:
+	go run ./tools/sitegen
 
+site-release:
+	go run ./tools/sitegen --release
 
 test:
 	go test -race -count=1 ./...
@@ -18,6 +22,13 @@ test:
 vet:
 	go vet ./...
 
+verify: site
+	bash scripts/repo-policy.sh
+	bash scripts/site-check.sh
+	go run ./tools/rankinglock
+	go test ./...
+	go vet ./...
+	git diff --check
 
 clean:
 	rm -rf bin

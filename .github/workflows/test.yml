@@ -1,0 +1,195 @@
+name: Verify
+
+on:
+  pull_request:
+  push:
+    branches: [main, "codex/**"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - name: Install fixed Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@086160e580d6e8c142ad5ba29009dcde677c6321 # v2
+        with:
+          chrome-version: 151.0.7922.77
+      - name: Repository policy
+        run: bash scripts/repo-policy.sh
+      - name: Portable operations helpers
+        run: |
+          bash ops/file-size_test.sh
+          bash ops/eval-identity_test.sh
+          bash deploy/pull-private-ghcr_test.sh
+      - name: MCP Registry metadata
+        run: bash scripts/mcp-registry-check.sh
+      - name: Frozen ranking lock
+        run: go run ./tools/rankinglock
+      - name: Generate and verify static site
+        run: |
+          go run ./tools/sitegen
+          bash scripts/site-check.sh
+      - name: Test with race detector
+        env:
+          CI: "true"
+          ANNOLUX_BROWSER_TEST: "1"
+          ANNOLUX_BROWSER_BIN: ${{ steps.chrome.outputs.chrome-path }}
+        run: go test -race -count=1 ./...
+      - name: Vet and build
+        run: |
+          go vet ./...
+          go build ./...
+      - name: Vulnerability scan
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@v1.1.4
+          govulncheck ./...
+      - name: Whitespace
+        run: git diff --check
+
+  secrets:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@dcedce43c6f43de0b836d1fe38946645c9c638dc # v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - name: Install fixed Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@086160e580d6e8c142ad5ba29009dcde677c6321 # v2
+        with:
+          chrome-version: 151.0.7922.77
+      - name: Generate site
+        run: go run ./tools/sitegen
+      - name: Install pinned browser-audit tools
+        run: npm ci --ignore-scripts
+      - name: Build and serve the development web audit image
+        run: |
+          docker build --target web-test --tag annolux-web-audit .
+          test "$(docker image inspect --format '{{.Config.User}}' annolux-web-audit)" != ""
+          test "$(docker image inspect --format '{{.Config.User}}' annolux-web-audit)" != "0"
+          docker run -d --rm --name annolux-web-audit \
+            --read-only --cap-drop ALL --security-opt no-new-privileges \
+            --tmpfs /tmp:size=64m,mode=1777 \
+            -p 127.0.0.1:8090:8080 annolux-web-audit
+          for attempt in {1..20}; do curl -fsS http://127.0.0.1:8090/ >/dev/null 2>&1 && break || sleep 0.25; done
+      - name: No-JavaScript content
+        run: |
+          curl -fsS http://127.0.0.1:8090/ | grep -F '<h1 id="hero-title">Search is how intelligence'
+          curl -fsS http://127.0.0.1:8090/zh/ | grep -F '<h1 id="hero-title">搜索，是智能理解'
+          curl -fsS http://127.0.0.1:8090/privacy | grep -F 'Privacy'
+      - name: Theme, CSP, and login style regression
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/site-browser-regression.mjs http://127.0.0.1:8090
+      - name: Accessibility
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/axe-audit.mjs http://127.0.0.1:8090/ http://127.0.0.1:8090/zh/ http://127.0.0.1:8090/pricing http://127.0.0.1:8090/docs http://127.0.0.1:8090/privacy http://127.0.0.1:8090/account http://127.0.0.1:8090/login http://127.0.0.1:8090/zh/login
+      - name: Lighthouse
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          npx --no-install lighthouse http://127.0.0.1:8090/ --chrome-flags='--headless --no-sandbox' --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=/tmp/lighthouse-en.json
+          npx --no-install lighthouse http://127.0.0.1:8090/zh/ --chrome-flags='--headless --no-sandbox' --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=/tmp/lighthouse-zh.json
+          jq -e '[.categories.performance.score,.categories.accessibility.score,.categories["best-practices"].score,.categories.seo.score] | all(. >= 0.90)' /tmp/lighthouse-en.json >/dev/null
+          jq -e '[.categories.performance.score,.categories.accessibility.score,.categories["best-practices"].score,.categories.seo.score] | all(. >= 0.90)' /tmp/lighthouse-zh.json >/dev/null
+
+  containers:
+    runs-on: ubuntu-latest
+    needs: [code]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - run: go run ./tools/sitegen
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      - name: Build API image
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          target: api
+          push: false
+          tags: annolux-api:test
+          cache-from: type=gha,scope=api
+          cache-to: type=gha,mode=max,scope=api
+      - name: Build web image
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          target: web-test
+          push: false
+          load: true
+          tags: annolux-web:test
+          cache-from: type=gha,scope=web
+          cache-to: type=gha,mode=max,scope=web
+      - name: Validate production Compose structure without secrets
+        env:
+          ANNOLUX_ENV_FILE: .env.example
+          ANNOLUX_API_IMAGE: ghcr.io/eason4kim-rocket/annolux@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          ANNOLUX_WEB_IMAGE: ghcr.io/eason4kim-rocket/annolux@sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+          ANNOLUX_CLOUDFLARED_DIGEST: sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        run: |
+          docker compose --env-file .env.example config --quiet
+          ! docker compose --env-file .env.example config --services | grep -Fx annolux-tunnel
+      - name: Verify nginx routing and health
+        run: |
+          test "$(docker image inspect --format '{{.Config.User}}' annolux-web:test)" != ""
+          test "$(docker image inspect --format '{{.Config.User}}' annolux-web:test)" != "0"
+          docker run -d --rm --name annolux-web-test \
+            --read-only --cap-drop ALL --security-opt no-new-privileges \
+            --tmpfs /tmp:size=64m,mode=1777 \
+            -p 127.0.0.1:8091:8080 annolux-web:test
+          trap 'docker stop annolux-web-test' EXIT
+          for attempt in {1..20}; do curl -fsS http://127.0.0.1:8091/healthz && break || sleep 0.25; done
+          test "$(curl -sS -o /dev/null -w '%{http_code}' http://127.0.0.1:8091/not-a-real-page)" = 404
+          test "$(curl -sS -o /dev/null -w '%{http_code}' http://127.0.0.1:8091/pricing)" = 200
+          test "$(curl -sS -o /dev/null -w '%{http_code}' http://127.0.0.1:8091/favicon.ico)" = 200
+          test "$(curl -sS -o /dev/null -w '%{http_code}' http://127.0.0.1:8091/theme-init.js)" = 200
+          test "$(curl -sS -o /dev/null -w '%{http_code}' http://127.0.0.1:8091/.annolux-site-build.json)" = 404
+          curl -fsSI http://127.0.0.1:8091/styles.css | tr -d '\r' | grep -Fi 'Cache-Control: public, max-age=0, must-revalidate'
+          for private_page in account login playground billing/checkout checkout/success zh/account zh/login zh/playground zh/billing/checkout zh/checkout/success; do
+            curl -fsSI "http://127.0.0.1:8091/$private_page" | tr -d '\r' | grep -Fi 'Cache-Control: no-store'
+          done
+          ! curl -fsSI http://127.0.0.1:8091/styles.css | tr -d '\r' | grep -Eiq 'max-age=3600|^Expires:'
+          curl -fsSI http://127.0.0.1:8091/theme-init.js | tr -d '\r' | grep -Fi "script-src 'self' https://cdn.paddle.com"
+          test "$(curl -sS -o /dev/null -w '%{redirect_url}' http://127.0.0.1:8091/pricing/)" = "https://annolux.com/pricing"
+          test "$(curl -sS -o /dev/null -w '%{redirect_url}' http://127.0.0.1:8091/pricing.html)" = "https://annolux.com/pricing"
+          test "$(curl -sS -o /dev/null -w '%{redirect_url}' 'http://127.0.0.1:8091/pricing.html?lang=zh')" = "https://annolux.com/zh/pricing"
+          test "$(curl -sS -o /dev/null -w '%{redirect_url}' http://127.0.0.1:8091/docs/index.html)" = "https://annolux.com/docs"
+          test "$(curl -sS -o /dev/null -w '%{redirect_url}' http://127.0.0.1:8091/index.html)" = "https://annolux.com/"
+          test "$(curl -sS -H 'Host: www.annolux.com' -o /dev/null -w '%{redirect_url}' http://127.0.0.1:8091/pricing)" = "https://annolux.com/pricing"
