@@ -7,11 +7,11 @@
     "url": "https://github.com/eason4kim-rocket/annolux",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.1.2",
   "packages": [
     {
       "registryType": "oci",
-      "identifier": "ghcr.io/eason4kim-rocket/annolux:mcp-0.1.0",
+      "identifier": "ghcr.io/eason4kim-rocket/annolux:mcp-0.1.2",
       "transport": {
         "type": "stdio"
       },

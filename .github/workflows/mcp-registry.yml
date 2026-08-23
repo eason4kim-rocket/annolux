@@ -1,0 +1,31 @@
+name: Publish MCP Registry metadata
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Check metadata is release-ready
+        run: bash scripts/mcp-registry-check.sh
+      - name: Install verified MCP publisher
+        env:
+          PUBLISHER_URL: https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz
+          PUBLISHER_SHA256: a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc
+        run: |
+          curl --fail --location --silent --show-error "$PUBLISHER_URL" --output /tmp/mcp-publisher.tar.gz
+          echo "$PUBLISHER_SHA256  /tmp/mcp-publisher.tar.gz" | sha256sum --check --strict
+          tar -xzf /tmp/mcp-publisher.tar.gz -C /tmp mcp-publisher
+          install -m 0755 /tmp/mcp-publisher "$RUNNER_TEMP/mcp-publisher"
+      - name: Publish after the matching GHCR image exists
+        env:
+          MCP_PUBLISHER: ${{ runner.temp }}/mcp-publisher
+        run: |
+          "$MCP_PUBLISHER" login github-oidc
+          "$MCP_PUBLISHER" publish server.json

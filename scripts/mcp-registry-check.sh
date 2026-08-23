@@ -7,7 +7,7 @@ cd "$root"
 jq -e '
   .["$schema"] == "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json" and
   .name == "io.github.eason4kim-rocket/annolux" and
-  .version == "0.1.0" and
+  .version == "0.1.2" and
   .repository == {
     "url": "https://github.com/eason4kim-rocket/annolux",
     "source": "github"
