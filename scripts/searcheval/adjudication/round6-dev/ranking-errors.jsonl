@@ -1,0 +1,13 @@
+{"case_id":"http-status-code-meaning-zh","target_url":"http://www.runoob.com/http/http-status-codes.html","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"Chinese generic-intent title and URL coverage"}
+{"case_id":"python-exceptions-tutorial","target_url":"http://docs.python.org/tutorial/errors.html","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"tutorial chapter purpose versus hub/reference pages"}
+{"case_id":"docker-volume-persistent-storage","target_url":"https://docs.docker.com/engine/storage/volumes/","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"mixed-language product scope retention"}
+{"case_id":"postgres-release-notes","target_url":"https://www.postgresql.org/docs/current/release.html","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"release index purpose versus news/archive pages"}
+{"case_id":"node-test-runner","target_url":"https://nodejs.org/learn/test-runner/introduction","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"Node.js product token normalization and root scope"}
+{"case_id":"php-exceptions","target_url":"https://www.php.net/manual/en/language.exceptions.php","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"manual section granularity and exact language intent"}
+{"case_id":"android-activity-lifecycle","target_url":"http://d.android.com/guide/components/activities/activity-lifecycle","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"mixed-language official-root recall"}
+{"case_id":"mdn-css-grid","target_url":"https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"MDN guide-path recall and grid title coverage"}
+{"case_id":"mdn-web-accessibility","target_url":"https://developer.mozilla.org/en-US/docs/Web/Accessibility","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"MDN root landing-page recall"}
+{"case_id":"rfc-tls-13","target_url":"https://rfc-editor.org/info/rfc8446/","target_rank_at_10":0,"target_rank_at_20":1,"next_check":"limit-dependent lexical candidate window"}
+{"case_id":"medlineplus-asthma","target_url":"https://medlineplus.gov/asthma.html","target_rank_at_10":0,"target_rank_at_20":12,"next_check":"topic landing-page utility versus image pages"}
+{"case_id":"usagov-passport","target_url":"https://usa.gov/passport","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"authoritative government-domain and title coverage"}
+{"case_id":"usagov-social-security","target_url":"https://usa.gov/social-security","target_rank_at_10":0,"target_rank_at_20":0,"next_check":"authoritative government-domain and topic-page recall"}

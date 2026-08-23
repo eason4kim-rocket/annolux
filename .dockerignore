@@ -1,0 +1,7 @@
+bin/
+.git/
+.env
+OPS.local.md
+data/
+**/*.db*
+**/*.jsonl

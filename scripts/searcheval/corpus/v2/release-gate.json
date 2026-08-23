@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "name": "search-generalization-v2-heldout-gate",
+  "frozen_at": "2026-08-15",
+  "corpus_name": "search-generalization-v2",
+  "split": "heldout",
+  "expected_cases": 40,
+  "ranking_lock_sha256": "23c0d03f6c2a32057bcd7a2503a1047a249fde37b99edee3dc136db193255ed0",
+  "minimum": {
+    "hit_at_3": 0.65,
+    "hit_at_10": 0.80,
+    "mrr_at_10": 0.55
+  },
+  "maximum": {
+    "errors": 0,
+    "client_p95_latency_ms": 1000
+  },
+  "failure_policy": "Do not tune ranking against this heldout split. A failed gate exposes v2 heldout; move diagnosed cases into a future dev pool and author a new blind split before another release gate."
+}

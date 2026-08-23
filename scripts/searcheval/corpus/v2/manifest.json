@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "name": "search-generalization-v2",
+  "frozen_at": "2026-08-15",
+  "cases_file": "cases.jsonl",
+  "cases_sha256": "853643b8e10da376da99ab5e2013f1934c79b5b09ce70b81a356abdf6a4bfb47",
+  "expected": {
+    "total": 100,
+    "splits": {
+      "dev": 60,
+      "heldout": 40
+    },
+    "languages": {
+      "en": 79,
+      "mixed": 4,
+      "zh": 17
+    },
+    "categories": {
+      "news": 4,
+      "reference": 15,
+      "release": 3,
+      "technical": 78
+    },
+    "tags": {
+      "blind-v2": 40,
+      "mixed-language": 4,
+      "news-intent": 4,
+      "original-tuning": 10,
+      "release-intent": 3,
+      "short-token": 4
+    }
+  },
+  "protocol": {
+    "limit": 10,
+    "request_interval_ms": 250,
+    "strong_grade": 3,
+    "relevant_grade": 2,
+    "heldout_policy": "Freeze before the first run. Tune only on dev; run heldout once at the release gate. If the gate fails, heldout becomes exposed evidence and must never be used as a blind set again."
+  }
+}

@@ -1,0 +1,9 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Public IndexNow ownership proof committed by protocol design"
+regexTarget = "secret"
+regexes = [
+  '''^87402b19bc2e08fc27fd61efe4998651e918007a46d537e2db90c2c721b6bfad$''',
+]

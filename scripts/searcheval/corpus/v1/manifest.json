@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "name": "search-generalization-v1",
+  "frozen_at": "2026-08-15",
+  "cases_file": "cases.jsonl",
+  "cases_sha256": "f041b7ae002bb6362ec37663ec97589d7e9102bafe01bab90815b15eaff7fa23",
+  "expected": {
+    "total": 100,
+    "splits": {
+      "dev": 60,
+      "heldout": 40
+    },
+    "languages": {
+      "en": 78,
+      "mixed": 3,
+      "zh": 19
+    },
+    "categories": {
+      "news": 4,
+      "reference": 16,
+      "release": 5,
+      "technical": 75
+    },
+    "tags": {
+      "mixed-language": 3,
+      "news-intent": 4,
+      "original-tuning": 10,
+      "release-intent": 5,
+      "short-token": 9
+    }
+  },
+  "protocol": {
+    "limit": 10,
+    "request_interval_ms": 250,
+    "strong_grade": 3,
+    "relevant_grade": 2,
+    "heldout_policy": "Freeze before the first run. Tune only on dev; inspect heldout aggregates only at release gates. Never edit v1 after a result exists."
+  }
+}

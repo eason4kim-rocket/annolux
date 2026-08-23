@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "case_id": "python-exceptions-tutorial",
+  "query": "python errors exceptions tutorial",
+  "classification": "alias",
+  "source_round": {
+    "id": "round13-freeze-dev",
+    "sha256": "5a82448175e598febf874f087c352857abeec3c279e978e4d230dc850c870834"
+  },
+  "target": {
+    "url": "http://docs.python.org/tutorial/errors.html",
+    "title": "8. Errors and Exceptions",
+    "content_hash": "3c9f2cc1b3d50e25a92a93bf4a8b5a6d982114e73837fffe521f1e5275247e93",
+    "compressed_body_bytes": 7189
+  },
+  "observed": {
+    "rank": 1,
+    "url": "http://docs.python.org/3/tutorial/errors.html",
+    "title": "8. Errors and Exceptions",
+    "content_hash": "3c9f2cc1b3d50e25a92a93bf4a8b5a6d982114e73837fffe521f1e5275247e93",
+    "compressed_body_bytes": 7189
+  },
+  "target_additions": [
+    {
+      "url": "http://docs.python.org/3/tutorial/errors.html",
+      "relevance": 3
+    }
+  ],
+  "rationale": "The returned versioned tutorial chapter is byte-for-byte content-identical to the indexed unversioned target and is already rank 1."
+}

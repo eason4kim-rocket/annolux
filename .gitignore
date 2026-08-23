@@ -1,0 +1,41 @@
+# Binaries
+bin/
+node_modules/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test
+*.test
+*.out
+coverage.html
+
+# Local durable snapshots, ledger, and signing material
+/data/
+
+# Environment
+.env
+
+# Generated preview site (CI and release builds regenerate it)
+website/dist/
+
+# Operator output
+backups/
+reports/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+.claude/settings.local.json
+
+# local ops facts (never commit)
+OPS.local.md

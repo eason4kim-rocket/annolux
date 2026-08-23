@@ -1,0 +1,5 @@
+{"id":"python-argparse-tutorial","targets":[{"url":"http://docs.python.org/howto/argparse.html","relevance":3},{"url":"http://docs.python.org/3/howto/argparse.html","relevance":3}]}
+{"id":"python-pathlib-filesystem-paths","targets":[{"url":"http://docs.python.org/library/pathlib.html","relevance":3},{"url":"http://docs.python.org/3/library/pathlib.html","relevance":3}]}
+{"id":"python-asyncio-io","targets":[{"url":"http://docs.python.org/library/asyncio.html","relevance":3},{"url":"http://docs.python.org/3/library/asyncio.html","relevance":3}]}
+{"id":"go-slices-internals","targets":[{"url":"https://go.dev/blog/slices-intro","relevance":3},{"url":"https://go.dev/doc/articles/slices_usage_and_internals.html","relevance":3}]}
+{"id":"android-background-work","targets":[{"url":"http://d.android.com/develop/background-work","relevance":3},{"url":"https://developer.android.com/develop/background-work/background-tasks","relevance":3}]}

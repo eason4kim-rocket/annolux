@@ -1,0 +1,82 @@
+name: annolux
+
+services:
+  annolux-api:
+    image: ${ANNOLUX_API_IMAGE:?set ANNOLUX_API_IMAGE to a GHCR commit digest}
+    container_name: ${ANNOLUX_API_CONTAINER_NAME:-annolux-api}
+    user: "${ANNOLUX_CONTAINER_UID:-65532}:${ANNOLUX_CONTAINER_GID:-65532}"
+    restart: unless-stopped
+    env_file: ${ANNOLUX_ENV_FILE:-.env}
+    environment:
+      ANNOLUX_LISTEN_ADDR: 0.0.0.0:8080
+      ANNOLUX_INDEX_PATH: /data/index.db
+      ANNOLUX_ACCOUNTS_PATH: /data/accounts.db
+      ANNOLUX_QUERYLOG_PATH: /data/querylog.db
+    ports:
+      - "127.0.0.1:${ANNOLUX_API_BIND_PORT:-8083}:8080"
+    volumes:
+      - ${ANNOLUX_ACCOUNTS_DIR:-./accounts}:/data
+      - ${ANNOLUX_INDEX_FILE:-./data/index.db}:/data/index.db:ro
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/annolux-healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: "3"
+          memory: 4g
+
+  annolux-web:
+    image: ${ANNOLUX_WEB_IMAGE:?set ANNOLUX_WEB_IMAGE to a GHCR commit digest}
+    container_name: ${ANNOLUX_WEB_CONTAINER_NAME:-annolux-web}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${ANNOLUX_WEB_BIND_PORT:-8084}:8080"
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  annolux-tunnel:
+    profiles: ["tunnel"]
+    image: cloudflare/cloudflared@${ANNOLUX_CLOUDFLARED_DIGEST:?set the reviewed cloudflared digest}
+    container_name: ${ANNOLUX_TUNNEL_CONTAINER_NAME:-annolux-tunnel}
+    restart: unless-stopped
+    command: ["tunnel", "--no-autoupdate", "--metrics", "0.0.0.0:2000", "run"]
+    environment:
+      TUNNEL_TOKEN: ${ANNOLUX_TUNNEL_TOKEN:-}
+    depends_on:
+      annolux-api:
+        condition: service_healthy
+      annolux-web:
+        condition: service_healthy
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "cloudflared", "tunnel", "ready", "--metrics", "127.0.0.1:2000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s

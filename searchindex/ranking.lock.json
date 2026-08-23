@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-08-16",
+  "files": {
+    "searchindex/query.go": "f8bfcd1712b905b6f2d665204d9434f064885e3f321a0531aa8305f4bb8095c4",
+    "searchindex/segment.go": "5732ac17bb9582ec9f0eb94da3d46d95ecab39bd50882dd51e491e22bdccb416"
+  },
+  "policy": "Treat any digest change as a ranking change. Do not update this lock from v2 heldout results; use a fresh blind set before accepting a new lock."
+}

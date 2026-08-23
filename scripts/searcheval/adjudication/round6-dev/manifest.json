@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "name": "search-generalization-v1-round6-dev-adjudication",
+  "adjudicated_at": "2026-08-15",
+  "source": {
+    "corpus_name": "search-generalization-v1",
+    "corpus_sha256": "f041b7ae002bb6362ec37663ec97589d7e9102bafe01bab90815b15eaff7fa23",
+    "round_id": "round6",
+    "round_sha256": "fffa428f7107a6c8f24716968e96da218cc52253ec945aecce60d165da487250",
+    "deployed_commit": "59abfdf651f5f7415597afa23949c463db084744",
+    "evaluation_limit": 10
+  },
+  "scope": {
+    "split": "dev",
+    "misses": 18,
+    "heldout_excluded": 40,
+    "heldout_already_revealed": true
+  },
+  "counts": {
+    "alias": 4,
+    "better_answer": 1,
+    "true_gap": 0,
+    "ranking_error": 13
+  },
+  "files": {
+    "judgments.jsonl": "9483b0d3180039c40c592b3ae0e61222af526809ed26e72acf1dfccc351c7418",
+    "dev-targets-v2-overlay.jsonl": "58f3d7fe799a7a00aeec9d89af18d6caafd57b7118a445144a1c7283592e228a",
+    "ranking-errors.jsonl": "bc845250549b3937356ae11edce3b7713cff114c5e7f7abcc416f632f0aca775",
+    "true-gaps.json": "2ae8035dd47478f4e08ce8336869abc9d3ce8f97832ee72b268351cd7d406ca7"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "name": "search-generalization-v3",
+  "frozen_at": "2026-08-17",
+  "cases_file": "cases.jsonl",
+  "cases_sha256": "237a600108fd604e9c4e66047407eb9ab598d8a41169d13bc7169afe886f6885",
+  "expected": {
+    "total": 100,
+    "splits": {
+      "dev": 60,
+      "heldout": 40
+    },
+    "languages": {
+      "en": 82,
+      "zh": 14,
+      "mixed": 4
+    },
+    "categories": {
+      "technical": 54,
+      "reference": 46
+    },
+    "tags": {
+      "core-v3": 55,
+      "head-coverage": 45,
+      "blind-v3": 40
+    }
+  },
+  "protocol": {
+    "limit": 10,
+    "request_interval_ms": 250,
+    "strong_grade": 3,
+    "relevant_grade": 2,
+    "heldout_policy": "Freeze before the first run. Tune fusion only on dev; run heldout once at the fusion-enable gate. If the gate fails, heldout becomes exposed evidence and must never be used as a blind set again."
+  }
+}

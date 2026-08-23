@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.eason4kim-rocket/annolux",
+  "title": "Annolux Search",
+  "description": "Search a curated English and Chinese web index through one read-only MCP tool.",
+  "repository": {
+    "url": "https://github.com/eason4kim-rocket/annolux",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "oci",
+      "identifier": "ghcr.io/eason4kim-rocket/annolux:mcp-0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "ANNOLUX_API_URL",
+          "description": "Annolux API origin.",
+          "format": "string",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "https://api.annolux.com"
+        },
+        {
+          "name": "ANNOLUX_API_KEY",
+          "description": "Annolux API key created in the account dashboard.",
+          "format": "string",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

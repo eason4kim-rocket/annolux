@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "name": "search-generalization-v2-heldout-gate-result",
+  "run_id": "v2-frozen-baseline",
+  "started_at": "2026-08-15T08:41:47.395276648Z",
+  "finished_at": "2026-08-15T08:42:02.81286858Z",
+  "artifact": {
+    "sha256": "d99840326f63dde34185c3410ace8e7e6ff7e728d451dc3bfe660a01fe765bd6",
+    "lines": 42
+  },
+  "identity": {
+    "ranking_lock_sha256": "23c0d03f6c2a32057bcd7a2503a1047a249fde37b99edee3dc136db193255ed0",
+    "corpus_sha256": "853643b8e10da376da99ab5e2013f1934c79b5b09ce70b81a356abdf6a4bfb47",
+    "manifest_sha256": "b34f79bd744c5da1d68c489ce885f6c6524e084465e2d43f9f5b7183ecc6d8c9",
+    "index": {
+      "pages": 251367,
+      "english_pages": 215484,
+      "chinese_pages": 35883,
+      "latest_fetched_at": 1786747096,
+      "database_bytes": 2941472768,
+      "wal_bytes": 0
+    }
+  },
+  "observed": {
+    "total": 40,
+    "errors": 0,
+    "strong": 29,
+    "acceptable": 4,
+    "weak": 1,
+    "miss": 6,
+    "hit_at_1": 0.725,
+    "hit_at_3": 0.825,
+    "hit_at_10": 0.85,
+    "mrr_at_10": 0.78125,
+    "mean_ndcg": 0.7988598893089807,
+    "client_median_latency_ms": 68,
+    "client_p95_latency_ms": 532,
+    "client_maximum_latency_ms": 766,
+    "duplicate_urls": 0,
+    "source_twin_hits": 0,
+    "response_deduplicated": 70
+  },
+  "verdict": "pass",
+  "per_case_results_inspected": false
+}
