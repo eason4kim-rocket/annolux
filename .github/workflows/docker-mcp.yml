@@ -31,4 +31,4 @@ jobs:
           context: .
           target: mcp
           push: true
-          tags: ghcr.io/eason4kim-rocket/annolux:mcp-${{ steps.v.outputs.version }}
+          tags: ghcr.io/eason4kim-rocket/annolux-mcp:${{ steps.v.outputs.version }}

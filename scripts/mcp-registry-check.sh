@@ -14,7 +14,7 @@ jq -e '
   } and
   (.packages | length) == 1 and
   .packages[0].registryType == "oci" and
-  .packages[0].identifier == ("ghcr.io/eason4kim-rocket/annolux:mcp-" + .version) and
+  .packages[0].identifier == ("ghcr.io/eason4kim-rocket/annolux-mcp:" + .version) and
   .packages[0].transport == {"type": "stdio"} and
   ([.packages[0].environmentVariables[].name] | sort) == ["ANNOLUX_API_KEY", "ANNOLUX_API_URL"] and
   ([.packages[0].environmentVariables[] | select(.name == "ANNOLUX_API_KEY" and .isRequired == true and .isSecret == true)] | length) == 1
