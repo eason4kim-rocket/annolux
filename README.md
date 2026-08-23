@@ -226,3 +226,17 @@ Apache License 2.0. See [LICENSE](LICENSE).
   `models`, `evidence`, and `receipts` — are licensed under **MIT** (see the
   `LICENSE` file in each of those directories), so the `annolux-mcp` binary
   and its dependency closure carry no copyleft obligations for users.
+
+## Install the MCP server
+
+With Go installed:
+
+```sh
+go install github.com/eason4kim-rocket/annolux/cmd/annolux-mcp@latest
+```
+
+Without Go: download a prebuilt binary for your platform from the
+[latest release](https://github.com/eason4kim-rocket/annolux/releases/latest)
+(macOS arm64/amd64, Linux arm64/amd64, Windows amd64; `checksums.txt`
+included), make it executable, and point your MCP client at it. The binary is
+MIT-licensed; it needs `ANNOLUX_API_KEY` from [annolux.com](https://annolux.com).
