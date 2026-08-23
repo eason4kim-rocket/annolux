@@ -39,3 +39,4 @@ Thumbs.db
 
 # local ops facts (never commit)
 OPS.local.md
+.npmrc
