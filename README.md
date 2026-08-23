@@ -8,7 +8,7 @@ of real-time or whole-web coverage.
 - Website: [annolux.com](https://annolux.com)
 - API: [api.annolux.com](https://api.annolux.com)
 - OpenAPI: [annolux.com/openapi.json](https://annolux.com/openapi.json)
-- License: AGPL-3.0
+- License: AGPL-3.0 (engine and evaluator) · MIT (MCP client: `cmd/annolux-mcp`, `models`, `evidence`, `receipts`)
 
 ## Product contract
 
@@ -217,3 +217,12 @@ available for rollback until the new route is stable.
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE).
+
+## License
+
+- The repository as a whole — the search engine, indexer, public API server,
+  and evaluator — is licensed under **AGPL-3.0** (see `LICENSE`).
+- The MCP client and the packages it links against — `cmd/annolux-mcp`,
+  `models`, `evidence`, and `receipts` — are licensed under **MIT** (see the
+  `LICENSE` file in each of those directories), so the `annolux-mcp` binary
+  and its dependency closure carry no copyleft obligations for users.
