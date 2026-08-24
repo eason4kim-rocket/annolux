@@ -109,7 +109,7 @@
       "form.subtitle": "Use Google or GitHub. Annolux does not support passwords or magic links.",
       "action.google": "Continue with Google",
       "action.github": "Continue with GitHub",
-      "story.note": "1,000 permanent credits, granted once per new account",
+      "story.note": "1,000 free credits every month, no credit card",
       "form.terms": "By continuing, you accept the Terms, Privacy Policy, Refund Policy, and Acceptable Use Policy.",
       "action.back": "Back to site",
       "footer.note": "Search that can show its work."
@@ -120,7 +120,7 @@
       "form.subtitle": "使用 Google 或 GitHub 登录；Annolux 不支持密码或 magic link。",
       "action.google": "使用 Google 继续",
       "action.github": "使用 GitHub 继续",
-      "story.note": "每个新账户一次性获得 1,000 永久点",
+      "story.note": "每月 1,000 免费点数，无需信用卡",
       "form.terms": "继续即表示你接受服务条款、隐私政策、退款政策与可接受使用政策。",
       "action.back": "返回网站",
       "footer.note": "每一次搜索，都有证据。"
@@ -211,8 +211,8 @@
           },
           "paragraphs": [
             {
-              "en": "annolux-mcp exposes this same Search contract as a single search_web tool for MCP clients — same request fields, same response shape, no extra operations. If your agent runs in Claude Code, Claude Desktop, or Cursor, the guides below give a copy-paste configuration for each client.",
-              "zh": "annolux-mcp 把本页同一套 Search 契约封装成 MCP 客户端可用的单一 search_web 工具——请求字段一致、响应结构一致，没有额外操作。如果你的 Agent 跑在 Claude Code、Claude Desktop 或 Cursor 里，下面的指南提供各客户端的可复制配置。"
+              "en": "annolux-mcp exposes this same Search contract as a single search_web tool for MCP clients — same request fields, same response shape, no extra operations. Copy-paste setups for Claude Code, Claude Desktop, Cursor, Windsurf, Cline, and Zed live in the documentation menu.",
+              "zh": "annolux-mcp 把本页同一套 Search 契约封装成 MCP 客户端可用的单一 search_web 工具——请求字段一致、响应结构一致，没有额外操作。Claude Code、Claude Desktop、Cursor、Windsurf、Cline 与 Zed 的可复制配置在文档目录里。"
             }
           ],
           "links": [
@@ -256,8 +256,8 @@
         "zh": "定价"
       },
       "description": {
-        "en": "Annolux Search pricing: 1,000 permanent signup credits, Pro $29 for 20,000 monthly credits, Scale $99 for 100,000.",
-        "zh": "Annolux Search 定价：注册 1,000 永久点，Pro 每月 $29/20,000 点，Scale 每月 $99/100,000 点。"
+        "en": "Annolux Search pricing: 1,000 free credits every month, no card. Pro $29 for 20,000 monthly credits, Scale $99 for 100,000.",
+        "zh": "Annolux Search 定价：每月 1,000 免费点、无需信用卡，Pro 每月 $29/20,000 点，Scale 每月 $99/100,000 点。"
       },
       "kicker": {
         "en": "CLEAR CREDITS · NO OVERAGE",
@@ -279,8 +279,8 @@
               "zh": "统一 5 RPS、burst 10，最多 3 个有效 API Key。"
             },
             {
-              "en": "No overage billing. Monthly credits expire at the end of the billing period.",
-              "zh": "不收超额费用；月度点数在账期结束时失效。"
+              "en": "No overage billing. Free and paid credits refresh monthly, and unused credits do not roll over.",
+              "zh": "不收超额费用；免费与付费点数每月刷新，未用不结转。"
             },
             {
               "en": "Cancellation takes effect at period end. No mid-cycle plan changes in v1.",
@@ -306,12 +306,12 @@
           "name": "Free",
           "price": "$0",
           "credits": {
-            "en": "1,000 once",
-            "zh": "一次性 1,000 点"
+            "en": "1,000 / month",
+            "zh": "1,000 点 / 月"
           },
           "summary": {
-            "en": "Permanent signup grant; no card.",
-            "zh": "注册永久赠送；无需信用卡。"
+            "en": "Free forever, resets monthly; no card.",
+            "zh": "永久免费，每月重置；无需信用卡。"
           }
         },
         {
@@ -805,8 +805,8 @@
           },
           "paragraphs": [
             {
-              "en": "These terms are between you and {{LEGAL_NAME}}, the operator of Annolux. You must be legally able to contract and provide accurate account information. One person or organization may not create accounts to evade limits or repeat signup grants.",
-              "zh": "本条款由你与 Annolux 的运营者 {{LEGAL_NAME}} 订立。你必须具备缔约能力并提供准确账户信息；不得通过多账户规避限制或重复获取注册奖励。"
+              "en": "These terms are between you and {{LEGAL_NAME}}, the operator of Annolux. You must be legally able to contract and provide accurate account information. One person or organization may not create accounts to evade limits or collect additional free monthly credits.",
+              "zh": "本条款由你与 Annolux 的运营者 {{LEGAL_NAME}} 订立。你必须具备缔约能力并提供准确账户信息；不得通过多账户规避限制或重复领取每月免费点数。"
             }
           ]
         },
@@ -829,8 +829,8 @@
           },
           "paragraphs": [
             {
-              "en": "New accounts receive one permanent 1,000-credit grant. Pro is $29 per billing period for 20,000 expiring credits; Scale is $99 for 100,000. Credits are a limited service entitlement, not money, and are not transferable or redeemable. Expiring batches are used before permanent credits and do not roll over. There is no overage billing. v1 allows one subscription and no mid-cycle upgrade, downgrade, or proration.",
-              "zh": "新账户一次性获得 1,000 永久点。Pro 每账期 $29 含 20,000 到期点；Scale 每账期 $99 含 100,000 到期点。点数是有限服务权益，不是货币，不可转让或兑现；优先使用将到期批次，月度点数不结转；无超额计费。v1 每账户仅一个订阅，不支持账期中升降级或按比例结算。"
+              "en": "Every account receives 1,000 free credits each calendar month, which reset at the start of the next month and do not roll over. Pro is $29 per billing period for 20,000 expiring credits; Scale is $99 for 100,000. Credits are a limited service entitlement, not money, and are not transferable or redeemable. Soonest-expiring credits are used first, and unused credits do not roll over. There is no overage billing. v1 allows one subscription and no mid-cycle upgrade, downgrade, or proration.",
+              "zh": "每个账户每个自然月获得 1,000 免费点，次月重置、不结转。Pro 每账期 $29 含 20,000 到期点；Scale 每账期 $99 含 100,000 到期点。点数是有限服务权益，不是货币，不可转让或兑现；优先使用将到期批次，未用点数不结转；无超额计费。v1 每账户仅一个订阅，不支持账期中升降级或按比例结算。"
             }
           ]
         },
@@ -1231,78 +1231,20 @@
           },
           "paragraphs": [
             {
-              "en": "Only a successful 2xx Search commits one credit. Validation errors, authentication failures, insufficient balance, rate limits, server errors, and timeouts commit zero. Read X-Annolux-Credits-Used and X-Annolux-Credits-Remaining from the response instead of estimating locally. New accounts start with 1,000 free credits.",
-              "zh": "只有成功的 2xx Search 提交 1 点。参数错误、认证失败、余额不足、限流、服务端错误和超时都不扣点。请读取响应头 X-Annolux-Credits-Used 与 X-Annolux-Credits-Remaining,而不是本地估算。新账户有 1,000 免费点数。"
+              "en": "Only a successful 2xx Search commits one credit. Validation errors, authentication failures, insufficient balance, rate limits, server errors, and timeouts commit zero. Read X-Annolux-Credits-Used and X-Annolux-Credits-Remaining from the response instead of estimating locally. Every account gets 1,000 free credits each month.",
+              "zh": "只有成功的 2xx Search 提交 1 点。参数错误、认证失败、余额不足、限流、服务端错误和超时都不扣点。请读取响应头 X-Annolux-Credits-Used 与 X-Annolux-Credits-Remaining,而不是本地估算。每个账户每月 1,000 免费点数。"
             }
           ]
         },
         {
           "heading": {
-            "en": "Client setup guides",
-            "zh": "各客户端配置指南"
+            "en": "Client setups",
+            "zh": "各客户端配置"
           },
           "paragraphs": [
             {
-              "en": "Each guide below is a copy-paste configuration for that client, including its file locations and the client-specific pitfalls.",
-              "zh": "以下每篇指南都是该客户端的可复制配置,包括配置文件位置和该客户端特有的坑。"
-            }
-          ],
-          "links": [
-            {
-              "label": {
-                "en": "Claude Code setup",
-                "zh": "Claude Code 配置"
-              },
-              "slug": "mcp/claude-code"
-            },
-            {
-              "label": {
-                "en": "Claude Desktop setup",
-                "zh": "Claude Desktop 配置"
-              },
-              "slug": "mcp/claude-desktop"
-            },
-            {
-              "label": {
-                "en": "Cursor setup",
-                "zh": "Cursor 配置"
-              },
-              "slug": "mcp/cursor"
-            },
-            {
-              "label": {
-                "en": "Windsurf setup",
-                "zh": "Windsurf 配置"
-              },
-              "slug": "mcp/windsurf"
-            },
-            {
-              "label": {
-                "en": "Cline setup",
-                "zh": "Cline 配置"
-              },
-              "slug": "mcp/cline"
-            },
-            {
-              "label": {
-                "en": "Zed setup",
-                "zh": "Zed 配置"
-              },
-              "slug": "mcp/zed"
-            },
-            {
-              "label": {
-                "en": "Full API documentation",
-                "zh": "完整 API 文档"
-              },
-              "slug": "docs"
-            },
-            {
-              "label": {
-                "en": "Pricing",
-                "zh": "价格"
-              },
-              "slug": "pricing"
+              "en": "Claude Code, Claude Desktop, Cursor, Windsurf, Cline, and Zed each have a copy-paste page in the documentation menu, including file locations and the pitfalls that client is known for.",
+              "zh": "Claude Code、Claude Desktop、Cursor、Windsurf、Cline 与 Zed 的可复制配置都在文档目录里，含配置文件位置和各客户端特有的坑。"
             }
           ]
         }
@@ -1330,8 +1272,8 @@
           },
           "paragraphs": [
             {
-              "en": "Install the annolux-mcp binary first (see the MCP overview below), then register it from your terminal. Replace the key placeholder with a real key from your account.",
-              "zh": "先安装 annolux-mcp 二进制(见下方 MCP 总览),然后在终端注册。把占位密钥换成你账户里的真实密钥。"
+              "en": "Install the annolux-mcp binary first (see MCP in the documentation menu), then register it from your terminal. Replace the key placeholder with a real key from your account.",
+              "zh": "先安装 annolux-mcp 二进制(见文档目录中的 MCP),然后在终端注册。把占位密钥换成你账户里的真实密钥。"
             }
           ],
           "code": "claude mcp add annolux --env ANNOLUX_API_URL=https://api.annolux.com --env ANNOLUX_API_KEY=ann_live_REPLACE_ME -- annolux-mcp",
@@ -1498,8 +1440,8 @@
           },
           "paragraphs": [
             {
-              "en": "Install the annolux-mcp binary first (see the MCP overview below), then add this block. Replace the key placeholder with a real key.",
-              "zh": "先安装 annolux-mcp 二进制(见下方 MCP 总览),再加入这段配置。把占位密钥换成真实密钥。"
+              "en": "Install the annolux-mcp binary first (see MCP in the documentation menu), then add this block. Replace the key placeholder with a real key.",
+              "zh": "先安装 annolux-mcp 二进制(见文档目录中的 MCP),再加入这段配置。把占位密钥换成真实密钥。"
             }
           ],
           "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"annolux-mcp\",\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_REPLACE_ME\"\n      }\n    }\n  }\n}",
@@ -1580,8 +1522,8 @@
           },
           "paragraphs": [
             {
-              "en": "search_web queries a curated English and Chinese index — not realtime, not the whole web; an empty result is a normal outcome. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
-              "zh": "search_web 查询精选中英索引 —— 非实时、非全网;空结果是正常返回。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+              "en": "search_web queries a curated English and Chinese index — not realtime, not the whole web; an empty result is a normal outcome. Only a successful 2xx search costs one credit; errors and timeouts cost zero. Every account gets 1,000 free credits each month.",
+              "zh": "search_web 查询精选中英索引 —— 非实时、非全网;空结果是正常返回。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。每个账户每月 1,000 免费点数。"
             }
           ],
           "links": [
@@ -1648,8 +1590,8 @@
           },
           "paragraphs": [
             {
-              "en": "Install the annolux-mcp binary first (see the MCP overview below), then add this block. Replace the key placeholder with a real key.",
-              "zh": "先安装 annolux-mcp 二进制(见下方 MCP 总览),再加入这段配置。把占位密钥换成真实密钥。"
+              "en": "Install the annolux-mcp binary first (see MCP in the documentation menu), then add this block. Replace the key placeholder with a real key.",
+              "zh": "先安装 annolux-mcp 二进制(见文档目录中的 MCP),再加入这段配置。把占位密钥换成真实密钥。"
             }
           ],
           "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"annolux-mcp\",\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_REPLACE_ME\"\n      }\n    }\n  }\n}",
@@ -1726,8 +1668,8 @@
           },
           "paragraphs": [
             {
-              "en": "search_web queries a curated English and Chinese index — not realtime, not the whole web. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
-              "zh": "search_web 查询精选中英索引 —— 非实时、非全网。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+              "en": "search_web queries a curated English and Chinese index — not realtime, not the whole web. Only a successful 2xx search costs one credit; errors and timeouts cost zero. Every account gets 1,000 free credits each month.",
+              "zh": "search_web 查询精选中英索引 —— 非实时、非全网。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。每个账户每月 1,000 免费点数。"
             }
           ],
           "links": [
@@ -1794,8 +1736,8 @@
           },
           "paragraphs": [
             {
-              "en": "Install the annolux-mcp binary first (see the MCP overview below), then add this server block. Replace the key placeholder with your real API key.",
-              "zh": "先安装 annolux-mcp 二进制(见下方 MCP 总览),再加入这段配置。把占位密钥换成真实密钥。"
+              "en": "Install the annolux-mcp binary first (see MCP in the documentation menu), then add this server block. Replace the key placeholder with your real API key.",
+              "zh": "先安装 annolux-mcp 二进制(见文档目录中的 MCP),再加入这段配置。把占位密钥换成真实密钥。"
             }
           ],
           "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"annolux-mcp\",\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_REPLACE_ME\"\n      }\n    }\n  }\n}",
@@ -1860,8 +1802,8 @@
           },
           "paragraphs": [
             {
-              "en": "search_web queries a curated English and Chinese index. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
-              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+              "en": "search_web queries a curated English and Chinese index. Only a successful 2xx search costs one credit; errors and timeouts cost zero. Every account gets 1,000 free credits each month.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。每个账户每月 1,000 免费点数。"
             }
           ],
           "links": [
@@ -1985,8 +1927,8 @@
           },
           "paragraphs": [
             {
-              "en": "search_web queries a curated English and Chinese index. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
-              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+              "en": "search_web queries a curated English and Chinese index. Only a successful 2xx search costs one credit; errors and timeouts cost zero. Every account gets 1,000 free credits each month.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。每个账户每月 1,000 免费点数。"
             }
           ],
           "links": [
@@ -2110,8 +2052,8 @@
           },
           "paragraphs": [
             {
-              "en": "search_web queries a curated English and Chinese index. Only a successful 2xx search costs one credit; errors and timeouts cost zero. New accounts start with 1,000 free credits.",
-              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+              "en": "search_web queries a curated English and Chinese index. Only a successful 2xx search costs one credit; errors and timeouts cost zero. Every account gets 1,000 free credits each month.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。每个账户每月 1,000 免费点数。"
             }
           ],
           "links": [
@@ -2207,8 +2149,8 @@
           },
           "paragraphs": [
             {
-              "en": "Search queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. New accounts receive 1,000 free permanent credits.",
-              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+              "en": "Search queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. Every account gets 1,000 free credits each month.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。每个账户每月 1,000 免费点数。"
             }
           ],
           "links": [
@@ -2284,8 +2226,8 @@
           },
           "paragraphs": [
             {
-              "en": "search_web queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. New accounts receive 1,000 free permanent credits.",
-              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+              "en": "search_web queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. Every account gets 1,000 free credits each month.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。每个账户每月 1,000 免费点数。"
             }
           ],
           "links": [
@@ -2372,8 +2314,8 @@
           },
           "paragraphs": [
             {
-              "en": "Search queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. New accounts receive 1,000 free permanent credits.",
-              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。新账户有 1,000 免费点数。"
+              "en": "Search queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. Every account gets 1,000 free credits each month.",
+              "zh": "search_web 查询精选中英索引。只有成功的 2xx 搜索扣 1 点,错误和超时不扣。每个账户每月 1,000 免费点数。"
             }
           ],
           "links": [

@@ -11,14 +11,19 @@
     ? "体验模式——免注册：最多 3 条结果、每分钟 5 次。登录解锁完整额度。"
     : "Demo mode — no signup needed: up to 3 results, 5 searches/min. Sign in for full limits.";
 
-  fetch(api + "/account/me", { credentials: "include" }).then(async (response) => {
+  const session = fetch(api + "/account/me", { credentials: "include" }).then(async (response) => {
     if (response.status === 401) { demoMode = true; status.textContent = demoNotice; return; }
     const data = await response.json(); csrf = data.csrf_token;
   }).catch(() => { demoMode = true; status.textContent = demoNotice; });
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if (!csrf && !demoMode) return;
+    status.textContent = zh ? "正在准备…" : "Preparing…";
+    await session;
+    if (!csrf && !demoMode) {
+      demoMode = true;
+      status.textContent = demoNotice;
+    }
     const data = new FormData(form);
     const domains = String(data.get("domains") || "").split(",").map((value) => value.trim()).filter(Boolean);
     const body = { query: String(data.get("query") || ""), deduplicate: data.get("deduplicate") === "on", limit: Number(data.get("limit")), timeout: Number(data.get("timeout")) };

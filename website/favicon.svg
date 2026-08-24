@@ -1,59 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <!-- Background Gradient -->
-    <linearGradient id="bgGradB" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#111318"/>
-      <stop offset="100%" stop-color="#07080a"/>
-    </linearGradient>
+  <!-- Minimalist Pure Dark Canvas -->
+  <rect width="512" height="512" rx="112" fill="#090a0f"/>
 
-    <!-- Border Gradient -->
-    <linearGradient id="borderGradB" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3b2f1e"/>
-      <stop offset="50%" stop-color="#1e2029"/>
-      <stop offset="100%" stop-color="#12141c"/>
-    </linearGradient>
+  <!-- Anno Orbital Ring with 45-degree Lux Slit (Mathematical Pure Geometry) -->
+  <path d="M 256 64 A 192 192 0 1 1 391.76 120.24 L 340.85 171.15 A 120 120 0 1 0 256 136 A 120 120 0 0 0 171.15 340.85 L 120.24 391.76 A 192 192 0 0 1 256 64 Z" fill="#f8fafc"/>
 
-    <!-- Star Core Gradient -->
-    <linearGradient id="goldSpark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="30%" stop-color="#fef08a"/>
-      <stop offset="70%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#d97706"/>
-    </linearGradient>
+  <!-- 45-degree Lux Egress Photon Ray -->
+  <path d="M 368 84 L 436 152 L 400 188 L 332 120 Z" fill="#f59e0b"/>
 
-    <!-- Reticle Ring Gradient -->
-    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.4"/>
-    </linearGradient>
-
-    <filter id="glowB" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="18" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-    </filter>
-  </defs>
-
-  <!-- Squircle Base -->
-  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#bgGradB)" stroke="url(#borderGradB)" stroke-width="6"/>
-
-  <!-- Ambient Glow Behind Spark -->
-  <circle cx="256" cy="256" r="130" fill="#f59e0b" opacity="0.12" filter="url(#glowB)"/>
-  <circle cx="256" cy="256" r="80" fill="#38bdf8" opacity="0.1" filter="url(#glowB)"/>
-
-  <!-- Precision Radar / Time Reticle Rings -->
-  <circle cx="256" cy="256" r="148" fill="none" stroke="#262c38" stroke-width="2" stroke-dasharray="8 8"/>
-  <circle cx="256" cy="256" r="108" fill="none" stroke="url(#ringGrad)" stroke-width="3.5" opacity="0.75"/>
-
-  <!-- 4 Coordinate Ticks (North, East, South, West) -->
-  <line x1="256" y1="92" x2="256" y2="116" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
-  <line x1="256" y1="396" x2="256" y2="420" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
-  <line x1="92" y1="256" x2="116" y2="256" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
-  <line x1="396" y1="256" x2="420" y2="256" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
-
-  <!-- Iconic 4-Point Radiant Temporal Spark (Annolux Flare) -->
-  <path d="M 256 128 Q 256 220 348 256 Q 256 292 256 384 Q 256 292 164 256 Q 256 220 256 128 Z" fill="url(#goldSpark)" filter="url(#glowB)"/>
-
-  <!-- Secondary Diamond Core -->
-  <polygon points="256,224 288,256 256,288 224,256" fill="#ffffff" filter="url(#glowB)"/>
-  <circle cx="256" cy="256" r="5" fill="#fef08a"/>
+  <!-- Central Lux Singularity Photon -->
+  <circle cx="256" cy="256" r="44" fill="#f8fafc"/>
 </svg>

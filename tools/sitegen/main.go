@@ -8,6 +8,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"html"
 	"html/template"
 	"io"
 	"io/fs"
@@ -102,7 +103,7 @@ type renderedLink struct {
 
 type renderedSection struct {
 	Heading    string
-	Paragraphs []string
+	Paragraphs []template.HTML
 	Bullets    []string
 	Code       string
 	Links      []renderedLink
@@ -117,18 +118,31 @@ type renderedPost struct {
 	Title, Description, Published, URL string
 }
 
+type docsNavItem struct {
+	Label, Href string
+	Current     bool
+}
+
+type docsNavGroup struct {
+	Label string
+	Items []docsNavItem
+}
+
 type pageView struct {
 	Lang, HTMLLang, Title, Description, Kicker, Published string
 	Canonical, EnglishURL, ChineseURL, AlternateURL       string
 	HomeURL, DocsURL, PricingURL, BenchmarksURL, BlogURL  string
+	McpURL, ChangelogURL                                  string
 	StatusURL, ContactURL, PrivacyURL, TermsURL           string
 	RefundURL, AUPURL, LoginURL                           string
 	NoIndex, IsPost, IsAccount, IsCheckout, IsPlayground  bool
-	IsBilling, IsStatus                                   bool
+	IsBilling, IsStatus, IsDocs, IsPricing                bool
+	NavDocs, NavMCP, NavPricing, NavBlog, NavBenchmarks   bool
 	JSONLD                                                template.JS
 	Sections                                              []renderedSection
 	Plans                                                 []renderedPlan
 	Posts                                                 []renderedPost
+	DocsNav                                               []docsNavGroup
 }
 
 type legalDetails struct {
@@ -333,13 +347,21 @@ func makeView(loaded content, item page, lang string, legal legalDetails, isPost
 		Canonical: canonical, EnglishURL: loaded.Site.Origin + localPath("en", item.Slug), ChineseURL: loaded.Site.Origin + localPath("zh", item.Slug),
 		AlternateURL: localPath(otherLang(lang), item.Slug), HomeURL: localPath(lang, ""), DocsURL: localPath(lang, "docs"),
 		PricingURL: localPath(lang, "pricing"), BenchmarksURL: localPath(lang, "benchmarks"), BlogURL: localPath(lang, "blog"),
+		McpURL: localPath(lang, "mcp"), ChangelogURL: localPath(lang, "changelog"),
 		StatusURL: localPath(lang, "status"), ContactURL: localPath(lang, "contact"), PrivacyURL: localPath(lang, "privacy"),
 		TermsURL: localPath(lang, "terms"), RefundURL: localPath(lang, "refund"), AUPURL: localPath(lang, "acceptable-use"), LoginURL: localPath(lang, "login"),
+		IsDocs: isDocsPage(item.Slug), IsPricing: item.Kind == "pricing" || item.Slug == "pricing",
+		NavDocs: isDocsNavHighlight(item.Slug), NavMCP: isMCPNavHighlight(item.Slug),
+		NavPricing: item.Slug == "pricing", NavBlog: isPost || item.Slug == "blog" || strings.HasPrefix(item.Slug, "blog/"),
+		NavBenchmarks: item.Slug == "benchmarks",
+	}
+	if view.IsDocs {
+		view.DocsNav = docsNav(lang, item.Slug)
 	}
 	for _, source := range item.Sections {
 		section := renderedSection{Heading: replaceLegal(source.Heading.text(lang), legal), Code: source.Code}
 		for _, value := range source.Paragraphs {
-			section.Paragraphs = append(section.Paragraphs, replaceLegal(value.text(lang), legal))
+			section.Paragraphs = append(section.Paragraphs, linkifyPlain(replaceLegal(value.text(lang), legal)))
 		}
 		for _, value := range source.Bullets {
 			section.Bullets = append(section.Bullets, replaceLegal(value.text(lang), legal))
@@ -369,6 +391,60 @@ func makeView(loaded content, item page, lang string, legal legalDetails, isPost
 	}
 	view.JSONLD = jsonLD(loaded.Site, view)
 	return view
+}
+
+func isDocsPage(slug string) bool {
+	return slug == "docs" || slug == "mcp" || strings.HasPrefix(slug, "mcp/") || strings.HasPrefix(slug, "integrations/")
+}
+
+func isDocsNavHighlight(slug string) bool {
+	return slug == "docs" || strings.HasPrefix(slug, "integrations/")
+}
+
+func isMCPNavHighlight(slug string) bool {
+	return slug == "mcp" || strings.HasPrefix(slug, "mcp/")
+}
+
+func docsNav(lang, slug string) []docsNavGroup {
+	item := func(en, zh, itemSlug string) docsNavItem {
+		label := en
+		if lang == "zh" {
+			label = zh
+		}
+		return docsNavItem{Label: label, Href: localPath(lang, itemSlug), Current: slug == itemSlug}
+	}
+	start, clients, integrations := "Getting started", "MCP clients", "Integrations"
+	if lang == "zh" {
+		start, clients, integrations = "开始", "MCP 客户端", "组件接入"
+	}
+	return []docsNavGroup{
+		{Label: start, Items: []docsNavItem{
+			item("Search API", "API 文档", "docs"),
+			item("MCP", "MCP", "mcp"),
+		}},
+		{Label: clients, Items: []docsNavItem{
+			item("Claude Code", "Claude Code", "mcp/claude-code"),
+			item("Claude Desktop", "Claude Desktop", "mcp/claude-desktop"),
+			item("Cursor", "Cursor", "mcp/cursor"),
+			item("Windsurf", "Windsurf", "mcp/windsurf"),
+			item("Cline", "Cline", "mcp/cline"),
+			item("Zed", "Zed", "mcp/zed"),
+		}},
+		{Label: integrations, Items: []docsNavItem{
+			item("LangChain", "LangChain", "integrations/langchain"),
+			item("LlamaIndex", "LlamaIndex", "integrations/llamaindex"),
+			item("Dify", "Dify", "integrations/dify"),
+		}},
+	}
+}
+
+var emailPattern = regexp.MustCompile(`\b[A-Za-z0-9._%+\-]+@annolux\.com\b`)
+
+func linkifyPlain(s string) template.HTML {
+	escaped := html.EscapeString(s)
+	return template.HTML(emailPattern.ReplaceAllStringFunc(escaped, func(addr string) string {
+		return `<a href="mailto:` + addr + `">` + addr + `</a>`
+	}))
 }
 
 func replaceLegal(value string, legal legalDetails) string {

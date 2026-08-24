@@ -91,6 +91,55 @@ func TestBuildManifestRejectsMissingAndTrailingData(t *testing.T) {
 	}
 }
 
+func TestLinkifyPlainWrapsAnnoluxEmails(t *testing.T) {
+	got := string(linkifyPlain(`Email support@annolux.com. Do not send <keys>.`))
+	if !strings.Contains(got, `<a href="mailto:support@annolux.com">support@annolux.com</a>`) {
+		t.Fatalf("mailto missing: %s", got)
+	}
+	if !strings.Contains(got, `&lt;keys&gt;`) || strings.Contains(got, `<keys>`) {
+		t.Fatalf("plain text was not escaped: %s", got)
+	}
+}
+
+func TestDocsNavMarksCurrentAndLocalizes(t *testing.T) {
+	if !isDocsPage("mcp/cursor") || !isDocsPage("integrations/dify") || isDocsPage("pricing") || isDocsPage("blog") {
+		t.Fatal("isDocsPage mismatch")
+	}
+	if !isMCPNavHighlight("mcp/zed") || isMCPNavHighlight("docs") {
+		t.Fatal("MCP top-nav highlight mismatch")
+	}
+	if !isDocsNavHighlight("integrations/langchain") || isDocsNavHighlight("mcp") {
+		t.Fatal("Docs top-nav highlight mismatch")
+	}
+
+	nav := docsNav("en", "mcp/cursor")
+	if len(nav) != 3 {
+		t.Fatalf("groups = %d, want 3", len(nav))
+	}
+	if nav[0].Label != "Getting started" || nav[1].Label != "MCP clients" || nav[2].Label != "Integrations" {
+		t.Fatalf("en labels = %#v", []string{nav[0].Label, nav[1].Label, nav[2].Label})
+	}
+	current := 0
+	for _, group := range nav {
+		for _, item := range group.Items {
+			if item.Current {
+				current++
+				if item.Href != "/mcp/cursor" || item.Label != "Cursor" {
+					t.Fatalf("current item = %+v", item)
+				}
+			}
+		}
+	}
+	if current != 1 {
+		t.Fatalf("current count = %d, want 1", current)
+	}
+
+	zh := docsNav("zh", "docs")
+	if zh[0].Label != "开始" || zh[0].Items[0].Href != "/zh/docs" || !zh[0].Items[0].Current {
+		t.Fatalf("zh nav = %+v", zh[0])
+	}
+}
+
 func writeTestFile(t *testing.T, path, body string) {
 	t.Helper()
 	if err := os.WriteFile(path, []byte(body), 0o644); err != nil {

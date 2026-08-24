@@ -35,17 +35,17 @@
   <link rel="stylesheet" href="/pages.css?v=home-818" />
   <script src="/page.js" defer></script>
 </head>
-<body class="content-page">
+<body class="content-page{{if .IsDocs}} docs-page{{end}}{{if .IsPricing}} pricing-page{{end}}">
   <a class="skip-link" href="#main">{{if eq .Lang "zh"}}跳至正文{{else}}Skip to content{{end}}</a>
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="{{.HomeURL}}" aria-label="Annolux home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Annolux</span></a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="{{.DocsURL}}">{{if eq .Lang "zh"}}文档{{else}}Docs{{end}}</a>
-        <a href="{{.McpURL}}">MCP</a>
-        <a href="{{.PricingURL}}">{{if eq .Lang "zh"}}定价{{else}}Pricing{{end}}</a>
-        <a href="{{.BenchmarksURL}}">Benchmarks</a>
-        <a href="{{.BlogURL}}">Blog</a>
+        <a href="{{.DocsURL}}"{{if .NavDocs}} aria-current="page"{{end}}>{{if eq .Lang "zh"}}文档{{else}}Docs{{end}}</a>
+        <a href="{{.McpURL}}"{{if .NavMCP}} aria-current="page"{{end}}>MCP</a>
+        <a href="{{.PricingURL}}"{{if .NavPricing}} aria-current="page"{{end}}>{{if eq .Lang "zh"}}定价{{else}}Pricing{{end}}</a>
+        <a href="{{.BenchmarksURL}}"{{if .NavBenchmarks}} aria-current="page"{{end}}>Benchmarks</a>
+        <a href="{{.BlogURL}}"{{if .NavBlog}} aria-current="page"{{end}}>Blog</a>
       </nav>
       <div class="nav-actions">
         <button type="button" class="icon-btn" data-theme-toggle aria-label="Switch color theme">
@@ -65,16 +65,35 @@
       </div>
     </div>
     <nav class="mobile-nav container" id="mobile-menu" data-mobile-menu aria-label="Mobile navigation" hidden>
-      <a href="{{.DocsURL}}">{{if eq .Lang "zh"}}文档{{else}}Docs{{end}}</a>
-      <a href="{{.McpURL}}">MCP</a>
-      <a href="{{.PricingURL}}">{{if eq .Lang "zh"}}定价{{else}}Pricing{{end}}</a>
-      <a href="{{.BenchmarksURL}}">Benchmarks</a>
-      <a href="{{.BlogURL}}">Blog</a>
+      <a href="{{.DocsURL}}"{{if .NavDocs}} aria-current="page"{{end}}>{{if eq .Lang "zh"}}文档{{else}}Docs{{end}}</a>
+      <a href="{{.McpURL}}"{{if .NavMCP}} aria-current="page"{{end}}>MCP</a>
+      <a href="{{.PricingURL}}"{{if .NavPricing}} aria-current="page"{{end}}>{{if eq .Lang "zh"}}定价{{else}}Pricing{{end}}</a>
+      <a href="{{.BenchmarksURL}}"{{if .NavBenchmarks}} aria-current="page"{{end}}>Benchmarks</a>
+      <a href="{{.BlogURL}}"{{if .NavBlog}} aria-current="page"{{end}}>Blog</a>
       <a href="{{.ChangelogURL}}">{{if eq .Lang "zh"}}更新日志{{else}}Changelog{{end}}</a>
       <a href="{{.LoginURL}}">{{if eq .Lang "zh"}}登录{{else}}Sign in{{end}}</a>
     </nav>
   </header>
 
+  {{if .IsDocs}}
+  <div class="docs-layout">
+    <aside class="docs-nav" aria-label="{{if eq .Lang "zh"}}文档目录{{else}}Documentation{{end}}">
+      <details class="docs-nav-panel" data-docs-nav open>
+        <summary class="docs-nav-toggle">{{if eq .Lang "zh"}}文档目录{{else}}Documentation{{end}}</summary>
+        <div class="docs-nav-groups">
+          {{range .DocsNav}}
+          <div class="docs-nav-group">
+            <p class="docs-nav-label">{{.Label}}</p>
+            <ul>
+              {{range .Items}}<li><a href="{{.Href}}"{{if .Current}} aria-current="page"{{end}}>{{.Label}}</a></li>{{end}}
+            </ul>
+          </div>
+          {{end}}
+        </div>
+      </details>
+    </aside>
+    <div class="docs-body">
+  {{end}}
   <main id="main" class="content-shell">
     <header class="content-hero">
       <p class="mono content-kicker">{{.Kicker}}</p>
@@ -158,15 +177,19 @@
     {{end}}
 
     <div class="prose">
-      {{range .Sections}}<section>
+      {{range .Sections}}{{if or .Paragraphs .Bullets .Code (and .Links (not $.IsDocs))}}<section>
         <h2>{{.Heading}}</h2>
         {{range .Paragraphs}}<p>{{.}}</p>{{end}}
         {{if .Bullets}}<ul>{{range .Bullets}}<li>{{.}}</li>{{end}}</ul>{{end}}
         {{if .Code}}<pre tabindex="0"><code>{{.Code}}</code></pre>{{end}}
-        {{if .Links}}<ul class="section-links">{{range .Links}}<li><a href="{{.Href}}">{{.Label}}</a></li>{{end}}</ul>{{end}}
-      </section>{{end}}
+        {{if and .Links (not $.IsDocs)}}<ul class="section-links">{{range .Links}}<li><a href="{{.Href}}">{{.Label}}</a></li>{{end}}</ul>{{end}}
+      </section>{{end}}{{end}}
     </div>
   </main>
+  {{if .IsDocs}}
+    </div>
+  </div>
+  {{end}}
 
   <div class="tear" aria-hidden="true">
     <span class="tear-mark"><i></i><i></i><i></i><i></i></span>
@@ -176,6 +199,7 @@
     <div><strong>Annolux</strong><p class="content-foot-tag">{{if eq .Lang "zh"}}每一次搜索，都有证据。{{else}}Search that can show its work.{{end}}</p></div>
     <nav aria-label="Product">
       <a href="{{.DocsURL}}">{{if eq .Lang "zh"}}文档{{else}}Docs{{end}}</a>
+      <a href="{{.McpURL}}">MCP</a>
       <a href="{{.PricingURL}}">{{if eq .Lang "zh"}}定价{{else}}Pricing{{end}}</a>
       <a href="{{.StatusURL}}">{{if eq .Lang "zh"}}状态{{else}}Status{{end}}</a>
       <a href="{{.ContactURL}}">{{if eq .Lang "zh"}}联系{{else}}Contact{{end}}</a>

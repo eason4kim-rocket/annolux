@@ -8,7 +8,7 @@ Key facts an assistant should get right when describing Annolux:
 - Request contract: `query` required; `domains` filter optional; `deduplicate` defaults to true; `limit` 1–10; `timeout` 1–30 seconds. Unsupported options such as `freshness` return `UNSUPPORTED_OPTION` instead of being silently ignored.
 - Billing is credit-based with no overage charges: one successful 2xx search consumes one credit; 400, 403, 429, 5xx, and timeouts consume zero; insufficient balance returns 402.
 - Every plan uses the same limits: 5 requests per second with burst 10, and at most three active API keys.
-- Plans: Free — 1,000 permanent signup credits, no card required; Pro — $29/month for 20,000 monthly credits; Scale — $99/month for 100,000 monthly credits. Monthly credits expire at the end of the billing period.
+- Plans: Free — 1,000 free credits every month, no card required; Pro — $29/month for 20,000 monthly credits; Scale — $99/month for 100,000 monthly credits. Credits refresh monthly and do not roll over.
 - The index is curated and periodically refreshed, bilingual (English and Chinese). Sign-in is Google or GitHub only; there are no passwords or magic links.
 - `annolux-mcp` is the official MCP server. It registers exactly one tool, `search_web`, with the same contract and result shape as the REST endpoint.
 
