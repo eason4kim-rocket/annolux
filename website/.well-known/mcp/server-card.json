@@ -1,0 +1,66 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "serverInfo": {
+    "name": "annolux",
+    "title": "Annolux Search",
+    "description": "Curated English & Chinese Search API and MCP for AI Agents with explicit fetched_at time provenance.",
+    "version": "0.2.0"
+  },
+  "authentication": {
+    "required": false
+  },
+  "tools": [
+    {
+      "name": "search_web",
+      "description": "Search curated English and Chinese technical & knowledge corpus with explicit fetched_at time provenance.",
+      "inputSchema": {
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Natural-language query containing one to fifty words",
+            "maxLength": 500
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum results (default 10, maximum 10)",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 10
+          },
+          "domains": {
+            "type": "array",
+            "description": "Optional registrable-domain filters without schemes or paths (e.g. ['docs.rs', 'go.dev'])",
+            "items": {
+              "type": "string"
+            }
+          },
+          "deduplicate": {
+            "type": "boolean",
+            "description": "Collapse duplicate and near-duplicate results",
+            "default": true
+          },
+          "timeout": {
+            "type": "integer",
+            "description": "End-to-end timeout in seconds (default and maximum 30)",
+            "minimum": 1,
+            "maximum": 30,
+            "default": 30
+          },
+          "ranking": {
+            "type": "string",
+            "description": "Ranking mode: default or provider",
+            "enum": [
+              "default",
+              "provider"
+            ],
+            "default": "default"
+          }
+        }
+      }
+    }
+  ]
+}

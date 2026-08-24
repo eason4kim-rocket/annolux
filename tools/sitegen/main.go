@@ -471,6 +471,13 @@ func configureHome(doc *nethtml.Node, lang string, loaded content) {
 	description := map[string]string{"en": "A focused English and Chinese Search API for AI agents and RAG systems. Clean source-attributed snippets, explicit fetched_at timestamps, and deterministic credit billing.", "zh": "面向 Agent 的中英双语精选 Search API，返回带来源归属和明确抓取时间的结果。智能理解世界的方式。"}[lang]
 	canonical := loaded.Site.Origin + localPath(lang, "")
 	configureMetadata(doc, title, description, canonical, loaded.Site.Origin+"/", loaded.Site.Origin+"/zh/")
+	if lang == "zh" {
+		// The Chinese homepage renders in the heavy Noto Sans SC subset; the
+		// English page never fetches it. Preload it on the zh homepage only so
+		// the ~200 KB face downloads in parallel with the CSS instead of after
+		// it, cutting first paint. The URL must match home.css's @font-face src.
+		preloadHead(doc, "/assets/fonts/NotoSansSC-AnnoluxSubset.woff2?v=site-p1-812")
+	}
 	visitElements(doc, func(node *nethtml.Node) {
 		if node.Data == "script" && attr(node, "type") == "application/ld+json" {
 			setText(node, `{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Annolux","url":"https://annolux.com/","logo":"https://annolux.com/favicon.svg"},{"@type":"WebSite","name":"Annolux","url":"https://annolux.com/","inLanguage":["en","zh-CN"]}]}`)
@@ -488,6 +495,42 @@ func configureHome(doc *nethtml.Node, lang string, loaded content) {
 			removeAttr(node, "aria-label")
 		}
 	})
+}
+
+// preloadHead inserts a font preload link as the first child of <head> so the
+// preload scanner starts the fetch before the stylesheet is parsed.
+func preloadHead(doc *nethtml.Node, href string) {
+	var head *nethtml.Node
+	var find func(*nethtml.Node)
+	find = func(node *nethtml.Node) {
+		if head != nil {
+			return
+		}
+		if node.Type == nethtml.ElementNode && node.DataAtom == atom.Head {
+			head = node
+			return
+		}
+		for child := node.FirstChild; child != nil; child = child.NextSibling {
+			find(child)
+		}
+	}
+	find(doc)
+	if head == nil {
+		return
+	}
+	link := &nethtml.Node{
+		Type:     nethtml.ElementNode,
+		DataAtom: atom.Link,
+		Data:     "link",
+		Attr: []nethtml.Attribute{
+			{Key: "rel", Val: "preload"},
+			{Key: "href", Val: href},
+			{Key: "as", Val: "font"},
+			{Key: "type", Val: "font/woff2"},
+			{Key: "crossorigin", Val: ""},
+		},
+	}
+	head.InsertBefore(link, head.FirstChild)
 }
 
 // setLanguagePill renders the language switch so the page's own language reads
@@ -679,6 +722,11 @@ func copyPublicFiles(out string) error {
 	}
 	if err := copyTree(filepath.Join("website", "assets"), filepath.Join(out, "assets")); err != nil {
 		return err
+	}
+	if _, err := os.Stat(filepath.Join("website", ".well-known")); err == nil {
+		if err := copyTree(filepath.Join("website", ".well-known"), filepath.Join(out, ".well-known")); err != nil {
+			return err
+		}
 	}
 	return copyFile(filepath.Join("openapi", "annolux.openapi.json"), filepath.Join(out, "openapi.json"))
 }
