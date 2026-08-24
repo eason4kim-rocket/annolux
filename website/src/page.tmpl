@@ -42,6 +42,7 @@
       <a class="brand" href="{{.HomeURL}}" aria-label="Annolux home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Annolux</span></a>
       <nav class="nav-links" aria-label="Primary">
         <a href="{{.DocsURL}}">{{if eq .Lang "zh"}}文档{{else}}Docs{{end}}</a>
+        <a href="{{.McpURL}}">MCP</a>
         <a href="{{.PricingURL}}">{{if eq .Lang "zh"}}定价{{else}}Pricing{{end}}</a>
         <a href="{{.BenchmarksURL}}">Benchmarks</a>
         <a href="{{.BlogURL}}">Blog</a>
@@ -57,8 +58,21 @@
           <span class="lang-next">{{if eq .Lang "zh"}}EN{{else}}中文{{end}}</span>
         </a>
         <a class="nav-signin" href="{{.LoginURL}}">{{if eq .Lang "zh"}}登录{{else}}Sign in{{end}}</a>
+        <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
+          <span class="sr-only">{{if eq .Lang "zh"}}菜单{{else}}Menu{{end}}</span>
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
+    <nav class="mobile-nav container" id="mobile-menu" data-mobile-menu aria-label="Mobile navigation" hidden>
+      <a href="{{.DocsURL}}">{{if eq .Lang "zh"}}文档{{else}}Docs{{end}}</a>
+      <a href="{{.McpURL}}">MCP</a>
+      <a href="{{.PricingURL}}">{{if eq .Lang "zh"}}定价{{else}}Pricing{{end}}</a>
+      <a href="{{.BenchmarksURL}}">Benchmarks</a>
+      <a href="{{.BlogURL}}">Blog</a>
+      <a href="{{.ChangelogURL}}">{{if eq .Lang "zh"}}更新日志{{else}}Changelog{{end}}</a>
+      <a href="{{.LoginURL}}">{{if eq .Lang "zh"}}登录{{else}}Sign in{{end}}</a>
+    </nav>
   </header>
 
   <main id="main" class="content-shell">
