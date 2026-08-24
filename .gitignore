@@ -11,6 +11,9 @@ node_modules/
 *.test
 *.out
 coverage.html
+__pycache__/
+*.pyc
+*.egg-info/
 
 # Local durable snapshots, ledger, and signing material
 /data/
