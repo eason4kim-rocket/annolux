@@ -8,7 +8,7 @@
 
 [![Go Version](https://img.shields.io/github/go-mod/go-version/eason4kim-rocket/annolux?style=flat-square&logo=go)](https://golang.org)
 [![NPM Version](https://img.shields.io/npm/v/annolux-mcp?style=flat-square&logo=npm&color=CB3837)](https://www.npmjs.com/package/annolux-mcp)
-[![Smithery Badge](https://smithery.ai/badge/annolux-mcp)](https://smithery.ai/server/annolux-mcp)
+[![Smithery Badge](https://smithery.ai/badge/@eason4kim/annolux)](https://smithery.ai/server/@eason4kim/annolux)
 [![Glama MCP](https://glama.ai/mcp/servers/eason4kim-rocket/annolux/badge)](https://glama.ai/mcp/servers/eason4kim-rocket/annolux)
 [![Add to Cursor](https://img.shields.io/badge/Add%20to-Cursor-000000?style=flat-square&logo=cursor&logoColor=white)](cursor://anysphere.cursor-deeplink/mcp/install?name=annolux&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImFubm9sdXgtbWNwIl19)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2025--12--11-000000?style=flat-square&logo=anthropic)](https://modelcontextprotocol.io/)
