@@ -1,0 +1,48 @@
+{
+  "name": "n8n-nodes-annolux",
+  "version": "0.1.0",
+  "description": "n8n node for Annolux: Curated English & Chinese Web Search API & MCP for AI Agents with explicit snapshot timestamps",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n-nodes",
+    "annolux",
+    "search",
+    "ai-agent",
+    "ai-tool",
+    "bilingual",
+    "rag",
+    "mcp"
+  ],
+  "license": "MIT",
+  "homepage": "https://annolux.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eason4kim-rocket/annolux.git",
+    "directory": "packages/n8n-nodes-annolux"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && mkdir -p dist/nodes/Annolux && cp nodes/Annolux/annolux.svg dist/nodes/Annolux/annolux.svg",
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext .ts",
+    "prepublishOnly": "npm run build"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/AnnoluxApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Annolux/Annolux.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "n8n-workflow": "^1.60.0",
+    "typescript": "^5.3.3"
+  }
+}

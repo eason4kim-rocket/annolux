@@ -434,6 +434,7 @@ func docsNav(lang, slug string) []docsNavGroup {
 			item("LangChain", "LangChain", "integrations/langchain"),
 			item("LlamaIndex", "LlamaIndex", "integrations/llamaindex"),
 			item("Dify", "Dify", "integrations/dify"),
+			item("n8n", "n8n", "integrations/n8n"),
 		}},
 	}
 }
@@ -998,7 +999,7 @@ func checkBuildManifest(out string, sourcePaths []string, requireRelease bool) e
 }
 
 func writeMachineFiles(out string, loaded content) error {
-	routes := []string{"", "docs", "pricing", "benchmarks", "blog", "changelog", "about", "contact", "crawler", "security", "status", "privacy", "terms", "refund", "acceptable-use", "mcp", "mcp/claude-code", "mcp/claude-desktop", "mcp/cursor", "mcp/windsurf", "mcp/cline", "mcp/zed", "integrations/langchain", "integrations/llamaindex", "integrations/dify"}
+	routes := []string{"", "docs", "pricing", "benchmarks", "blog", "changelog", "about", "contact", "crawler", "security", "status", "privacy", "terms", "refund", "acceptable-use", "mcp", "mcp/claude-code", "mcp/claude-desktop", "mcp/cursor", "mcp/windsurf", "mcp/cline", "mcp/zed", "integrations/langchain", "integrations/llamaindex", "integrations/dify", "integrations/n8n"}
 	for _, post := range loaded.Posts {
 		routes = append(routes, "blog/"+post.Slug)
 	}

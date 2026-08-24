@@ -275,6 +275,7 @@ Check the [`examples/`](examples/) directory for production-ready starters:
 - [`01-claude-code-literature-research`](examples/01-claude-code-literature-research/): Automated technical survey agent with timestamped citations.
 - [`02-cursor-authority-domain-refactor`](examples/02-cursor-authority-domain-refactor/): Restrict search to official doc domains (`react.dev`, `go.dev`) for zero-hallucination refactoring.
 - [`03-production-rag-temporal-pipeline`](examples/03-production-rag-temporal-pipeline/): Production RAG hybrid search pipeline with fallback retrieval.
+- [`04-n8n-ai-research-agent`](examples/04-n8n-ai-research-agent/): Ready-to-import n8n AI Agent workflow with community node (`n8n-nodes-annolux`) and temporal citations.
 
 ---
 

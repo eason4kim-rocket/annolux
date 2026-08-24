@@ -217,9 +217,10 @@ Annolux 检索性能基于一组不可变更的 **40 条复杂中英双语盲测
 ## 📁 实战案例库 (Examples)
 
 前往 [`examples/`](examples/) 目录查看开箱即用的实战源码：
-- [`01-claude-code-literature-research`](examples/01-claude-code-literature-research/): 自动化前沿技术文献调研 Agent（自带时间戳溯源）。
-- [`02-cursor-authority-domain-refactor`](examples/02-cursor-authority-domain-refactor/): 限定官方权威文档源（`react.dev`, `go.dev`）零幻觉重构代码。
-- [`03-production-rag-temporal-pipeline`](examples/03-production-rag-temporal-pipeline/): 生产级 RAG 时效性混合检索管线（搜索回退与降级）。
+- [`01-claude-code-literature-research`](examples/01-claude-code-literature-research/): 自动化技术文献调研 Agent，带显式时间戳与引用来源。
+- [`02-cursor-authority-domain-refactor`](examples/02-cursor-authority-domain-refactor/): 限定官方权威文档域名（`react.dev`、`go.dev`）的零幻觉重构助手。
+- [`03-production-rag-temporal-pipeline`](examples/03-production-rag-temporal-pipeline/): 生产级 RAG 混合检索管道，带时效性降级策略。
+- [`04-n8n-ai-research-agent`](examples/04-n8n-ai-research-agent/): 开箱即用的 n8n 官方社区节点 (`n8n-nodes-annolux`) 与 AI Agent 深度研究工作流蓝图。
 
 ---
 

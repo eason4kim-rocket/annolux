@@ -36,19 +36,19 @@ fi
 
 go run ./tools/repopolicy
 
-media="$(find . -type f -not -path './node_modules/*' \( -iname '*.mp4' -o -iname '*.mov' -o -iname '*.wav' -o -iname '*.aiff' \) -print)"
+media="$(find . -type f -not -path '*/node_modules/*' \( -iname '*.mp4' -o -iname '*.mov' -o -iname '*.wav' -o -iname '*.aiff' \) -print)"
 if [[ -n "$media" ]]; then
   printf 'forbidden media files:\n%s\n' "$media" >&2
   exit 1
 fi
 
-large="$(find . -type f -size +5M -not -path './.git/*' -not -path './node_modules/*' -print)"
+large="$(find . -type f -size +5M -not -path './.git/*' -not -path '*/node_modules/*' -print)"
 if [[ -n "$large" ]]; then
   printf 'unapproved files larger than 5 MiB:\n%s\n' "$large" >&2
   exit 1
 fi
 
-production_data="$(find . -type f \( -name '.env' -o -name '*.db' -o -name '*.sqlite' -o -name '*-wal' -o -name '*-shm' \) -not -path './.git/*' -not -path './node_modules/*' -print)"
+production_data="$(find . -type f \( -name '.env' -o -name '*.db' -o -name '*.sqlite' -o -name '*-wal' -o -name '*-shm' \) -not -path './.git/*' -not -path '*/node_modules/*' -print)"
 if [[ -n "$production_data" ]]; then
   printf 'production data or host environment file found:\n%s\n' "$production_data" >&2
   exit 1

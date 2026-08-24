@@ -2335,6 +2335,101 @@
             },
             {
               "label": {
+                "en": "n8n integration",
+                "zh": "n8n 接入"
+              },
+              "slug": "integrations/n8n"
+            },
+            {
+              "label": {
+                "en": "Full API documentation",
+                "zh": "完整 API 文档"
+              },
+              "slug": "docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "integrations/n8n",
+      "title": {
+        "en": "n8n AI Agent and workflow search node",
+        "zh": "n8n 搜索工具配置"
+      },
+      "description": {
+        "en": "Connect Annolux bilingual curated web search to n8n AI Agents and automated workflows via community node, MCP, or HTTP tool.",
+        "zh": "通过工具、MCP 或 HTTP 接入为 n8n AI Agent 与自动化工作流接入 Annolux 中英双语精选搜索。"
+      },
+      "kicker": {
+        "en": "INTEGRATIONS · N8N",
+        "zh": "组件接入 · N8N"
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Install community node",
+            "zh": "安装工具"
+          },
+          "paragraphs": [
+            {
+              "en": "In your n8n instance, navigate to Settings -> Community Nodes -> Install a community node. Enter n8n-nodes-annolux and confirm. The Annolux Search node will appear in your node catalog.",
+              "zh": "在 n8n 控制台中进入 Settings -> Community Nodes -> Install a community node，输入 n8n-nodes-annolux 并确认安装。Annolux 搜索工具即会出现在节点面板中。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Authentication credential",
+            "zh": "认证配置"
+          },
+          "paragraphs": [
+            {
+              "en": "Create a new Annolux API credential in n8n. Paste your API key (starts with ann_live_ or ann_test_). n8n securely encrypts your key and attaches it to search requests.",
+              "zh": "在 n8n 认证管理中添加 Annolux API 凭证，填入以 ann_live_ 开头的 API Key。n8n 会自动加密保存并在调用时附加授权标头。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Connecting to n8n AI Agent",
+            "zh": "在 Agent 中使用搜索"
+          },
+          "paragraphs": [
+            {
+              "en": "Add an AI Agent node on your canvas. Drag Annolux Search and connect it to the Tools input of the agent. The LLM will autonomously invoke web search to answer questions with verified fetched_at snapshot dates.",
+              "zh": "在工作流中添加 AI Agent 节点，将 Annolux Search 工具接入 Agent 的 Tools 输入端。大语言模型即可自主调用检索，获取带明确快照时间戳的准确知识。"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "en": "Boundaries and credits",
+            "zh": "边界与点数"
+          },
+          "paragraphs": [
+            {
+              "en": "Search queries a curated bilingual index. Exactly 1 credit per successful 2xx query; errors and timeouts cost zero. Every account receives 1,000 free credits each month.",
+              "zh": "search_web 查询精选中英双语索引。只有成功的 2xx 搜索扣 1 点，错误和超时不扣。每个账户每月享有 1,000 免费点数。"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "en": "Dify integration",
+                "zh": "Dify 接入"
+              },
+              "slug": "integrations/dify"
+            },
+            {
+              "label": {
+                "en": "LangChain integration",
+                "zh": "LangChain 接入"
+              },
+              "slug": "integrations/langchain"
+            },
+            {
+              "label": {
                 "en": "Full API documentation",
                 "zh": "完整 API 文档"
               },

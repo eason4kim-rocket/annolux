@@ -1,0 +1,166 @@
+{
+  "name": "Annolux AI Research Agent with Temporal Grounding",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "chat-trigger",
+      "name": "When chat message received"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a senior technical research assistant equipped with Annolux high-precision curated web search. Always cite sources with their explicit fetched_at snapshot dates to provide grounded, temporal facts with zero hallucination."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        220,
+        0
+      ],
+      "id": "ai-agent",
+      "name": "AI Research Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o"
+        },
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        220
+      ],
+      "id": "chat-model",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-cred",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        360,
+        220
+      ],
+      "id": "chat-memory",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "query": "={{ $fromAI('query', 'The search query to look up on the web') }}",
+        "limit": 5,
+        "deduplicate": true,
+        "ranking": "default"
+      },
+      "type": "n8n-nodes-annolux.annolux",
+      "typeVersion": 1,
+      "position": [
+        500,
+        220
+      ],
+      "id": "annolux-search-tool",
+      "name": "Annolux Search Tool",
+      "credentials": {
+        "annoluxApi": {
+          "id": "annolux-cred",
+          "name": "Annolux API Key"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Research Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Research Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Research Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Annolux Search Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Research Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1.0.0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "annolux-official-template"
+  },
+  "id": "annolux-n8n-ai-research-agent",
+  "tags": [
+    {
+      "name": "Annolux",
+      "id": "tag-annolux"
+    },
+    {
+      "name": "AI Agent",
+      "id": "tag-ai-agent"
+    },
+    {
+      "name": "Search",
+      "id": "tag-search"
+    }
+  ]
+}
