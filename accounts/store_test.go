@@ -179,7 +179,7 @@ func TestIdentityLoginSignupGrantAndNoEmailMerge(t *testing.T) {
 	}
 	for _, accountID := range []string{first.ID, second.ID} {
 		summary, err := store.CreditSummary(ctx, accountID)
-		if err != nil || summary.Available != SignupCredits || summary.Granted != SignupCredits || len(summary.Grants) != 1 || summary.Grants[0].ExpiresAt != nil {
+		if err != nil || summary.Available != FreeMonthlyCredits || summary.Granted != FreeMonthlyCredits || len(summary.Grants) != 1 || summary.Grants[0].ExpiresAt == nil || !summary.Grants[0].ExpiresAt.Equal(time.Date(2026, 9, 1, 0, 0, 0, 0, time.UTC)) {
 			t.Fatalf("summary(%s) = %#v, %v", accountID, summary, err)
 		}
 	}
@@ -194,7 +194,7 @@ func TestLinkedIdentityDoesNotDuplicateSignupGrant(t *testing.T) {
 		t.Fatalf("LinkIdentity() = %#v, %v", identity, err)
 	}
 	summary, err := store.CreditSummary(context.Background(), account.ID)
-	if err != nil || summary.Granted != SignupCredits || len(summary.Grants) != 1 {
+	if err != nil || summary.Granted != FreeMonthlyCredits || len(summary.Grants) != 1 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 }
@@ -301,13 +301,15 @@ func TestCreditReservationCommitReleaseExpiryAndOrdering(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	expires := clock.Add(30 * 24 * time.Hour)
+	// The paid grant expires before the monthly free grant's month boundary, so
+	// spending draws from the paid grant first and only it expires mid-test.
+	expires := clock.Add(10 * 24 * time.Hour)
 	paid, created, err := store.GrantCredits(context.Background(), account.ID, "subscription", 3, clock, &expires, "txn:1")
 	if err != nil || !created {
 		t.Fatalf("GrantCredits() = %#v, %t, %v", paid, created, err)
 	}
 	reservation, remaining, err := store.ReserveCredits(context.Background(), account.ID, key.ID, "request-1", 1)
-	if err != nil || remaining != SignupCredits+2 {
+	if err != nil || remaining != FreeMonthlyCredits+2 {
 		t.Fatalf("ReserveCredits() = %#v, %d, %v", reservation, remaining, err)
 	}
 	summary, err := store.CreditSummary(context.Background(), account.ID)
@@ -321,15 +323,15 @@ func TestCreditReservationCommitReleaseExpiryAndOrdering(t *testing.T) {
 		t.Fatalf("reserved summary = %#v, %v", summary, err)
 	}
 	remaining, err = store.CommitReservation(context.Background(), reservation.ID)
-	if err != nil || remaining != SignupCredits+2 {
+	if err != nil || remaining != FreeMonthlyCredits+2 {
 		t.Fatalf("CommitReservation() = %d, %v", remaining, err)
 	}
 	second, remaining, err := store.ReserveCredits(context.Background(), account.ID, key.ID, "request-2", 1)
-	if err != nil || remaining != SignupCredits+1 {
+	if err != nil || remaining != FreeMonthlyCredits+1 {
 		t.Fatalf("second reserve = %#v, %d, %v", second, remaining, err)
 	}
 	remaining, err = store.ReleaseReservation(context.Background(), second.ID)
-	if err != nil || remaining != SignupCredits+2 {
+	if err != nil || remaining != FreeMonthlyCredits+2 {
 		t.Fatalf("ReleaseReservation() = %d, %v", remaining, err)
 	}
 	clock = expires.Add(time.Second)
@@ -338,7 +340,7 @@ func TestCreditReservationCommitReleaseExpiryAndOrdering(t *testing.T) {
 		t.Fatalf("ExpireCredits() = %d, %v", expired, err)
 	}
 	summary, err = store.CreditSummary(context.Background(), account.ID)
-	if err != nil || summary.Available != SignupCredits || summary.Used != 1 || summary.Expired != 2 {
+	if err != nil || summary.Available != FreeMonthlyCredits || summary.Used != 1 || summary.Expired != 2 {
 		t.Fatalf("final summary = %#v, %v", summary, err)
 	}
 }
@@ -351,7 +353,7 @@ func TestConcurrentReservationsNeverDriveBalanceNegative(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	const attempts = int(SignupCredits) + 20
+	const attempts = int(FreeMonthlyCredits) + 20
 	var group sync.WaitGroup
 	var mutex sync.Mutex
 	successes := 0
@@ -377,7 +379,7 @@ func TestConcurrentReservationsNeverDriveBalanceNegative(t *testing.T) {
 	}
 	group.Wait()
 	summary, err := store.CreditSummary(context.Background(), account.ID)
-	if err != nil || successes != int(SignupCredits) || summary.Available != 0 || summary.Used != SignupCredits {
+	if err != nil || successes != int(FreeMonthlyCredits) || summary.Available != 0 || summary.Used != FreeMonthlyCredits {
 		t.Fatalf("successes=%d summary=%#v err=%v", successes, summary, err)
 	}
 }
@@ -391,7 +393,7 @@ func TestStaleReservationRecoveryAfterCrash(t *testing.T) {
 		t.Fatal(err)
 	}
 	reservation, remaining, err := store.ReserveCredits(context.Background(), account.ID, key.ID, "crashed-request", 1)
-	if err != nil || reservation.State != "pending" || remaining != SignupCredits-1 {
+	if err != nil || reservation.State != "pending" || remaining != FreeMonthlyCredits-1 {
 		t.Fatalf("reservation = %#v, remaining=%d, err=%v", reservation, remaining, err)
 	}
 	clock = clock.Add(6 * time.Minute)
@@ -400,7 +402,7 @@ func TestStaleReservationRecoveryAfterCrash(t *testing.T) {
 		t.Fatalf("recovery = %d, %v", released, err)
 	}
 	summary, err := store.CreditSummary(context.Background(), account.ID)
-	if err != nil || summary.Available != SignupCredits || summary.Reserved != 0 || summary.Used != 0 {
+	if err != nil || summary.Available != FreeMonthlyCredits || summary.Reserved != 0 || summary.Used != 0 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 	if released, err = store.ReleaseStaleReservations(context.Background(), 5*time.Minute); err != nil || released != 0 {
@@ -464,7 +466,7 @@ func TestRevokedKeyCannotCommitAnInFlightReservation(t *testing.T) {
 		t.Fatal(err)
 	}
 	summary, err := store.CreditSummary(context.Background(), account.ID)
-	if err != nil || summary.Available != SignupCredits || summary.Used != 0 || summary.Reserved != 0 {
+	if err != nil || summary.Available != FreeMonthlyCredits || summary.Used != 0 || summary.Reserved != 0 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 }

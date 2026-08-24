@@ -135,7 +135,7 @@ func TestAllAPIKeysShareOneAccountRateLimit(t *testing.T) {
 		t.Fatalf("eleventh request = %d %s", response.Code, response.Body.String())
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Used != 10 || summary.Available != accounts.SignupCredits-10 || summary.Reserved != 0 {
+	if err != nil || summary.Used != 10 || summary.Available != accounts.FreeMonthlyCredits-10 || summary.Reserved != 0 {
 		t.Fatalf("rate-limited summary = %#v, %v", summary, err)
 	}
 }
@@ -157,7 +157,7 @@ func TestCommercialSearchRejectsUnsupportedAndUnknownFieldsWithoutCharge(t *test
 		}
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Available != accounts.SignupCredits || summary.Used != 0 || len(fixture.search.requests) != 0 {
+	if err != nil || summary.Available != accounts.FreeMonthlyCredits || summary.Used != 0 || len(fixture.search.requests) != 0 {
 		t.Fatalf("summary = %#v, requests=%d, err=%v", summary, len(fixture.search.requests), err)
 	}
 }
@@ -170,7 +170,7 @@ func TestCommercialSearchFailureReleasesReservation(t *testing.T) {
 		t.Fatalf("response = %d %s", response.Code, response.Body.String())
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Available != accounts.SignupCredits || summary.Used != 0 || summary.Reserved != 0 {
+	if err != nil || summary.Available != accounts.FreeMonthlyCredits || summary.Used != 0 || summary.Reserved != 0 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 }
@@ -186,7 +186,7 @@ func TestCommercialSearchRejectsResultWithoutFetchTimeAndReleasesReservation(t *
 		t.Fatalf("response = %d %s", response.Code, response.Body.String())
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Available != accounts.SignupCredits || summary.Used != 0 || summary.Reserved != 0 {
+	if err != nil || summary.Available != accounts.FreeMonthlyCredits || summary.Used != 0 || summary.Reserved != 0 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 }
@@ -199,7 +199,7 @@ func TestCommercialSearchTimeoutReleasesReservation(t *testing.T) {
 		t.Fatalf("response = %d %s", response.Code, response.Body.String())
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Available != accounts.SignupCredits || summary.Used != 0 || summary.Reserved != 0 {
+	if err != nil || summary.Available != accounts.FreeMonthlyCredits || summary.Used != 0 || summary.Reserved != 0 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 }
@@ -221,7 +221,7 @@ func TestCommercialSearchAuthenticationFailuresNeverCharge(t *testing.T) {
 		t.Fatalf("suspended response = %d %s", suspended.Code, suspended.Body.String())
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Available != accounts.SignupCredits || summary.Used != 0 || summary.Reserved != 0 {
+	if err != nil || summary.Available != accounts.FreeMonthlyCredits || summary.Used != 0 || summary.Reserved != 0 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 }

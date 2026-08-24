@@ -74,6 +74,7 @@ func (server *Server) handleAccountUsage(writer http.ResponseWriter, request *ht
 	if !ok {
 		return
 	}
+	server.ensureMonthlyFreeCredits(request.Context(), session.Session.AccountID)
 	summary, err := server.accounts.CreditSummary(request.Context(), session.Session.AccountID)
 	if err != nil {
 		writeError(writer, http.StatusServiceUnavailable, "ACCOUNT_UNAVAILABLE", "usage is unavailable")

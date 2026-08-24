@@ -114,7 +114,7 @@ func TestCheckoutAndCompletedWebhookGrantCreditsExactlyOnce(t *testing.T) {
 		t.Fatalf("duplicate = %d %s", response.Code, response.Body.String())
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Available != accounts.SignupCredits+20_000 || summary.Granted != accounts.SignupCredits+20_000 {
+	if err != nil || summary.Available != accounts.FreeMonthlyCredits+20_000 || summary.Granted != accounts.FreeMonthlyCredits+20_000 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 	mutated := bytes.Replace(body, []byte(`"status":"completed"`), []byte(`"status":"paid"`), 1)
@@ -192,7 +192,7 @@ func TestRenewalWebhookUsesOriginAndDoesNotRebindPropagatedIntent(t *testing.T) 
 		t.Fatalf("checkout intent was rebound = %#v, %v", completedIntent, err)
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Granted != accounts.SignupCredits+40_000 {
+	if err != nil || summary.Granted != accounts.FreeMonthlyCredits+40_000 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 }
@@ -236,7 +236,7 @@ func TestUnrelatedAndNonRecurringTransactionsAreStoredIgnored(t *testing.T) {
 		},
 	})
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Granted != accounts.SignupCredits {
+	if err != nil || summary.Granted != accounts.FreeMonthlyCredits {
 		t.Fatalf("ignored transactions changed credits = %#v, %v", summary, err)
 	}
 }
@@ -330,7 +330,7 @@ func TestPaddleReconciliationRepairsMissedEventsExactlyOnce(t *testing.T) {
 		}
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Available != accounts.SignupCredits+20_000 || summary.Granted != accounts.SignupCredits+20_000 {
+	if err != nil || summary.Available != accounts.FreeMonthlyCredits+20_000 || summary.Granted != accounts.FreeMonthlyCredits+20_000 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 }

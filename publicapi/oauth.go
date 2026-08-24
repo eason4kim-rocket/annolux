@@ -230,6 +230,7 @@ func (server *Server) handleOAuthCallback(provider string) http.HandlerFunc {
 			server.redirectOAuthError(writer, request)
 			return
 		}
+		server.ensureMonthlyFreeCredits(request.Context(), account.ID)
 		session, token, _, err := server.accounts.CreateSession(request.Context(), account.ID, server.oauth.ttl)
 		if err != nil {
 			server.redirectOAuthError(writer, request)

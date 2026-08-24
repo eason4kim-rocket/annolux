@@ -9,11 +9,14 @@ import (
 )
 
 const (
-	SignupCredits     int64 = 1_000
-	MaximumAPIKeys          = 3
-	APIKeyPrefix            = "ann_live_"
-	DefaultSessionTTL       = 30 * 24 * time.Hour
-	DefaultOAuthTTL         = 10 * time.Minute
+	// FreeMonthlyCredits is the free tier: this amount is granted at signup and
+	// refreshed at the start of each calendar month. Unused credits do not roll
+	// over — each month's grant expires when the next month begins.
+	FreeMonthlyCredits int64 = 1_000
+	MaximumAPIKeys           = 3
+	APIKeyPrefix             = "ann_live_"
+	DefaultSessionTTL        = 30 * 24 * time.Hour
+	DefaultOAuthTTL          = 10 * time.Minute
 )
 
 var (

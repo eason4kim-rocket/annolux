@@ -1,0 +1,84 @@
+# Smithery configuration for Annolux MCP Server
+# https://smithery.ai/docs/config
+version: 1
+
+server:
+  name: "annolux"
+  displayName: "Annolux Search"
+  description: "Curated English & Chinese Search API and MCP for AI Agents with explicit fetched_at time provenance."
+  version: "0.1.2"
+  icon: "https://annolux.com/favicon.svg"
+  homepage: "https://annolux.com"
+  repository: "https://github.com/eason4kim-rocket/annolux"
+  license: "Apache-2.0"
+
+startCommand:
+  type: stdio
+  commandFunction: |-
+    (config) => {
+      const args = ["-y", "annolux-mcp"];
+      const env = {
+        ANNOLUX_API_URL: config?.apiUrl || "https://api.annolux.com"
+      };
+      if (config?.apiKey) {
+        env.ANNOLUX_API_KEY = config.apiKey;
+        args.push("-key", config.apiKey);
+      }
+      return {
+        command: "npx",
+        args: args,
+        env: env
+      };
+    }
+
+configSchema:
+  type: object
+  properties:
+    apiKey:
+      type: string
+      description: "Annolux API key (starts with ann_live_). Free tier provides 1,000 permanent credits at https://annolux.com."
+      secret: true
+    apiUrl:
+      type: string
+      description: "Annolux API origin endpoint (default: https://api.annolux.com)."
+      default: "https://api.annolux.com"
+  required: []
+
+tools:
+  - name: "search_web"
+    description: "Search Annolux curated English and Chinese index with explicit fetched_at timestamps. One successful call uses one credit."
+    inputSchema:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: "Natural-language query containing one to fifty words"
+          maxLength: 500
+        limit:
+          type: integer
+          description: "Maximum results (default 10, maximum 10)"
+          minimum: 1
+          maximum: 10
+          default: 10
+        domains:
+          type: array
+          description: "Optional registrable-domain filters without schemes or paths (e.g. ['docs.rs', 'go.dev'])"
+          items:
+            type: string
+        deduplicate:
+          type: boolean
+          description: "Collapse duplicate and near-duplicate results"
+          default: true
+        timeout:
+          type: integer
+          description: "End-to-end timeout in seconds (default and maximum 30)"
+          minimum: 1
+          maximum: 30
+          default: 30
+        ranking:
+          type: string
+          description: "Ranking mode: default or provider"
+          enum: ["default", "provider"]
+          default: "default"

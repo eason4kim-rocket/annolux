@@ -8,6 +8,9 @@
 
 [![Go Version](https://img.shields.io/github/go-mod/go-version/eason4kim-rocket/annolux?style=flat-square&logo=go)](https://golang.org)
 [![NPM Version](https://img.shields.io/npm/v/annolux-mcp?style=flat-square&logo=npm&color=CB3837)](https://www.npmjs.com/package/annolux-mcp)
+[![Smithery Badge](https://smithery.ai/badge/annolux-mcp)](https://smithery.ai/server/annolux-mcp)
+[![Glama MCP](https://glama.ai/mcp/servers/eason4kim-rocket/annolux/badge)](https://glama.ai/mcp/servers/eason4kim-rocket/annolux)
+[![Add to Cursor](https://img.shields.io/badge/一键安装到-Cursor-000000?style=flat-square&logo=cursor&logoColor=white)](cursor://anysphere.cursor-deeplink/mcp/install?name=annolux&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImFubm9sdXgtbWNwIl19)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2025--12--11-000000?style=flat-square&logo=anthropic)](https://modelcontextprotocol.io/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg?style=flat-square)](LICENSE)
 [![Free Tier](https://img.shields.io/badge/免费额度-1%2C000_点数-brightgreen?style=flat-square)](https://annolux.com/zh/)
@@ -30,7 +33,7 @@
 - 🕒 **显式 `fetched_at` 抓取时间戳**：每条命中结果均明确标注具体抓取秒级时间，为大模型提供确定性的时间证据链。
 - 🎯 **确定性账本计费**：**仅成功的 2xx 请求扣 1 点**。参数错误、频率超限 (429)、服务端超时 (504) **100% 扣 0 点**。
 - 🧩 **原生 Model Context Protocol (MCP)**：无缝支持 Claude Code、Cursor、Windsurf、Cline、Zed 与 Claude Desktop。
-- 🚀 **注册即送 1,000 次永久免费额度**：支持 GitHub / Google 快捷登录，30 秒跑通首次调用。
+- 🚀 **每月 1,000 次免费额度**：支持 GitHub / Google 快捷登录，30 秒跑通首次调用。
 
 ---
 
@@ -45,7 +48,7 @@
 | **超时/报错请求** | **🆓 0 点数扣费，绝无超额账单** | ❌ 依然计费 | ❌ 依然计费 | ❌ 依然计费 |
 | **MCP 工具面** | **单工具 `search_web`（最省 Token）** | 多工具较重 | 多工具较重 | 需额外写 Bridge |
 | **域名限定检索** | **✅ 支持精确主机名过滤 (`domains`)** | ✅ 支持 | ✅ 支持 | 受限的 `site:` 语法 |
-| **免费起步额度** | **1,000 次永久额度（免绑信用卡）** | 试用限制 | 1,000次/月 | 2,500次一次性 |
+| **免费起步额度** | **每月 1,000 次额度（免绑信用卡）** | 试用限制 | 1,000次/月 | 2,500次一次性 |
 
 ---
 
@@ -72,6 +75,16 @@ go install github.com/eason4kim-rocket/annolux/cmd/annolux-mcp@latest
 ## 🔌 MCP 客户端集成
 
 Annolux 严格遵循 Anthropic [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) 规范，提供轻量高效的单工具：`search_web`。
+
+### ⚡ 1 秒极速一键安装（Cursor / Smithery / Glama）
+
+- **Cursor 原生安装**：点击 [![一键安装到 Cursor](https://img.shields.io/badge/一键安装到-Cursor-000000?style=flat-square&logo=cursor&logoColor=white)](cursor://anysphere.cursor-deeplink/mcp/install?name=annolux&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImFubm9sdXgtbWNwIl19) 直接在 Cursor 客户端中完成配置。
+- **Smithery CLI 自动安装**：
+  ```bash
+  npx -y @smithery/cli install annolux-mcp --client claude
+  npx -y @smithery/cli install annolux-mcp --client cursor
+  ```
+- **Glama 免安装网页沙盒**：在 [Glama.ai 在线 Playground](https://glama.ai/mcp/servers/eason4kim-rocket/annolux) 体验免本地环境搜索。
 
 ### 1. Claude Code
 ```bash
@@ -191,7 +204,7 @@ Annolux 检索性能基于一组不可变更的 **40 条复杂中英双语盲测
 
 | 套餐方案 | 价格 | 每月点数 | 速率限制 | 计费规则 |
 | :--- | :--- | :--- | :--- | :--- |
-| **Free (免费版)** | **$0** | **1,000 (永久有效)** | 5 RPS / 突发 10 | 永久免费，免绑信用卡 |
+| **Free (免费版)** | **$0** | **1,000 / 月** | 5 RPS / 突发 10 | 永久免费，免绑信用卡 |
 | **Pro (专业版)** | **$29 / 月** | **20,000 / 月** | 5 RPS / 突发 10 | 1次成功请求=1点，周期清零不结转 |
 | **Scale (规模版)** | **$99 / 月** | **100,000 / 月** | 5 RPS / 突发 10 | 1次成功请求=1点，周期清零不结转 |
 

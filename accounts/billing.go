@@ -54,12 +54,19 @@ func (store *Store) CreateCheckoutIntent(ctx context.Context, accountID, plan, t
 		if !isNoRows(err) {
 			return err
 		}
-		var pending int
-		if err := tx.QueryRowContext(ctx, `SELECT COUNT(*) FROM checkout_intents WHERE account_id=? AND state='pending'`, accountID).Scan(&pending); err != nil {
-			return err
+		existing, err := scanCheckoutIntent(tx.QueryRowContext(ctx, `SELECT id,account_id,plan,terms_version,refund_version,state,paddle_transaction_id,expires_at,created_at,updated_at FROM checkout_intents WHERE account_id=? AND state='pending' ORDER BY created_at DESC LIMIT 1`, accountID))
+		if err == nil {
+			if existing.Plan != plan {
+				return ErrConflict
+			}
+			if _, err := tx.ExecContext(ctx, `UPDATE accounts SET terms_version=?,refund_version=?,updated_at=? WHERE id=?`, termsVersion, refundVersion, now.Unix(), accountID); err != nil {
+				return err
+			}
+			intent = existing
+			return nil
 		}
-		if pending > 0 {
-			return ErrConflict
+		if !errors.Is(err, ErrNotFound) {
+			return err
 		}
 		if _, err := tx.ExecContext(ctx, `UPDATE accounts SET terms_version=?,refund_version=?,updated_at=? WHERE id=?`, termsVersion, refundVersion, now.Unix(), accountID); err != nil {
 			return err

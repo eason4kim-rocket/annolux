@@ -61,6 +61,16 @@ type publicSearchResponse struct {
 	observation *models.SearchObservation
 }
 
+// ensureMonthlyFreeCredits tops up the account's current-month free-tier credits
+// before a credit-bearing operation. It is best-effort: a failure is logged but
+// never blocks the request, because the credit reservation is the authoritative
+// balance check.
+func (server *Server) ensureMonthlyFreeCredits(ctx context.Context, accountID string) {
+	if _, _, err := server.accounts.EnsureMonthlyFreeCredits(ctx, accountID); err != nil {
+		server.logger.Warn("monthly free credit top-up failed", "account_id", accountID, "error", err)
+	}
+}
+
 func (server *Server) handleSearch(writer http.ResponseWriter, request *http.Request) {
 	authenticated, ok := server.requireAPIKey(writer, request)
 	if !ok {
@@ -85,6 +95,7 @@ func (server *Server) handleSearch(writer http.ResponseWriter, request *http.Req
 		return
 	}
 	requestID := writer.Header().Get(RequestIDHeader)
+	server.ensureMonthlyFreeCredits(request.Context(), authenticated.AccountID)
 	reservation, _, err := server.accounts.ReserveCredits(request.Context(), authenticated.AccountID, authenticated.KeyID, requestID, 1)
 	if errors.Is(err, accounts.ErrInsufficientCredits) {
 		writeSearchError(writer, http.StatusPaymentRequired, "INSUFFICIENT_CREDITS", "credit balance is empty")

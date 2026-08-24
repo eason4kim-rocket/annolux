@@ -7,6 +7,26 @@ import (
 	"time"
 )
 
+func TestCreateCheckoutIntentReusesPendingSamePlan(t *testing.T) {
+	clock := time.Date(2026, 8, 16, 3, 0, 0, 0, time.UTC)
+	store := openTestStore(t, &clock)
+	account := createTestAccount(t, store, "reuse-intent")
+	first, err := store.CreateCheckoutIntent(context.Background(), account.ID, "pro", "terms", "refund", 30*time.Minute)
+	if err != nil {
+		t.Fatal(err)
+	}
+	second, err := store.CreateCheckoutIntent(context.Background(), account.ID, "pro", "terms", "refund", 30*time.Minute)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if second.ID != first.ID || second.Plan != "pro" || second.State != "pending" {
+		t.Fatalf("reused intent = %#v, want pending pro %s", second, first.ID)
+	}
+	if _, err := store.CreateCheckoutIntent(context.Background(), account.ID, "scale", "terms", "refund", 30*time.Minute); !errors.Is(err, ErrConflict) {
+		t.Fatalf("plan switch while pending = %v", err)
+	}
+}
+
 func TestPaddleTransactionIsIdempotentAndSubscriptionIgnoresOlderEvents(t *testing.T) {
 	clock := time.Date(2026, 8, 16, 3, 0, 0, 0, time.UTC)
 	store := openTestStore(t, &clock)
@@ -40,7 +60,7 @@ func TestPaddleTransactionIsIdempotentAndSubscriptionIgnoresOlderEvents(t *testi
 		CheckoutIntentID: intent.ID, Origin: "web", Plan: "pro", PeriodStart: clock, PeriodEnd: periodEnd, OccurredAt: newer.Add(time.Minute),
 	}
 	accountID, remaining, created, err := store.ApplyCompletedTransaction(context.Background(), input)
-	if err != nil || !created || accountID != account.ID || remaining != SignupCredits+20_000 {
+	if err != nil || !created || accountID != account.ID || remaining != FreeMonthlyCredits+20_000 {
 		t.Fatalf("ApplyCompletedTransaction() = %q, %d, %t, %v", accountID, remaining, created, err)
 	}
 	_, duplicateRemaining, created, err := store.ApplyCompletedTransaction(context.Background(), input)
@@ -48,7 +68,7 @@ func TestPaddleTransactionIsIdempotentAndSubscriptionIgnoresOlderEvents(t *testi
 		t.Fatalf("duplicate transaction = %d, %t, %v", duplicateRemaining, created, err)
 	}
 	summary, err := store.CreditSummary(context.Background(), account.ID)
-	if err != nil || summary.Granted != SignupCredits+20_000 || len(summary.Grants) != 2 {
+	if err != nil || summary.Granted != FreeMonthlyCredits+20_000 || len(summary.Grants) != 2 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 	completedIntent, err := store.GetCheckoutIntent(context.Background(), intent.ID)
@@ -69,7 +89,9 @@ func TestApprovedRefundRevokesUnusedCreditsAndChargebackSuspends(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	periodEnd := clock.Add(30 * 24 * time.Hour)
+	// The paid grant must expire before the monthly free grant's month boundary
+	// so this refund test spends (and then revokes) the paid grant, not the free.
+	periodEnd := clock.Add(10 * 24 * time.Hour)
 	input := CompletedTransaction{TransactionID: "txn_bbbbbbbbbbbbbbbbbbbbbbbbbb", SubscriptionID: "sub_bbbbbbbbbbbbbbbbbbbbbbbbbb", CustomerID: "ctm_bbbbbbbbbbbbbbbbbbbbbbbbbb", CheckoutIntentID: intent.ID, Origin: "web", Plan: "scale", PeriodStart: clock, PeriodEnd: periodEnd, OccurredAt: clock}
 	if _, _, _, err := store.ApplyCompletedTransaction(context.Background(), input); err != nil {
 		t.Fatal(err)
@@ -86,7 +108,7 @@ func TestApprovedRefundRevokesUnusedCreditsAndChargebackSuspends(t *testing.T) {
 		t.Fatalf("refund = %q, %d, %v", accountID, revoked, err)
 	}
 	summary, err := store.CreditSummary(context.Background(), account.ID)
-	if err != nil || summary.Available != SignupCredits || summary.Revoked != 99_999 || summary.Used != 1 {
+	if err != nil || summary.Available != FreeMonthlyCredits || summary.Revoked != 99_999 || summary.Used != 1 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 	if _, _, err := store.ApplyApprovedAdjustment(context.Background(), input.TransactionID, "adj_bbbbbbbbbbbbbbbbbbbbbbbbbb", "refund"); err != nil {
@@ -116,7 +138,9 @@ func TestRefundAtomicallyCancelsPendingPaidReservationWithoutRestoringCredits(t 
 	if err != nil {
 		t.Fatal(err)
 	}
-	periodEnd := clock.Add(30 * 24 * time.Hour)
+	// The paid grant must expire before the monthly free grant so the in-flight
+	// reservation draws from the paid grant that the refund then cancels.
+	periodEnd := clock.Add(10 * 24 * time.Hour)
 	transaction := CompletedTransaction{
 		TransactionID: "txn_pendingrefundpendingrefund", SubscriptionID: "sub_pendingrefundpendingrefund", CustomerID: "ctm_pendingrefundpendingrefund",
 		CheckoutIntentID: intent.ID, Origin: "web", Plan: "scale", PeriodStart: clock, PeriodEnd: periodEnd, OccurredAt: clock,
@@ -136,11 +160,11 @@ func TestRefundAtomicallyCancelsPendingPaidReservationWithoutRestoringCredits(t 
 		t.Fatalf("commit after refund = %v", err)
 	}
 	remaining, err := store.ReleaseReservation(context.Background(), reservation.ID)
-	if err != nil || remaining != SignupCredits {
+	if err != nil || remaining != FreeMonthlyCredits {
 		t.Fatalf("idempotent release after refund = %d, %v", remaining, err)
 	}
 	summary, err := store.CreditSummary(context.Background(), account.ID)
-	if err != nil || summary.Available != SignupCredits || summary.Reserved != 0 || summary.Used != 0 || summary.Revoked != 100_000 {
+	if err != nil || summary.Available != FreeMonthlyCredits || summary.Reserved != 0 || summary.Used != 0 || summary.Revoked != 100_000 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 }
@@ -261,7 +285,7 @@ func TestPaddleCheckoutIntentCannotExpireSwitchPlanOrGrantTwice(t *testing.T) {
 		t.Fatalf("second transaction reused intent = %v", err)
 	}
 	summary, err := store.CreditSummary(context.Background(), account.ID)
-	if err != nil || summary.Granted != SignupCredits+20_000 {
+	if err != nil || summary.Granted != FreeMonthlyCredits+20_000 {
 		t.Fatalf("summary after reuse attempt = %#v, %v", summary, err)
 	}
 
@@ -353,7 +377,7 @@ func TestPaddleRecurringOriginIgnoresPropagatedCheckoutIntent(t *testing.T) {
 		t.Fatalf("checkout intent was rebound by renewal = %#v, %v", completedIntent, err)
 	}
 	summary, err := store.CreditSummary(context.Background(), account.ID)
-	if err != nil || summary.Granted != SignupCredits+40_000 {
+	if err != nil || summary.Granted != FreeMonthlyCredits+40_000 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 	renewal.Origin = "subscription_update"

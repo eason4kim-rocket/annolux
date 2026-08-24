@@ -31,8 +31,9 @@ func validateIdentity(input IdentityInput) error {
 }
 
 // LoginIdentity returns the existing account for a provider subject or creates
-// a new account with exactly one permanent signup grant. Email addresses are
-// metadata only and are never used to merge identities.
+// a new account seeded with the current month's free-tier credit grant (the
+// recurring monthly refresh is handled by EnsureMonthlyFreeCredits). Email
+// addresses are metadata only and are never used to merge identities.
 func (store *Store) LoginIdentity(ctx context.Context, input IdentityInput) (Account, bool, error) {
 	if err := validateIdentity(input); err != nil || ctx == nil {
 		return Account{}, false, ErrInvalidInput
@@ -95,13 +96,13 @@ func (store *Store) LoginIdentity(ctx context.Context, input IdentityInput) (Acc
 			identityID, accountID, input.Provider, input.Subject, input.Email, input.DisplayName, input.AvatarURL, now.Unix(), now.Unix()); err != nil {
 			return translateConstraint(err)
 		}
-		externalRef := "signup:" + accountID
-		if _, err := tx.ExecContext(ctx, `INSERT INTO credit_grants(id,account_id,source,original_units,remaining_units,starts_at,expires_at,external_ref,created_at) VALUES(?,?,?,?,?,?,NULL,?,?)`,
-			grantID, accountID, "signup", SignupCredits, SignupCredits, now.Unix(), externalRef, now.Unix()); err != nil {
+		monthStart, nextMonthStart, externalRef := monthlyFreeWindow(accountID, now)
+		if _, err := tx.ExecContext(ctx, `INSERT INTO credit_grants(id,account_id,source,original_units,remaining_units,starts_at,expires_at,external_ref,created_at) VALUES(?,?,?,?,?,?,?,?,?)`,
+			grantID, accountID, "signup", FreeMonthlyCredits, FreeMonthlyCredits, monthStart.Unix(), nextMonthStart.Unix(), externalRef, now.Unix()); err != nil {
 			return translateConstraint(err)
 		}
 		if _, err := tx.ExecContext(ctx, `INSERT INTO credit_ledger(id,account_id,kind,units,grant_id,reservation_id,external_ref,created_at) VALUES(?,?,?,?,?,NULL,?,?)`,
-			ledgerID, accountID, "grant", SignupCredits, grantID, externalRef, now.Unix()); err != nil {
+			ledgerID, accountID, "grant", FreeMonthlyCredits, grantID, externalRef, now.Unix()); err != nil {
 			return translateConstraint(err)
 		}
 		created = true

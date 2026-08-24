@@ -1,7 +1,7 @@
 {
   "name": "annolux-mcp",
-  "version": "0.1.0",
-  "description": "Official MCP (Model Context Protocol) server for Annolux Bilingual Search API",
+  "version": "0.2.0",
+  "description": "Official Model Context Protocol (MCP) server for Annolux — Curated English & Chinese Web Search for AI Agents with explicit fetched_at timestamps",
   "main": "index.js",
   "bin": {
     "annolux-mcp": "./bin/annolux-mcp.js"
@@ -14,14 +14,24 @@
   ],
   "keywords": [
     "mcp",
+    "mcp-server",
     "model-context-protocol",
     "annolux",
-    "search",
-    "claude",
+    "search-api",
+    "web-search",
+    "claude-code",
+    "claude-desktop",
     "cursor",
+    "cursor-mcp",
     "windsurf",
+    "cline",
+    "roo-cline",
+    "zed",
     "ai-agent",
-    "rag"
+    "rag",
+    "bilingual-search",
+    "smithery",
+    "glama"
   ],
   "author": "Annolux",
   "license": "Apache-2.0",

@@ -31,6 +31,7 @@ func (server *Server) handlePlaygroundSearch(writer http.ResponseWriter, request
 		return
 	}
 	requestID := writer.Header().Get(RequestIDHeader)
+	server.ensureMonthlyFreeCredits(request.Context(), session.Session.AccountID)
 	reservation, _, err := server.accounts.ReserveSessionCredits(request.Context(), session.Session.AccountID, requestID, 1)
 	if errors.Is(err, accounts.ErrInsufficientCredits) {
 		writeSearchError(writer, http.StatusPaymentRequired, "INSUFFICIENT_CREDITS", "credit balance is empty")

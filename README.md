@@ -8,6 +8,9 @@
 
 [![Go Version](https://img.shields.io/github/go-mod/go-version/eason4kim-rocket/annolux?style=flat-square&logo=go)](https://golang.org)
 [![NPM Version](https://img.shields.io/npm/v/annolux-mcp?style=flat-square&logo=npm&color=CB3837)](https://www.npmjs.com/package/annolux-mcp)
+[![Smithery Badge](https://smithery.ai/badge/annolux-mcp)](https://smithery.ai/server/annolux-mcp)
+[![Glama MCP](https://glama.ai/mcp/servers/eason4kim-rocket/annolux/badge)](https://glama.ai/mcp/servers/eason4kim-rocket/annolux)
+[![Add to Cursor](https://img.shields.io/badge/Add%20to-Cursor-000000?style=flat-square&logo=cursor&logoColor=white)](cursor://anysphere.cursor-deeplink/mcp/install?name=annolux&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImFubm9sdXgtbWNwIl19)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2025--12--11-000000?style=flat-square&logo=anthropic)](https://modelcontextprotocol.io/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg?style=flat-square)](LICENSE)
 [![Free Tier](https://img.shields.io/badge/Free_Tier-1%2C000_Credits-brightgreen?style=flat-square)](https://annolux.com)
@@ -30,7 +33,7 @@ Current web search APIs for AI agents suffer from three fatal flaws:
 - 🕒 **Explicit `fetched_at` Timestamp**: Every ranked hit reveals the exact second it was ingested—enabling grounded citations and temporal reasoning.
 - 🎯 **Predictable Ledger Billing**: Exactly **1 credit per successful 2xx response**. Errors, timeouts (504), rate limits (429), and bad requests cost **0 credits**.
 - 🧩 **Native Model Context Protocol (MCP)**: Zero setup across Claude Code, Cursor, Windsurf, Cline, Zed, and Claude Desktop.
-- 🚀 **1,000 Free Permanent Credits**: Sign in with GitHub or Google at [annolux.com](https://annolux.com) and start querying in 30 seconds.
+- 🚀 **1,000 Free Credits Every Month**: Sign in with GitHub or Google at [annolux.com](https://annolux.com) and start querying in 30 seconds.
 
 ---
 
@@ -45,7 +48,7 @@ Current web search APIs for AI agents suffer from three fatal flaws:
 | **Failed / Timeout Queries** | **🆓 0 Credits charged** | ❌ Billed | ❌ Billed | ❌ Billed |
 | **MCP Tool Surface** | **Single lean `search_web` (Minimal token waste)** | Multiple bulky tools | Multi-step tools | Needs custom bridge |
 | **Domain Restriction** | **✅ Exact hostname filtering (`domains`)** | ✅ Supported | ✅ Supported | Limited `site:` query |
-| **Free Starter Tier** | **1,000 permanent credits** | Limited trial | 1,000 / mo | 2,500 one-time |
+| **Free Starter Tier** | **1,000 credits / month** | Limited trial | 1,000 / mo | 2,500 one-time |
 
 ---
 
@@ -72,6 +75,16 @@ Download standalone binaries from [GitHub Releases](https://github.com/eason4kim
 ## 🔌 MCP Integration
 
 Annolux implements the official [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) specification with a single, high-efficiency tool: `search_web`.
+
+### ⚡ 1-Click Installation (Cursor & Smithery)
+
+- **Cursor**: Click [![Add to Cursor](https://img.shields.io/badge/Add%20to-Cursor-000000?style=flat-square&logo=cursor&logoColor=white)](cursor://anysphere.cursor-deeplink/mcp/install?name=annolux&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImFubm9sdXgtbWNwIl19) to install natively via deep link.
+- **Smithery CLI**:
+  ```bash
+  npx -y @smithery/cli install annolux-mcp --client claude
+  npx -y @smithery/cli install annolux-mcp --client cursor
+  ```
+- **Glama Online Playground**: Test queries instantly without local setup on [Glama.ai](https://glama.ai/mcp/servers/eason4kim-rocket/annolux).
 
 ### 1. Claude Code
 ```bash
@@ -246,7 +259,7 @@ Annolux evaluates search retrieval performance against an immutable, frozen blin
 
 | Plan | Price | Credits | Rate Limits | Billing Rules |
 | :--- | :--- | :--- | :--- | :--- |
-| **Free** | **$0** | **1,000 (Permanent)** | 5 RPS / Burst 10 | Free forever, no credit card required |
+| **Free** | **$0** | **1,000 / month** | 5 RPS / Burst 10 | Free forever, no credit card required |
 | **Pro** | **$29 / mo** | **20,000 / mo** | 5 RPS / Burst 10 | 1 success = 1 credit, no rollover |
 | **Scale** | **$99 / mo** | **100,000 / mo** | 5 RPS / Burst 10 | 1 success = 1 credit, no rollover |
 

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "name": "annolux",
+  "title": "Annolux Bilingual Search",
+  "description": "Curated English and Chinese web index through a single high-signal search_web tool with explicit fetched_at timestamps and 0-cost error billing.",
+  "maintainers": [
+    "eason4kim-rocket"
+  ],
+  "homepage": "https://annolux.com",
+  "repository": {
+    "url": "https://github.com/eason4kim-rocket/annolux",
+    "source": "github"
+  },
+  "runtime": {
+    "type": "node",
+    "command": "npx",
+    "args": [
+      "-y",
+      "annolux-mcp"
+    ]
+  },
+  "environmentVariables": {
+    "ANNOLUX_API_KEY": {
+      "description": "Annolux API key (ann_live_...). Get 1,000 free credits at https://annolux.com.",
+      "required": false,
+      "secret": true
+    },
+    "ANNOLUX_API_URL": {
+      "description": "Annolux API origin endpoint.",
+      "required": false,
+      "default": "https://api.annolux.com"
+    }
+  },
+  "tools": [
+    {
+      "name": "search_web",
+      "description": "Search curated English and Chinese technical & knowledge corpus with explicit fetched_at time provenance."
+    }
+  ]
+}

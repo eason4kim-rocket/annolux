@@ -52,7 +52,14 @@
       throw new Error("login required");
     }
     const body = response.status === 204 ? null : await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(body?.error?.message || `HTTP ${response.status}`);
+    if (!response.ok) {
+      if (body?.error?.code === "SUBSCRIPTION_CONFLICT") {
+        throw new Error(zh
+          ? "已有有效订阅。请到账户页管理，不要重复开通。"
+          : "An active subscription already exists. Manage it from your account instead of starting another checkout.");
+      }
+      throw new Error(body?.error?.message || `HTTP ${response.status}`);
+    }
     return body;
   }
 
