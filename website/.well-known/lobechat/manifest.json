@@ -1,0 +1,78 @@
+{
+  "$schema": "../manifest-schema.json",
+  "api": [
+    {
+      "description": "Search curated English and Chinese technical web corpus with explicit fetched_at snapshot dates to eliminate hallucinations.",
+      "httpMethod": "POST",
+      "name": "search_web",
+      "parameters": {
+        "properties": {
+          "deduplicate": {
+            "default": true,
+            "description": "Filter near-duplicate documents via SimHash",
+            "type": "boolean"
+          },
+          "domains": {
+            "description": "Optional list of domains to restrict search to (e.g. ['go.dev', 'docs.rs'])",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "limit": {
+            "default": 5,
+            "description": "Maximum number of results to return (1-10)",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "number"
+          },
+          "query": {
+            "description": "The search query (English or Chinese)",
+            "type": "string"
+          },
+          "ranking": {
+            "default": "default",
+            "description": "Ranking algorithm strategy",
+            "enum": ["default", "provider"],
+            "type": "string"
+          }
+        },
+        "required": ["query"],
+        "type": "object"
+      },
+      "url": "https://api.annolux.com/v1/search"
+    }
+  ],
+  "author": "Annolux",
+  "createdAt": "2026-08-25",
+  "gateway": "https://api.annolux.com/v1/search",
+  "homepage": "https://annolux.com",
+  "identifier": "annolux",
+  "meta": {
+    "avatar": "https://annolux.com/favicon-96x96.png",
+    "category": "web-search",
+    "description": "Curated English and Chinese technical search API with explicit fetched_at snapshot timestamps for AI agents.",
+    "tags": ["search", "web-search", "rag", "bilingual", "agent-tool"],
+    "title": "Annolux Search"
+  },
+  "schemaVersion": 1,
+  "settings": {
+    "properties": {
+      "apiKey": {
+        "description": "Enter your Annolux API key (get 1,000 free requests/mo at https://annolux.com/account)",
+        "format": "password",
+        "title": "Annolux API Key",
+        "type": "string"
+      }
+    },
+    "required": ["apiKey"],
+    "type": "object"
+  },
+  "ui": {
+    "height": 400,
+    "mode": "chat",
+    "url": "https://annolux.com/playground",
+    "width": 600
+  },
+  "version": "1.0.0"
+}
