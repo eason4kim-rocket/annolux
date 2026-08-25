@@ -12,6 +12,7 @@ readme = "README.md"
 homepage = "https://annolux.com"
 repository = "https://github.com/eason4kim-rocket/annolux"
 keywords = ["llama-index", "annolux", "search", "ai-agent", "rag", "tool-spec"]
+packages = [{include = "llama_index"}]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
