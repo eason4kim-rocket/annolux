@@ -1,5 +1,7 @@
 # Binaries
 bin/
+!packages/annolux-mcp/bin/
+!packages/annolux-mcp/bin/annolux-mcp.js
 node_modules/
 *.exe
 *.exe~
