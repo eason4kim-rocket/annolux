@@ -9,7 +9,7 @@ Bilingual (English & Chinese) curated web search for AI coding assistants and ag
 ### Claude Code
 
 ```bash
-claude mcp add annolux npx -y annolux-mcp -- -key YOUR_ANNOLUX_API_KEY
+claude mcp add annolux -- npx -y annolux-mcp -key YOUR_ANNOLUX_API_KEY
 ```
 
 ### Cursor & Claude Desktop

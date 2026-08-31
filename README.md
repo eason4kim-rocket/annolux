@@ -88,7 +88,7 @@ Annolux implements the official [Model Context Protocol (MCP)](https://modelcont
 
 ### 1. Claude Code
 ```bash
-claude mcp add annolux npx -y annolux-mcp -- -key ann_live_YOUR_API_KEY
+claude mcp add annolux -- npx -y annolux-mcp -key ann_live_YOUR_API_KEY
 ```
 
 ### 2. Cursor / Windsurf

@@ -88,7 +88,7 @@ Annolux 严格遵循 Anthropic [Model Context Protocol (MCP)](https://modelconte
 
 ### 1. Claude Code
 ```bash
-claude mcp add annolux npx -y annolux-mcp -- -key ann_live_你的APIKey
+claude mcp add annolux -- npx -y annolux-mcp -key ann_live_你的APIKey
 ```
 
 ### 2. Cursor / Windsurf

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const readline = require("readline");
 
-const VERSION = "0.1.0";
+const VERSION = "0.2.1";
 const PROTOCOL_VERSION = "2024-11-05";
 
 function parseArgs() {
