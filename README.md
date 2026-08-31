@@ -54,21 +54,17 @@ Current web search APIs for AI agents suffer from three fatal flaws:
 
 ## 📦 Quick Installation
 
-### Option 1: NPX (Fastest for MCP & CLI)
+Node.js 18+ is the only prerequisite. Start in the zero-config sandbox—no account or API key is required:
+
 ```bash
-# Run instantly via Node.js (zero installation)
-npx -y annolux-mcp -key ann_live_YOUR_API_KEY
+npx -y annolux-mcp
 ```
 
-### Option 2: Go CLI & Server
-```bash
-go install github.com/eason4kim-rocket/annolux/cmd/annolux-mcp@latest
-```
+For the full monthly allowance, create a free key at [annolux.com](https://annolux.com) and pass it through the process environment:
 
-### Option 3: Pre-built Multi-Platform Binaries
-Download standalone binaries from [GitHub Releases](https://github.com/eason4kim-rocket/annolux/releases):
-- `linux-amd64` / `linux-arm64`
-- `darwin-amd64` (Intel Mac) / `darwin-arm64` (Apple Silicon M-series)
+```bash
+ANNOLUX_API_KEY=ann_live_YOUR_API_KEY npx -y annolux-mcp
+```
 
 ---
 
@@ -88,8 +84,10 @@ Annolux implements the official [Model Context Protocol (MCP)](https://modelcont
 
 ### 1. Claude Code
 ```bash
-claude mcp add annolux -- npx -y annolux-mcp -key ann_live_YOUR_API_KEY
+claude mcp add annolux -- npx -y annolux-mcp
 ```
+
+This starts in sandbox mode. To use an account key, add it with `-e ANNOLUX_API_KEY=ann_live_YOUR_API_KEY` before `--`.
 
 ### 2. Cursor / Windsurf
 Add to your project `.cursor/mcp.json` or global configuration:
@@ -98,7 +96,10 @@ Add to your project `.cursor/mcp.json` or global configuration:
   "mcpServers": {
     "annolux": {
       "command": "npx",
-      "args": ["-y", "annolux-mcp", "-key", "ann_live_YOUR_API_KEY"]
+      "args": ["-y", "annolux-mcp"],
+      "env": {
+        "ANNOLUX_API_KEY": "ann_live_YOUR_API_KEY"
+      }
     }
   }
 }
@@ -110,7 +111,8 @@ Add to `claude_desktop_config.json`:
 {
   "mcpServers": {
     "annolux": {
-      "command": "annolux-mcp",
+      "command": "npx",
+      "args": ["-y", "annolux-mcp"],
       "env": {
         "ANNOLUX_API_URL": "https://api.annolux.com",
         "ANNOLUX_API_KEY": "ann_live_YOUR_API_KEY"

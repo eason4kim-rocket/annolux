@@ -1151,16 +1151,16 @@
         },
         {
           "heading": {
-            "en": "Install the server binary",
-            "zh": "安装服务器二进制"
+            "en": "Run with npx",
+            "zh": "服务器的二种 npx 运行模式"
           },
           "paragraphs": [
             {
-              "en": "The server is a single static Go binary. With a Go toolchain installed, one command builds and installs it into $(go env GOPATH)/bin — make sure that directory is on your PATH, or reference the binary by absolute path in client configs.",
-              "zh": "服务器是一个静态 Go 二进制。装有 Go 工具链时,一条命令即可构建并安装到 $(go env GOPATH)/bin —— 请确认该目录在 PATH 里,或在客户端配置中使用绝对路径。"
+              "en": "Node.js 18+ is the only prerequisite. npx downloads and starts the published annolux-mcp package, so there is no separate binary to install. Run it without a key for the limited sandbox; add ANNOLUX_API_KEY in your MCP client for the full account allowance.",
+              "zh": "只需 Node.js 18+。npx 会自动下载并启动已发布的 annolux-mcp 包,无需另装二进制。不带密钥即可使用有限试用模式;需要完整账户额度时,在 MCP 客户端中加入 ANNOLUX_API_KEY。"
             }
           ],
-          "code": "go install github.com/eason4kim-rocket/annolux/cmd/annolux-mcp@latest"
+          "code": "npx -y annolux-mcp"
         },
         {
           "heading": {
@@ -1169,8 +1169,8 @@
           },
           "paragraphs": [
             {
-              "en": "Every MCP client accepts the same shape: a command plus two environment variables. The key lives only in the server process environment; annolux-mcp sends it in the Authorization header and never places it in tool results or model-visible arguments.",
-              "zh": "所有 MCP 客户端接受同一形状的配置:一个命令加两个环境变量。密钥只存在于服务器进程环境;annolux-mcp 仅将其放入 Authorization 请求头,不会写进工具结果或模型可见参数。"
+              "en": "Every MCP client accepts the same shape: npx plus optional environment variables. The key lives only in the server process environment; annolux-mcp sends it in the Authorization header and never places it in tool results or model-visible arguments. Omit env entirely to use the sandbox.",
+              "zh": "所有 MCP 客户端都使用同一形状:npx 加可选环境变量。密钥只存在于服务器进程环境;annolux-mcp 仅将其放入 Authorization 请求头,不会写进工具结果或模型可见参数。要使用试用模式,直接省略 env。"
             }
           ],
           "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"annolux-mcp\"],\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_YOUR_API_KEY\"\n      }\n    }\n  }\n}"
@@ -1272,11 +1272,11 @@
           },
           "paragraphs": [
             {
-              "en": "No separate install is needed — npx downloads annolux-mcp on first run. Register it from your terminal. Replace the key placeholder with a real key from your account.",
-              "zh": "无需预先安装 —— npx 首次运行会自动下载 annolux-mcp。在终端注册即可。把占位密钥换成你账户里的真实密钥。"
+              "en": "No separate install is needed — npx downloads annolux-mcp on first run. This command starts the limited sandbox immediately, with no account or API key. For the full account allowance, add -e ANNOLUX_API_KEY=ann_live_YOUR_API_KEY before --.",
+              "zh": "无需预先安装 —— npx 首次运行会自动下载 annolux-mcp。这条命令无需账户或 API Key,会立即启动有限试用模式。需要完整账户额度时,在 -- 前加入 -e ANNOLUX_API_KEY=ann_live_YOUR_API_KEY。"
             }
           ],
-          "code": "claude mcp add annolux --env ANNOLUX_API_KEY=ann_live_YOUR_API_KEY -- npx -y annolux-mcp",
+          "code": "claude mcp add annolux -- npx -y annolux-mcp",
           "links": [
             {
               "label": {
@@ -1361,8 +1361,8 @@
           },
           "paragraphs": [
             {
-              "en": "To update the server, rerun go install with @latest — the registration itself does not change. To unregister, remove it from the same scope you added it to; run claude mcp list first if you are not sure which scope holds it.",
-              "zh": "更新服务器只需重跑 go install @latest —— 注册信息本身不变。取消注册要在添加时的同一作用域移除;不确定在哪个作用域时,先运行 claude mcp list 查看。"
+              "en": "npx resolves the published package when the client starts. To confirm the newest release directly, run npx -y annolux-mcp@latest once, then restart the client. To unregister, remove it from the same scope you added it to; run claude mcp list first if you are not sure which scope holds it.",
+              "zh": "客户端启动时,npx 会获取已发布的软件包。要直接确认最新版,先运行一次 npx -y annolux-mcp@latest,再重启客户端。取消注册要在添加时的同一作用域移除;不确定在哪个作用域时,先运行 claude mcp list 查看。"
             }
           ],
           "code": "claude mcp remove annolux"
@@ -1440,11 +1440,11 @@
           },
           "paragraphs": [
             {
-              "en": "No separate install is needed — npx downloads annolux-mcp on first run. Add this block. Replace the key placeholder with a real key.",
-              "zh": "无需预先安装 —— npx 首次运行会自动下载 annolux-mcp。加入这段配置即可。把占位密钥换成真实密钥。"
+              "en": "No separate install is needed — npx downloads annolux-mcp on first run. This block starts the limited sandbox immediately. For the full account allowance, add ANNOLUX_API_KEY to the server's env as shown on the MCP overview page.",
+              "zh": "无需预先安装 —— npx 首次运行会自动下载 annolux-mcp。这段配置会立即启动有限试用模式。需要完整账户额度时,按 MCP 总览页所示在服务器 env 中加入 ANNOLUX_API_KEY。"
             }
           ],
-          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"annolux-mcp\"],\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_YOUR_API_KEY\"\n      }\n    }\n  }\n}",
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"annolux-mcp\"]\n    }\n  }\n}",
           "links": [
             {
               "label": {
@@ -1510,8 +1510,8 @@
           },
           "paragraphs": [
             {
-              "en": "To update, rerun go install with @latest — the config file needs no change. To remove, delete the annolux entry from mcpServers and restart fully. Other MCP servers in the same file are unaffected; the file stays valid as long as the JSON does.",
-              "zh": "更新只需重跑 go install @latest —— 配置文件无需改动。移除则从 mcpServers 删除 annolux 条目并完全重启。同一文件里的其他 MCP 服务器不受影响;只要 JSON 合法,配置就有效。"
+              "en": "To confirm the newest release, run npx -y annolux-mcp@latest once and restart Claude Desktop; the config file needs no change. To remove, delete the annolux entry from mcpServers and restart fully. Other MCP servers in the same file are unaffected; the file stays valid as long as the JSON does.",
+              "zh": "要确认最新版,先运行一次 npx -y annolux-mcp@latest,再重启 Claude Desktop;配置文件无需改动。移除则从 mcpServers 删除 annolux 条目并完全重启。同一文件里的其他 MCP 服务器不受影响;只要 JSON 合法,配置就有效。"
             }
           ]
         },
@@ -1590,11 +1590,11 @@
           },
           "paragraphs": [
             {
-              "en": "No separate install is needed — npx downloads annolux-mcp on first run. Add this block. Replace the key placeholder with a real key.",
-              "zh": "无需预先安装 —— npx 首次运行会自动下载 annolux-mcp。加入这段配置即可。把占位密钥换成真实密钥。"
+              "en": "No separate install is needed — npx downloads annolux-mcp on first run. This block starts the limited sandbox immediately. For the full account allowance, add ANNOLUX_API_KEY to the server's env as shown on the MCP overview page.",
+              "zh": "无需预先安装 —— npx 首次运行会自动下载 annolux-mcp。这段配置会立即启动有限试用模式。需要完整账户额度时,按 MCP 总览页所示在服务器 env 中加入 ANNOLUX_API_KEY。"
             }
           ],
-          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"annolux-mcp\"],\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_YOUR_API_KEY\"\n      }\n    }\n  }\n}",
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"annolux-mcp\"]\n    }\n  }\n}",
           "links": [
             {
               "label": {
@@ -1736,11 +1736,11 @@
           },
           "paragraphs": [
             {
-              "en": "Install the annolux-mcp binary first (see MCP in the documentation menu), then add this server block. Replace the key placeholder with your real API key.",
-              "zh": "无需预先安装 —— npx 首次运行会自动下载 annolux-mcp。加入这段配置即可。把占位密钥换成真实密钥。"
+              "en": "No separate install is needed — npx downloads annolux-mcp on first run. This block starts the limited sandbox immediately. For the full account allowance, add ANNOLUX_API_KEY to the server's env as shown on the MCP overview page.",
+              "zh": "无需预先安装 —— npx 首次运行会自动下载 annolux-mcp。这段配置会立即启动有限试用模式。需要完整账户额度时,按 MCP 总览页所示在服务器 env 中加入 ANNOLUX_API_KEY。"
             }
           ],
-          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"annolux-mcp\"],\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_YOUR_API_KEY\"\n      }\n    }\n  }\n}",
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"annolux-mcp\"]\n    }\n  }\n}",
           "links": [
             {
               "label": {
@@ -1877,11 +1877,11 @@
           },
           "paragraphs": [
             {
-              "en": "Add this block into mcpServers in your cline_mcp_settings.json. Replace the key placeholder with your real API key.",
-              "zh": "在 cline_mcp_settings.json 的 mcpServers 中加入这段配置。把占位密钥换成真实密钥。"
+              "en": "Add this block into mcpServers in your cline_mcp_settings.json. It starts the limited sandbox immediately. For the full account allowance, add ANNOLUX_API_KEY to the server's env as shown on the MCP overview page.",
+              "zh": "在 cline_mcp_settings.json 的 mcpServers 中加入这段配置,即可立即启动有限试用模式。需要完整账户额度时,按 MCP 总览页所示在服务器 env 中加入 ANNOLUX_API_KEY。"
             }
           ],
-          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"annolux-mcp\"],\n      \"env\": {\n        \"ANNOLUX_API_URL\": \"https://api.annolux.com\",\n        \"ANNOLUX_API_KEY\": \"ann_live_YOUR_API_KEY\"\n      }\n    }\n  }\n}",
+          "code": "{\n  \"mcpServers\": {\n    \"annolux\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"annolux-mcp\"]\n    }\n  }\n}",
           "links": [
             {
               "label": {
@@ -1911,8 +1911,8 @@
           },
           "bullets": [
             {
-              "en": "Binary path: if the command is not recognized, use the absolute path from `which npx`.",
-              "zh": "路径:若命令未被识别,请使用 which npx 的绝对路径。"
+              "en": "npx path: if the command is not recognized, use the absolute path from `which npx`.",
+              "zh": "npx 路径:若命令未被识别,请使用 which npx 的绝对路径。"
             },
             {
               "en": "Restart MCP server: click the retry or reload button next to annolux in the Cline MCP server list.",
@@ -2002,11 +2002,11 @@
           },
           "paragraphs": [
             {
-              "en": "Add the context_servers configuration block in settings.json. Replace the key placeholder with your real API key.",
-              "zh": "在 settings.json 中加入 context_servers 配置段。把占位密钥换成真实密钥。"
+              "en": "Add the context_servers block in settings.json. It starts the limited sandbox immediately. For the full account allowance, add ANNOLUX_API_KEY to command.env as shown on the MCP overview page.",
+              "zh": "在 settings.json 中加入 context_servers 配置段,即可立即启动有限试用模式。需要完整账户额度时,按 MCP 总览页所示在 command.env 中加入 ANNOLUX_API_KEY。"
             }
           ],
-          "code": "{\n  \"context_servers\": {\n    \"annolux\": {\n      \"command\": {\n        \"path\": \"npx\",\n        \"args\": [\"-y\", \"annolux-mcp\", \"-key\", \"ann_live_YOUR_API_KEY\"],\n        \"env\": {\n          \"ANNOLUX_API_URL\": \"https://api.annolux.com\"\n        }\n      }\n    }\n  }\n}",
+          "code": "{\n  \"context_servers\": {\n    \"annolux\": {\n      \"command\": {\n        \"path\": \"npx\",\n        \"args\": [\"-y\", \"annolux-mcp\"]\n      }\n    }\n  }\n}",
           "links": [
             {
               "label": {
@@ -2735,7 +2735,7 @@
               "zh": "在 MCP 进程环境中配置 ANNOLUX_API_KEY。MCP 客户端只将其放进 Authorization 请求头，不写入工具结果或模型可见参数。每个运行环境使用独立命名密钥；原始值只复制一次；设备丢失时立即撤销；不要粘贴到 Issue 或支持邮件。"
             }
           ],
-          "code": "ANNOLUX_API_URL=https://api.annolux.com ANNOLUX_API_KEY=ann_live_… annolux-mcp"
+          "code": "ANNOLUX_API_URL=https://api.annolux.com ANNOLUX_API_KEY=ann_live_… npx -y annolux-mcp"
         },
         {
           "heading": {

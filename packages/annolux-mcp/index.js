@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const readline = require("readline");
 
-const VERSION = "0.2.1";
+const VERSION = "0.2.2";
 const PROTOCOL_VERSION = "2024-11-05";
 
 function parseArgs() {
@@ -27,9 +27,12 @@ function parseArgs() {
 
 const { apiKey, apiUrl } = parseArgs();
 
-if (!apiKey) {
-  process.stderr.write("ANNOLUX_API_KEY is required. Pass via -key <key> or ANNOLUX_API_KEY env var.\n");
+if (apiKey && !apiKey.startsWith("ann_live_")) {
+  process.stderr.write("ANNOLUX_API_KEY is invalid (it must start with ann_live_). Set it in the MCP server process environment.\n");
   process.exit(1);
+}
+if (!apiKey) {
+  process.stderr.write("annolux-mcp: no API key set — running in free sandbox mode with limited results. Get a key with 1,000 free credits every month at https://annolux.com\n");
 }
 
 const TOOL_DEFINITION = {
@@ -81,18 +84,20 @@ const TOOL_DEFINITION = {
 };
 
 async function handleSearch(params) {
-  const endpoint = `${apiUrl}/api/v1/search`;
+  // Without a key, fall back to the public sandbox endpoint (bounded results).
+  const endpoint = `${apiUrl}${apiKey ? "/api/v1/search" : "/api/v1/demo/search"}`;
   const controller = new AbortController();
   const timeoutSec = params.timeout || 30;
   const timeoutId = setTimeout(() => controller.abort(), timeoutSec * 1000);
 
   try {
+    const headers = { "Content-Type": "application/json" };
+    if (apiKey) {
+      headers["Authorization"] = `Bearer ${apiKey}`;
+    }
     const res = await fetch(endpoint, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`
-      },
+      headers,
       body: JSON.stringify(params),
       signal: controller.signal
     });

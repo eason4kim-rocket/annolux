@@ -6,7 +6,7 @@ server:
   name: "annolux"
   displayName: "Annolux Search"
   description: "Curated English & Chinese Search API and MCP for AI Agents with explicit fetched_at time provenance."
-  version: "0.1.2"
+  version: "0.2.2"
   icon: "https://annolux.com/favicon.svg"
   homepage: "https://annolux.com"
   repository: "https://github.com/eason4kim-rocket/annolux"
@@ -22,7 +22,6 @@ startCommand:
       };
       if (config?.apiKey) {
         env.ANNOLUX_API_KEY = config.apiKey;
-        args.push("-key", config.apiKey);
       }
       return {
         command: "npx",
@@ -36,7 +35,7 @@ configSchema:
   properties:
     apiKey:
       type: string
-      description: "Annolux API key (starts with ann_live_). Free tier provides 1,000 permanent credits at https://annolux.com."
+      description: "Annolux API key (starts with ann_live_). Free tier provides 1,000 credits each month at https://annolux.com."
       secret: true
     apiUrl:
       type: string

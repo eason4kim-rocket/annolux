@@ -54,21 +54,17 @@
 
 ## 📦 快速安装与运行
 
-### 方式 1: NPX (极速免安装运行 MCP)
+只需 Node.js 18+。先用零配置沙盒跑通，无需账户或 API Key：
+
 ```bash
-# 无需安装 Go 或克隆代码，Node.js 18+ 直接一行运行
-npx -y annolux-mcp -key ann_live_你的APIKey
+npx -y annolux-mcp
 ```
 
-### 方式 2: Go 安装
-```bash
-go install github.com/eason4kim-rocket/annolux/cmd/annolux-mcp@latest
-```
+需要完整月度额度时，在 [annolux.com](https://annolux.com) 免费创建密钥，并通过进程环境传入：
 
-### 方式 3: 预编译跨平台二进制
-前往 [GitHub Releases](https://github.com/eason4kim-rocket/annolux/releases) 下载对应平台的独立二进制文件：
-- `linux-amd64` / `linux-arm64`
-- `darwin-amd64` (Intel Mac) / `darwin-arm64` (Apple Silicon M 系列芯片)
+```bash
+ANNOLUX_API_KEY=ann_live_你的APIKey npx -y annolux-mcp
+```
 
 ---
 
@@ -88,8 +84,10 @@ Annolux 严格遵循 Anthropic [Model Context Protocol (MCP)](https://modelconte
 
 ### 1. Claude Code
 ```bash
-claude mcp add annolux -- npx -y annolux-mcp -key ann_live_你的APIKey
+claude mcp add annolux -- npx -y annolux-mcp
 ```
+
+这会先使用沙盒模式。要使用账户密钥，请在 `--` 前加入 `-e ANNOLUX_API_KEY=ann_live_你的APIKey`。
 
 ### 2. Cursor / Windsurf
 在项目 `.cursor/mcp.json` 或全局配置中添加：
@@ -98,7 +96,10 @@ claude mcp add annolux -- npx -y annolux-mcp -key ann_live_你的APIKey
   "mcpServers": {
     "annolux": {
       "command": "npx",
-      "args": ["-y", "annolux-mcp", "-key", "ann_live_你的APIKey"]
+      "args": ["-y", "annolux-mcp"],
+      "env": {
+        "ANNOLUX_API_KEY": "ann_live_你的APIKey"
+      }
     }
   }
 }
@@ -110,7 +111,8 @@ claude mcp add annolux -- npx -y annolux-mcp -key ann_live_你的APIKey
 {
   "mcpServers": {
     "annolux": {
-      "command": "annolux-mcp",
+      "command": "npx",
+      "args": ["-y", "annolux-mcp"],
       "env": {
         "ANNOLUX_API_URL": "https://api.annolux.com",
         "ANNOLUX_API_KEY": "ann_live_你的APIKey"

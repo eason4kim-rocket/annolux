@@ -24,6 +24,9 @@ jobs:
         with:
           go-version-file: go.mod
           cache: true
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
       - name: Install fixed Chrome
         id: chrome
         uses: browser-actions/setup-chrome@086160e580d6e8c142ad5ba29009dcde677c6321 # v2
@@ -38,6 +41,8 @@ jobs:
           bash deploy/pull-private-ghcr_test.sh
       - name: MCP Registry metadata
         run: bash scripts/mcp-registry-check.sh
+      - name: MCP npm package and installation contract
+        run: bash scripts/mcp-distribution-check.sh
       - name: Frozen ranking lock
         run: go run ./tools/rankinglock
       - name: Generate and verify static site

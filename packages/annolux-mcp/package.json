@@ -1,10 +1,10 @@
 {
   "name": "annolux-mcp",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Official Model Context Protocol (MCP) server for Annolux — Curated English & Chinese Web Search for AI Agents with explicit fetched_at timestamps",
   "main": "index.js",
   "bin": {
-    "annolux-mcp": "./bin/annolux-mcp.js"
+    "annolux-mcp": "bin/annolux-mcp.js"
   },
   "files": [
     "bin",
@@ -37,9 +37,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eason4kim-rocket/annolux.git"
+    "url": "git+https://github.com/eason4kim-rocket/annolux.git"
   },
   "homepage": "https://annolux.com/mcp",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=18.0.0"
   }

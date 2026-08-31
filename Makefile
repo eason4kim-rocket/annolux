@@ -24,6 +24,7 @@ vet:
 
 verify: site
 	bash scripts/repo-policy.sh
+	bash scripts/mcp-distribution-check.sh
 	bash scripts/site-check.sh
 	go run ./tools/rankinglock
 	go test ./...
