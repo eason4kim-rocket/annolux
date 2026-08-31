@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 const readline = require("readline");
 
-const VERSION = "0.2.2";
+const VERSION = "0.2.3";
 const PROTOCOL_VERSION = "2024-11-05";
+const PRICING_URL = "https://annolux.com/pricing";
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -106,6 +107,18 @@ async function handleSearch(params) {
     const data = await res.json();
 
     if (!res.ok) {
+      if (res.status === 402 && data?.error?.code === "INSUFFICIENT_CREDITS") {
+        const upgradeURL = data.error.upgrade_url || PRICING_URL;
+        return {
+          isError: true,
+          content: [
+            {
+              type: "text",
+              text: `Monthly credits are exhausted. Upgrade at ${upgradeURL}. After Paddle confirms payment, retry search_web with the same API key; no restart is required.`
+            }
+          ]
+        };
+      }
       return {
         isError: true,
         content: [

@@ -18,6 +18,7 @@ for public_source in README.md README_zh.md website/content.json packages/annolu
 done
 
 node scripts/mcp-package-smoke.mjs
+node scripts/mcp-package-smoke.mjs --expect-upgrade
 
 pack_dir="$(mktemp -d)"
 trap 'rm -rf -- "$pack_dir"' EXIT
@@ -25,5 +26,6 @@ package_file="$(npm pack --silent --pack-destination "$pack_dir" ./packages/anno
 mkdir "$pack_dir/install"
 npm install --prefix "$pack_dir/install" --ignore-scripts --no-audit --no-fund "$pack_dir/$package_file" >/dev/null
 node scripts/mcp-package-smoke.mjs "$pack_dir/install/node_modules/.bin/annolux-mcp"
+node scripts/mcp-package-smoke.mjs "$pack_dir/install/node_modules/.bin/annolux-mcp" --expect-upgrade
 
 echo 'MCP distribution: pass'

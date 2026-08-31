@@ -253,11 +253,19 @@ func newHTTPClient() *http.Client {
 func formatAPIError(status int, body []byte) string {
 	var envelope struct {
 		Error *struct {
-			Code    string `json:"code"`
-			Message string `json:"message"`
+			Code       string `json:"code"`
+			Message    string `json:"message"`
+			UpgradeURL string `json:"upgrade_url"`
 		} `json:"error"`
 	}
 	if json.Unmarshal(body, &envelope) == nil && envelope.Error != nil && envelope.Error.Code != "" && envelope.Error.Message != "" {
+		if status == http.StatusPaymentRequired && envelope.Error.Code == "INSUFFICIENT_CREDITS" {
+			upgradeURL := envelope.Error.UpgradeURL
+			if upgradeURL == "" {
+				upgradeURL = "https://annolux.com/pricing"
+			}
+			return fmt.Sprintf("[%s] Monthly credits are exhausted. Upgrade at %s. After Paddle confirms payment, retry search_web with the same API key; no restart is required.", envelope.Error.Code, upgradeURL)
+		}
 		return fmt.Sprintf("[%s] %s", envelope.Error.Code, envelope.Error.Message)
 	}
 	return fmt.Sprintf("search failed (HTTP %d)", status)

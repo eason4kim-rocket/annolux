@@ -6,8 +6,9 @@ import (
 )
 
 type errorDetail struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
+	Code       string `json:"code"`
+	Message    string `json:"message"`
+	UpgradeURL string `json:"upgrade_url,omitempty"`
 }
 
 type errorEnvelope struct {

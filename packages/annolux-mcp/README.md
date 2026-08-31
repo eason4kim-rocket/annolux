@@ -44,6 +44,7 @@ This configuration runs in the limited sandbox. For the full 1,000 credits/month
 - **Deterministic Billing**: Exactly 1 credit per successful 2xx search.
 - **Free Tier**: 1,000 free credits every month, no credit card, at [annolux.com](https://annolux.com).
 - **Zero-Config Sandbox**: Run `npx -y annolux-mcp` with no API key to try it instantly (limited results); add a key through `ANNOLUX_API_KEY` for the full 1,000 credits/month.
+- **Direct Upgrade Recovery**: When monthly credits run out, `search_web` returns the checkout link. After Paddle confirms payment, retry with the same API key—no MCP restart or key replacement is needed.
 
 ## License
 

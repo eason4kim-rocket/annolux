@@ -186,8 +186,8 @@
           },
           "paragraphs": [
             {
-              "en": "Each result includes rank, title, URL, snippet, and fetched_at. A successful 2xx response consumes one credit. 400, 403, 429, 5xx, and timeouts consume zero. Insufficient balance returns 402; there are no overage charges.",
-              "zh": "每条结果包含 rank、title、URL、snippet 与 fetched_at。成功 2xx 扣 1 点；400、403、429、5xx 与超时不扣点；余额不足返回 402，不产生超额费用。"
+              "en": "Each result includes rank, title, URL, snippet, and fetched_at. A successful 2xx response consumes one credit. 400, 403, 429, 5xx, and timeouts consume zero. Insufficient balance returns 402 with the checkout link. After Paddle confirms payment, the same API key works immediately; there are no overage charges.",
+              "zh": "每条结果包含 rank、title、URL、snippet 与 fetched_at。成功 2xx 扣 1 点；400、403、429、5xx 与超时不扣点；余额不足返回 402 和付款链接。Paddle 确认付款后，原 API key 可直接继续使用，不产生超额费用。"
             }
           ],
           "code": "X-Annolux-Credits-Used: 1\nX-Annolux-Credits-Remaining: 999\nX-Request-ID: req_…"
@@ -2719,8 +2719,8 @@
           },
           "paragraphs": [
             {
-              "en": "Only a successful 2xx standard Search commits one credit. Validation errors, authentication failures, insufficient balance, rate limits, server errors, and timeouts commit zero. Read X-Annolux-Credits-Used and X-Annolux-Credits-Remaining instead of estimating locally. A 402 means stop or ask the user to obtain a new grant; there is no surprise overage charge.",
-              "zh": "只有成功的 2xx 标准 Search 提交 1 点。参数错误、认证失败、余额不足、限流、服务端错误和超时都不提交点数。应读取 X-Annolux-Credits-Used 与 X-Annolux-Credits-Remaining，而不是本地估算。402 表示停止或请用户获取新点数，不会产生意外超额费用。"
+              "en": "Only a successful 2xx standard Search commits one credit. Validation errors, authentication failures, insufficient balance, rate limits, server errors, and timeouts commit zero. Read X-Annolux-Credits-Used and X-Annolux-Credits-Remaining instead of estimating locally. A 402 includes the checkout link; after Paddle confirms payment, retry with the same API key. There is no surprise overage charge.",
+              "zh": "只有成功的 2xx 标准 Search 提交 1 点。参数错误、认证失败、余额不足、限流、服务端错误和超时都不提交点数。应读取 X-Annolux-Credits-Used 与 X-Annolux-Credits-Remaining，而不是本地估算。402 包含付款链接；Paddle 确认付款后，使用原 API key 重试。不会产生意外超额费用。"
             }
           ]
         },

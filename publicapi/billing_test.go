@@ -68,6 +68,14 @@ func TestCheckoutAndCompletedWebhookGrantCreditsExactlyOnce(t *testing.T) {
 	fixture := newServerFixture(t)
 	now := time.Date(2026, 8, 16, 2, 0, 0, 0, time.UTC)
 	attachTestBilling(t, &fixture, now)
+	freeGrantRef := "free-monthly:" + fixture.account.ID + ":202608"
+	if revoked, err := fixture.store.RevokeGrant(context.Background(), freeGrantRef, "test-exhausted-before-payment"); err != nil || revoked != accounts.FreeMonthlyCredits {
+		t.Fatalf("revoke free credits = %d, %v", revoked, err)
+	}
+	beforePayment := fixture.searchRequest(t, `{"query":"upgrade before payment"}`)
+	if beforePayment.Code != http.StatusPaymentRequired || !strings.Contains(beforePayment.Body.String(), `"upgrade_url":"https://annolux.com/pricing"`) {
+		t.Fatalf("before payment = %d %s", beforePayment.Code, beforePayment.Body.String())
+	}
 	checkoutRequest := httptest.NewRequest(http.MethodPost, "/api/v1/billing/checkout-intents", strings.NewReader(`{"plan":"pro","accept_terms":true,"accept_refund":true}`))
 	checkoutRequest.Header.Set("Origin", "http://127.0.0.1:8080")
 	checkoutRequest.Header.Set("X-CSRF-Token", fixture.csrf)
@@ -110,11 +118,15 @@ func TestCheckoutAndCompletedWebhookGrantCreditsExactlyOnce(t *testing.T) {
 	if response := postWebhook(body); response.Code != http.StatusOK {
 		t.Fatalf("webhook = %d %s", response.Code, response.Body.String())
 	}
+	afterPayment := fixture.searchRequest(t, `{"query":"same key after payment"}`)
+	if afterPayment.Code != http.StatusOK || afterPayment.Header().Get(CreditsLeftHeader) != "19999" {
+		t.Fatalf("same key after payment = %d headers=%v body=%s", afterPayment.Code, afterPayment.Header(), afterPayment.Body.String())
+	}
 	if response := postWebhook(body); response.Code != http.StatusOK || !strings.Contains(response.Body.String(), `"duplicate":true`) {
 		t.Fatalf("duplicate = %d %s", response.Code, response.Body.String())
 	}
 	summary, err := fixture.store.CreditSummary(context.Background(), fixture.account.ID)
-	if err != nil || summary.Available != accounts.FreeMonthlyCredits+20_000 || summary.Granted != accounts.FreeMonthlyCredits+20_000 {
+	if err != nil || summary.Available != 19_999 || summary.Granted != accounts.FreeMonthlyCredits+20_000 || summary.Revoked != accounts.FreeMonthlyCredits || summary.Used != 1 {
 		t.Fatalf("summary = %#v, %v", summary, err)
 	}
 	mutated := bytes.Replace(body, []byte(`"status":"completed"`), []byte(`"status":"paid"`), 1)

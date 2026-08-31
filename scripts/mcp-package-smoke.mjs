@@ -13,7 +13,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const packageJSON = JSON.parse(
   await readFile(path.join(root, "packages/annolux-mcp/package.json"), "utf8"),
 );
-const executable = process.argv[2] || path.join(root, "packages/annolux-mcp/bin/annolux-mcp.js");
+const upgradeMode = process.argv.includes("--expect-upgrade");
+const executable = process.argv.slice(2).find((argument) => argument !== "--expect-upgrade") || path.join(root, "packages/annolux-mcp/bin/annolux-mcp.js");
 
 const api = http.createServer((request, response) => {
   let body = "";
@@ -23,14 +24,22 @@ const api = http.createServer((request, response) => {
   });
   request.on("end", () => {
     assert.equal(request.method, "POST");
-    assert.equal(request.url, "/api/v1/demo/search");
-    assert.equal(request.headers.authorization, undefined);
+    assert.equal(request.url, upgradeMode ? "/api/v1/search" : "/api/v1/demo/search");
+    assert.equal(request.headers.authorization, upgradeMode ? "Bearer ann_live_upgrade_smoke" : undefined);
     assert.deepEqual(JSON.parse(body), {
       query: "MCP installation smoke test",
       limit: 1,
     });
-    response.writeHead(200, { "Content-Type": "application/json" });
-    response.end(JSON.stringify({
+    response.writeHead(upgradeMode ? 402 : 200, { "Content-Type": "application/json" });
+    response.end(JSON.stringify(upgradeMode ? {
+      success: false,
+      results: [],
+      error: {
+        code: "INSUFFICIENT_CREDITS",
+        message: "credit balance is empty",
+        upgrade_url: "https://annolux.com/pricing",
+      },
+    } : {
       results: [{
         title: "Annolux MCP smoke result",
         url: "https://example.com/mcp",
@@ -52,7 +61,7 @@ const child = spawn(executable, [], {
   env: {
     ...process.env,
     ANNOLUX_API_URL: `http://127.0.0.1:${address.port}`,
-    ANNOLUX_API_KEY: "",
+    ANNOLUX_API_KEY: upgradeMode ? "ann_live_upgrade_smoke" : "",
   },
   stdio: ["pipe", "pipe", "pipe"],
 });
@@ -111,11 +120,19 @@ try {
     name: "search_web",
     arguments: { query: "MCP installation smoke test", limit: 1 },
   });
-  assert.equal(searched.result.isError, undefined);
-  const payload = JSON.parse(searched.result.content[0].text);
-  assert.equal(payload.results.length, 1);
-  assert.match(stderr, /free sandbox mode/);
-  process.stdout.write(`annolux-mcp ${packageJSON.version}: package handshake and sandbox search pass\n`);
+  if (upgradeMode) {
+    assert.equal(searched.result.isError, true);
+    assert.match(searched.result.content[0].text, /https:\/\/annolux\.com\/pricing/);
+    assert.match(searched.result.content[0].text, /same API key/);
+    assert.match(searched.result.content[0].text, /no restart/);
+    process.stdout.write(`annolux-mcp ${packageJSON.version}: exhausted-credit upgrade guidance passes\n`);
+  } else {
+    assert.equal(searched.result.isError, undefined);
+    const payload = JSON.parse(searched.result.content[0].text);
+    assert.equal(payload.results.length, 1);
+    assert.match(stderr, /free sandbox mode/);
+    process.stdout.write(`annolux-mcp ${packageJSON.version}: package handshake and sandbox search pass\n`);
+  }
 } finally {
   child.kill("SIGTERM");
   lines.close();

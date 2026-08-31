@@ -79,6 +79,15 @@ func TestNormalizeAPIURLRejectsCredentialAndNonTLSRemote(t *testing.T) {
 	}
 }
 
+func TestFormatAPIErrorOffersCheckoutAndSameKeyRetry(t *testing.T) {
+	message := formatAPIError(http.StatusPaymentRequired, []byte(`{"success":false,"error":{"code":"INSUFFICIENT_CREDITS","message":"credit balance is empty","upgrade_url":"https://annolux.com/pricing"}}`))
+	for _, required := range []string{"INSUFFICIENT_CREDITS", "https://annolux.com/pricing", "same API key", "no restart"} {
+		if !strings.Contains(message, required) {
+			t.Fatalf("formatAPIError() = %q; missing %q", message, required)
+		}
+	}
+}
+
 func slicesSort(values []string) {
 	for index := 1; index < len(values); index++ {
 		for cursor := index; cursor > 0 && values[cursor] < values[cursor-1]; cursor-- {

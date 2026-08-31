@@ -1,6 +1,6 @@
 {
   "name": "annolux-mcp",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Official Model Context Protocol (MCP) server for Annolux — Curated English & Chinese Web Search for AI Agents with explicit fetched_at timestamps",
   "main": "index.js",
   "bin": {

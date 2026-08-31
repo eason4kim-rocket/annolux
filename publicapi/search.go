@@ -36,6 +36,8 @@ type searchErrorEnvelope struct {
 	Error   errorDetail          `json:"error"`
 }
 
+const pricingURL = "https://annolux.com/pricing"
+
 // Public response types are deliberately separate from the internal search
 // models so Labs evidence, extraction, trust, and receipt fields can never
 // leak into the commercial Search contract by accident.
@@ -98,7 +100,7 @@ func (server *Server) handleSearch(writer http.ResponseWriter, request *http.Req
 	server.ensureMonthlyFreeCredits(request.Context(), authenticated.AccountID)
 	reservation, _, err := server.accounts.ReserveCredits(request.Context(), authenticated.AccountID, authenticated.KeyID, requestID, 1)
 	if errors.Is(err, accounts.ErrInsufficientCredits) {
-		writeSearchError(writer, http.StatusPaymentRequired, "INSUFFICIENT_CREDITS", "credit balance is empty")
+		writeInsufficientCredits(writer)
 		return
 	}
 	if err != nil {
@@ -276,6 +278,18 @@ func (server *Server) requireAPIKey(writer http.ResponseWriter, request *http.Re
 
 func writeSearchError(writer http.ResponseWriter, status int, code, message string) {
 	writeJSON(writer, status, searchErrorEnvelope{Success: false, Results: []publicSearchResult{}, Error: errorDetail{Code: code, Message: message}})
+}
+
+func writeInsufficientCredits(writer http.ResponseWriter) {
+	writeJSON(writer, http.StatusPaymentRequired, searchErrorEnvelope{
+		Success: false,
+		Results: []publicSearchResult{},
+		Error: errorDetail{
+			Code:       "INSUFFICIENT_CREDITS",
+			Message:    "credit balance is empty",
+			UpgradeURL: pricingURL,
+		},
+	})
 }
 
 func mapSearchError(err error) (int, string, string) {
