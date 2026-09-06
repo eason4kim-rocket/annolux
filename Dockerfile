@@ -17,7 +17,7 @@ RUN go run ./tools/sitegen
 
 # Production publication is fail-closed: only a fresh, release-mode dist can
 # reach this target. The legal values stay out of Docker build args/history.
-FROM nginxinc/nginx-unprivileged:1.30.4-alpine@sha256:44e36330f74d4f3a1d4e222acca9e23b401fb87811a7597024502bb759c4dd49 AS web
+FROM nginxinc/nginx-unprivileged:1.31.5-alpine@sha256:aa8c9087d36d93e9d650c5365f883b421e8214aedbad24ade52b844c583358f1 AS web
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=site-release /src/website/dist/ /usr/share/nginx/html/
 EXPOSE 8080
@@ -26,7 +26,7 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
 
 # CI audits intentionally use placeholder legal text and therefore build this
 # non-publishable target after generating a fresh development dist.
-FROM nginxinc/nginx-unprivileged:1.30.4-alpine@sha256:44e36330f74d4f3a1d4e222acca9e23b401fb87811a7597024502bb759c4dd49 AS web-test
+FROM nginxinc/nginx-unprivileged:1.31.5-alpine@sha256:aa8c9087d36d93e9d650c5365f883b421e8214aedbad24ade52b844c583358f1 AS web-test
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=site-development /src/website/dist/ /usr/share/nginx/html/
 EXPOSE 8080
